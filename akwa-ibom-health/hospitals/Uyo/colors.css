@@ -1,0 +1,313 @@
+/*
+=============================================================
+  IRHYTHM-INSPIRED COLOUR PALETTE
+  Eve Massage Services — Akwa Ibom Health Directory
+  Replace the existing :root { } block on each page with
+  the relevant section below.
+=============================================================
+
+  EXTRACTED FROM IRHYTHM HOMEPAGE:
+  Hero bg:       #3d3aed  (deep indigo)
+  Gradient mid:  #5b5bd6  (medium purple-blue)
+  Gradient dark: #2825c2  (deeper indigo)
+  Body bg:       #f4f4ff  (faint lavender white)
+  Card surface:  #ffffff  (pure white)
+  CTA warm:      #e8e8ff  (light lavender — replaces amber)
+  Accent light:  #9090f8  (light indigo for hover states)
+  Text dark:     #0f0e2e  (near-black with purple undertone)
+  Text mid:      #3a3860  (medium purple-dark)
+  Text muted:    #8585aa  (muted purple-grey)
+  Border:        #d4d4f0  (subtle lavender border)
+  Emergency red: #e63946  (kept — universal emergency colour)
+  Success green: #2db87a  (teal-green, still readable on purple)
+=============================================================
+*/
+
+
+/* =============================================================
+   1. HEALTH DIRECTORY HUB PAGE
+      File: health-directory-hub.html
+      Find the existing :root { } block and replace entirely
+   ============================================================= */
+
+:root {
+  /* Backgrounds */
+  --white:        #f4f4ff;         /* faint lavender body background */
+  --surface:      #ffffff;         /* card and content surface */
+
+  /* Primary — Indigo (replaces blue) */
+  --blue:         #3d3aed;         /* main indigo — hero, buttons, accents */
+  --blue-light:   #eeeefd;         /* very light indigo — card hover, pills */
+  --blue-mid:     #b0b0f5;         /* mid indigo — borders, dividers */
+  --blue-dark:    #2825c2;         /* deep indigo — hero gradient dark end */
+
+  /* Secondary — Teal green (replaces green) */
+  --green:        #2db87a;         /* teal-green — verified, success, NHIS */
+  --green-light:  #e6f8f1;         /* light teal — success backgrounds */
+  --green-mid:    #7ecfb0;         /* mid teal — verified dots, borders */
+
+  /* Emergency — Red (unchanged — universal) */
+  --red:          #e63946;
+  --red-light:    #fdeef0;
+
+  /* Warm accent — Lavender (replaces amber) */
+  --amber:        #6c63ff;         /* vivid indigo for interactive accents */
+  --amber-light:  #eeeefd;         /* light lavender — warm accent backgrounds */
+
+  /* Text */
+  --ink:          #0f0e2e;         /* near-black with deep purple undertone */
+  --ink-soft:     #3a3860;         /* medium purple-dark for body text */
+  --ink-muted:    #8585aa;         /* muted purple-grey for labels, captions */
+
+  /* Border */
+  --border:       #d4d4f0;         /* subtle lavender border */
+
+  /* Mono font */
+  --mono:         'IBM Plex Mono', monospace;
+}
+
+/* Hero gradient — replace existing .hero background property */
+/* Find: background: linear-gradient(160deg, var(--blue-dark) 0%, #1a3a6e 60%, #0d2a50 100%); */
+/* Replace with: */
+/*
+.hero {
+  background: linear-gradient(160deg, #2825c2 0%, #3d3aed 50%, #5b5bd6 100%);
+}
+*/
+
+/* Nav background — replace existing nav background */
+/* Find: background: rgba(247,249,252,0.96); */
+/* Replace with: */
+/*
+nav {
+  background: rgba(244,244,255,0.96);
+}
+*/
+
+
+/* =============================================================
+   2. HOSPITALS / LGA CATEGORY PAGE
+      File: health-directory-hospitals-uyo.html
+      Replace the entire :root { } block with this
+   ============================================================= */
+
+/*
+:root {
+  --white:        #f4f4ff;
+  --surface:      #ffffff;
+  --blue:         #3d3aed;
+  --blue-light:   #eeeefd;
+  --blue-mid:     #b0b0f5;
+  --blue-dark:    #2825c2;
+  --green:        #2db87a;
+  --green-light:  #e6f8f1;
+  --green-mid:    #7ecfb0;
+  --red:          #e63946;
+  --red-light:    #fdeef0;
+  --amber:        #6c63ff;
+  --amber-light:  #eeeefd;
+  --ink:          #0f0e2e;
+  --ink-soft:     #3a3860;
+  --ink-muted:    #8585aa;
+  --border:       #d4d4f0;
+  --surface:      #ffffff;
+}
+*/
+
+/* Page header gradient — replace existing .page-header background */
+/* Find: background: var(--blue-dark); */
+/* Replace with: */
+/*
+.page-header, .breadcrumb-bar {
+  background: linear-gradient(160deg, #2825c2 0%, #3d3aed 100%);
+}
+*/
+
+
+/* =============================================================
+   3. INDIVIDUAL LISTING PAGE
+      File: health-directory-listing-uuth.html
+      Replace the entire :root { } block with this
+   ============================================================= */
+
+/*
+:root {
+  --white:        #f4f4ff;
+  --surface:      #ffffff;
+  --blue:         #3d3aed;
+  --blue-light:   #eeeefd;
+  --blue-mid:     #b0b0f5;
+  --blue-dark:    #2825c2;
+  --green:        #2db87a;
+  --green-light:  #e6f8f1;
+  --green-mid:    #7ecfb0;
+  --red:          #e63946;
+  --red-light:    #fdeef0;
+  --amber:        #6c63ff;
+  --amber-light:  #eeeefd;
+  --ink:          #0f0e2e;
+  --ink-soft:     #3a3860;
+  --ink-muted:    #8585aa;
+  --border:       #d4d4f0;
+}
+*/
+
+/* Header gradient — replace .page-header background and .breadcrumb-bar */
+/* Find: background: var(--blue-dark); (appears on both) */
+/* Replace with: */
+/*
+.page-header, .breadcrumb-bar {
+  background: linear-gradient(160deg, #2825c2 0%, #3d3aed 100%);
+}
+*/
+
+/* Wellness CTA box — replace existing gradient */
+/* Find: background: linear-gradient(135deg, #0f3d70, #1a5fa8); */
+/* Replace with: */
+/*
+.wellness-cta {
+  background: linear-gradient(135deg, #2825c2, #5b5bd6);
+}
+*/
+
+
+/* =============================================================
+   4. EMERGENCY RESOURCES PAGE (when built)
+      Replace :root { } with this
+   ============================================================= */
+
+/*
+:root {
+  --white:        #f4f4ff;
+  --surface:      #ffffff;
+  --blue:         #3d3aed;
+  --blue-light:   #eeeefd;
+  --blue-mid:     #b0b0f5;
+  --blue-dark:    #2825c2;
+  --green:        #2db87a;
+  --green-light:  #e6f8f1;
+  --green-mid:    #7ecfb0;
+  --red:          #e63946;
+  --red-light:    #fdeef0;
+  --amber:        #6c63ff;
+  --amber-light:  #eeeefd;
+  --ink:          #0f0e2e;
+  --ink-soft:     #3a3860;
+  --ink-muted:    #8585aa;
+  --border:       #d4d4f0;
+}
+*/
+
+
+/* =============================================================
+   5. SPECIFIC OVERRIDES FOR ALL PAGES
+      Paste these after your existing CSS on each page —
+      they override colour-specific inline properties that
+      the :root swap alone won't catch
+   ============================================================= */
+
+/* Emergency banner stays red — no change needed */
+
+/* Verified bar — change from green to indigo */
+.verified-bar {
+  background: #3d3aed;
+}
+
+/* Nav section label */
+.nav-section {
+  color: #6c63ff;
+}
+
+/* Category card top border colours */
+.category-card.hospitals::before { background: #3d3aed; }
+.category-card.clinics::before   { background: #2db87a; }
+.category-card.pharmacies::before{ background: #6c63ff; }
+.category-card.emergency::before { background: #e63946; }
+
+/* LGA phase badges */
+.lga-phase.p1 { background: #eeeefd; color: #3d3aed; border: 1px solid #b0b0f5; }
+.lga-phase.p2 { background: #e6f8f1; color: #2db87a; border: 1px solid #7ecfb0; }
+
+/* Listing type badges */
+.badge-hospital  { background: #eeeefd; color: #3d3aed; border: 1px solid #b0b0f5; }
+.badge-clinic    { background: #e6f8f1; color: #2db87a; border: 1px solid #7ecfb0; }
+.badge-pharmacy  { background: #eeeefd; color: #6c63ff; border: 1px solid #b0b0f5; }
+.badge-emergency { background: #fdeef0; color: #e63946; border: 1px solid #f5b0b5; }
+
+/* Search button */
+.search-btn {
+  background: #3d3aed;
+}
+.search-btn:hover {
+  background: #2825c2;
+}
+
+/* Input focus */
+.search-input:focus,
+.search-select:focus,
+.sidebar-search:focus {
+  border-color: #3d3aed;
+  box-shadow: 0 0 0 3px rgba(61,58,237,0.12);
+}
+
+/* Primary buttons */
+.row-btn.primary,
+.listing-btn.primary,
+.qa-call {
+  background: #3d3aed;
+}
+.row-btn.primary:hover,
+.listing-btn.primary:hover,
+.qa-call:hover {
+  background: #2825c2;
+}
+
+/* Footer */
+footer {
+  background: #0f0e2e;
+}
+
+/* Suggest section */
+.suggest-section {
+  background: linear-gradient(135deg, #2825c2, #3d3aed);
+}
+
+/* Hero stats number colour */
+.hero-stat-num {
+  color: #e8e8ff;
+}
+
+/* Mobile menu drawer background */
+.mobile-menu-drawer {
+  background: rgba(15,14,46,0.98);
+}
+.mobile-nav {
+  background: rgba(15,14,46,0.95);
+}
+
+/* Active TOC / filter */
+.lga-filter-btn.active,
+.filter-option.active {
+  background: #3d3aed;
+  border-color: #3d3aed;
+}
+
+/* Department pills hover */
+.dept-pill:hover {
+  border-color: #3d3aed;
+  color: #3d3aed;
+  background: #eeeefd;
+}
+
+/* Nearby item hover */
+.nearby-item:hover {
+  background: #eeeefd;
+  border-color: #b0b0f5;
+}
+
+/* Share buttons hover */
+.share-btn:hover {
+  border-color: #3d3aed;
+  color: #3d3aed;
+  background: #eeeefd;
+}
