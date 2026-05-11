@@ -8,7 +8,7 @@
   <meta name="keywords" content="hospitals in Akwa Ibom, pharmacies in Uyo, clinics in Eket, healthcare Akwa Ibom, hospital near me Uyo, emergency hospital Akwa Ibom, medical facilities Akwa Ibom State Nigeria"/>
   <meta name="robots" content="index, follow"/>
   <link rel="canonical" href="https://www.evemassages.com/akwa-ibom-health/"/>
-  <link rel="stylesheet" href="akwa-ibom-health.css">
+  <link rel="stylesheet" href="style.css">
   <meta property="og:type" content="website"/>
   <meta property="og:title" content="Akwa Ibom Health Directory — Hospitals, Clinics & Pharmacies"/>
   <meta property="og:description" content="Find verified hospitals, clinics, pharmacies and emergency resources across Akwa Ibom State, Nigeria."/>
@@ -150,7 +150,7 @@
   </div>
 
   <div class="category-grid reveal">
-    <a href="/akwa-ibom-health/hospitals/" class="category-card hospitals">
+    <a href="/akwa-ibom-health/hospitals/index.html" class="category-card hospitals">
       <div class="cat-icon-wrap">🏥</div>
       <div>
         <div class="cat-name">Hospitals</div>
@@ -159,7 +159,7 @@
       <p class="cat-desc">Government and private hospitals including teaching hospitals, general hospitals, and specialist centres.</p>
       <span class="cat-link">Browse hospitals →</span>
     </a>
-    <a href="/akwa-ibom-health/clinics/" class="category-card clinics">
+    <a href="/akwa-ibom-health/clinics/index.html" class="category-card clinics">
       <div class="cat-icon-wrap">🩺</div>
       <div>
         <div class="cat-name">Clinics</div>
@@ -447,8 +447,8 @@
     </div>
     <div class="footer-links-group">
       <p class="footer-links-title">Directory</p>
-      <a href="/akwa-ibom-health/hospitals/" class="footer-link">Hospitals</a>
-      <a href="/akwa-ibom-health/clinics/" class="footer-link">Clinics</a>
+      <a href="/akwa-ibom-health/hospitals/index.html" class="footer-link">Hospitals</a>
+      <a href="/akwa-ibom-health/clinics/index.html" class="footer-link">Clinics</a>
       <a href="/akwa-ibom-health/pharmacies/" class="footer-link">Pharmacies</a>
       <a href="/akwa-ibom-health/emergency/" class="footer-link">Emergency Resources</a>
     </div>
@@ -483,80 +483,14 @@
 </div>
 <div class="mobile-menu-drawer" id="mobileMenuDrawer">
   <a class="drawer-link" href="https://www.evemassages.com"><span class="drawer-link-icon">🏠</span> Main Website</a>
-  <a class="drawer-link" href="/akwa-ibom-health/hospitals/"><span class="drawer-link-icon">🏥</span> Hospitals</a>
-  <a class="drawer-link" href="/akwa-ibom-health/clinics/"><span class="drawer-link-icon">🩺</span> Clinics</a>
+  <a class="drawer-link" href="/akwa-ibom-health/hospitals/index.html"><span class="drawer-link-icon">🏥</span> Hospitals</a>
+  <a class="drawer-link" href="/akwa-ibom-health/clinics/index.html"><span class="drawer-link-icon">🩺</span> Clinics</a>
   <a class="drawer-link" href="/akwa-ibom-health/pharmacies/"><span class="drawer-link-icon">💊</span> Pharmacies</a>
   <div class="drawer-divider"></div>
   <a class="drawer-emergency" href="/akwa-ibom-health/emergency/">🚨 Emergency Numbers</a>
 </div>
 
-<script>
-  // ── SEARCH ──
-  function handleHeroSearch() {
-    const query = document.getElementById('heroSearch').value.toLowerCase();
-    const lga   = document.getElementById('lgaFilter').value;
-    const type  = document.getElementById('typeFilter').value;
-    const cards = document.querySelectorAll('.listing-card');
-    cards.forEach(card => {
-      const name    = card.querySelector('.listing-name').textContent.toLowerCase();
-      const address = card.querySelector('.listing-address').textContent.toLowerCase();
-      const cardLga = card.dataset.lga || '';
-      const cardType= card.dataset.type || '';
-      const matchQ  = !query || name.includes(query) || address.includes(query);
-      const matchL  = !lga  || cardLga === lga;
-      const matchT  = !type || cardType === type;
-      card.style.display = (matchQ && matchL && matchT) ? 'flex' : 'none';
-    });
-  }
+<script src="script.js"></script>
 
-  // ── LGA FILTER ──
-  function filterLGAs(phase, btn) {
-    document.querySelectorAll('.lga-filter-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    document.querySelectorAll('.lga-card').forEach(card => {
-      card.style.display = (phase === 'all' || card.dataset.phase === phase) ? '' : 'none';
-    });
-  }
-
-  // ── SUGGEST ──
-  function submitSuggestion() {
-    const inputs = document.querySelectorAll('.suggest-input');
-    const name = inputs[0].value.trim();
-    if (!name) { alert('Please enter the facility name.'); return; }
-    const lga  = inputs[1].value.trim();
-    const phone= inputs[2].value.trim();
-    const type = inputs[3].value.trim();
-    const msg  = encodeURIComponent(
-      '🏥 New Facility Suggestion — Akwa Ibom Health Directory\n\n' +
-      'Facility: ' + name + '\n' +
-      'LGA: ' + (lga || 'Not specified') + '\n' +
-      'Phone: ' + (phone || 'Not provided') + '\n' +
-      'Type: ' + (type || 'Not specified')
-    );
-    window.open('https://wa.me/2349055853040?text=' + msg, '_blank');
-    inputs.forEach(i => i.value = '');
-  }
-
-  // ── MOBILE MENU ──
-  function toggleMobileMenu() {
-    document.getElementById('mobileMenuBtn').classList.toggle('open');
-    document.getElementById('mobileMenuDrawer').classList.toggle('open');
-  }
-  document.addEventListener('click', (e) => {
-    if (!e.target.closest('.mobile-nav') && !e.target.closest('.mobile-menu-drawer')) {
-      document.getElementById('mobileMenuBtn').classList.remove('open');
-      document.getElementById('mobileMenuDrawer').classList.remove('open');
-    }
-  });
-
-  // ── SCROLL REVEAL ──
-  const revealEls = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
-    });
-  }, { threshold: 0.1 });
-  revealEls.forEach(el => observer.observe(el));
-</script>
 </body>
 </html>
