@@ -251,3 +251,130 @@
     observer.observe(carousel);
 
   })();
+
+  // For the cookies pop-up banner
+(function () {
+
+  // ── CONFIG ──────────────────────────────────────────────
+  var GA_ID = 'G-NKT89FYGD0'; // Replace with your real Google Analytics ID
+  var STORAGE_KEY = 'ems_cookie_consent';
+  var SHOW_DELAY  = 1500; // ms before banner appears
+  // ────────────────────────────────────────────────────────
+
+  var wrap = document.getElementById('emsCookieWrap');
+  if (!wrap) return;
+
+  // ── CHECK IF USER HAS ALREADY CHOSEN ──
+  // If they have, respect their choice and don't show the banner again
+  var existing = localStorage.getItem(STORAGE_KEY);
+  if (existing) {
+    try {
+      var saved = JSON.parse(existing);
+      if (saved && saved.analytics) loadGA();
+    } catch (e) {
+      if (existing === 'accepted') loadGA();
+    }
+    return; // Don't show banner — choice already made
+  }
+
+  // ── SHOW BANNER AFTER DELAY ──
+  setTimeout(function () {
+    wrap.classList.add('ems-visible');
+  }, SHOW_DELAY);
+
+  // ── LOAD GOOGLE ANALYTICS ──
+  function loadGA() {
+    if (!GA_ID || GA_ID === 'G-XXXXXXXXXX') return; // Skip if ID not set
+    if (window._emsGALoaded) return; // Prevent double loading
+    window._emsGALoaded = true;
+    var s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+    document.head.appendChild(s);
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ window.dataLayer.push(arguments); }
+    window.gtag = gtag;
+    gtag('js', new Date());
+    gtag('config', GA_ID, { anonymize_ip: true });
+  }
+
+  // ── HIDE BANNER ──
+  function hideBanner() {
+    wrap.classList.remove('ems-visible');
+    setTimeout(function () {
+      wrap.style.display = 'none';
+    }, 400);
+  }
+
+  // ── ACCEPT ALL ──
+  window.emsAcceptAll = function () {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({
+      necessary: true,
+      analytics: true,
+      marketing: false,
+      timestamp: new Date().toISOString()
+    }));
+    loadGA();
+    hideBanner();
+  };
+
+  // ── REJECT ALL ──
+  window.emsRejectAll = function () {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({
+      necessary: true,
+      analytics: false,
+      marketing: false,
+      timestamp: new Date().toISOString()
+    }));
+    hideBanner();
+  };
+
+  // ── DISMISS WITHOUT CHOOSING (X button) ──
+  // Does NOT save a preference — banner will reappear next visit
+  window.emsDismissBanner = function () {
+    hideBanner();
+  };
+
+  // ── TOGGLE PREFERENCES PANEL ──
+  window.emsTogglePrefs = function () {
+    var panel = document.getElementById('emsPrefsPanel');
+    var btn   = document.querySelector('.ems-btn-manage');
+    if (panel.classList.contains('open')) {
+      panel.classList.remove('open');
+      btn.textContent = 'Manage preferences ▾';
+    } else {
+      panel.classList.add('open');
+      btn.textContent = 'Manage preferences ▴';
+    }
+  };
+
+  // ── SAVE CUSTOM PREFERENCES ──
+  window.emsSavePrefs = function () {
+    var analyticsOn = document.getElementById('emsAnalyticsToggle').checked;
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({
+      necessary: true,
+      analytics: analyticsOn,
+      marketing: false,
+      timestamp: new Date().toISOString()
+    }));
+    if (analyticsOn) loadGA();
+    hideBanner();
+  };
+
+  // ── REOPEN BANNER (for footer "Cookie Settings" link) ──
+  // Any element with class 'ems-cookie-settings-trigger' will reopen the banner
+  window.emsOpenCookieSettings = function () {
+    localStorage.removeItem(STORAGE_KEY);
+    wrap.style.display = '';
+    wrap.classList.add('ems-visible');
+    document.getElementById('emsPrefsPanel').classList.remove('open');
+    document.querySelector('.ems-btn-manage').textContent = 'Manage preferences ▾';
+  };
+
+  document.querySelectorAll('.ems-cookie-settings-trigger').forEach(function (el) {
+    el.addEventListener('click', window.emsOpenCookieSettings);
+  });
+
+})();
+
+// End of Cookies pop-up banner

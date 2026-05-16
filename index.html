@@ -866,9 +866,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- Social proof label -->
   <div class="wa-label">
     <span class="wa-label-dot"></span>
-    <span class="wa-label-text">Most popular</span>
-    <span class="wa-label-sep">·</span>
-    <span class="wa-label-sub">Reply in ~ 30mins</span>
+    <span class="wa-label-text">Most Popular</span>
   </div>
 
   <!-- WhatsApp button -->
@@ -889,22 +887,113 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 </div>
 
-<!-- BEGIN PLERDY CODE -->
-<script type="text/javascript" defer data-plerdy_code='1'>
-    var _protocol="https:"==document.location.protocol?"https://":"http://";
-    _site_hash_code = "e3b31e3be6a9239064a8ac67323ba05b",_suid=76624, plerdyScript=document.createElement("script");
-    plerdyScript.setAttribute("defer",""),plerdyScript.dataset.plerdymainscript="plerdymainscript",
-    plerdyScript.src="https://a.plerdy.com/public/js/click/main.js?v="+Math.random();
-    var plerdymainscript=document.querySelector("[data-plerdymainscript='plerdymainscript']");
-    plerdymainscript&&plerdymainscript.parentNode.removeChild(plerdymainscript);
-    try{document.head.appendChild(plerdyScript)}catch(t){console.log(t,"unable add script tag")}
-</script>
-<!-- END PLERDY CODE -->
+
+
+  <!-- ============================================================
+  COOKIE CONSENT BANNER — Eve Massage Services
+  ============================================================
+  PASTE THIS ENTIRE BLOCK just before the closing "body" tag
+  on EVERY page of your website. Same snippet works everywhere.
+
+  HOW IT WORKS:
+  — Appears bottom-right as a card after a 1.5 second delay
+  — Shows only once — if user has already made a choice,
+    it never appears again (stored in localStorage)
+  — Three buttons: Accept All / Reject All / Manage Preferences
+  — Manage Preferences opens a second panel with toggles
+    for each cookie category
+  — Accepting activates Google Analytics
+  — Rejecting keeps Google Analytics disabled
+  — A small "Cookie Settings" link in the footer lets users
+    change their mind at any time
+
+  TO CONNECT GOOGLE ANALYTICS:
+  Replace 'G-XXXXXXXXXX' below with your real Measurement ID.
+  The script will only load GA after the user accepts analytics.
+
+  WHAT GETS SAVED:
+  localStorage key: 'ems_cookie_consent'
+  Values: 'accepted' | 'rejected' | JSON of per-category choices
+  ============================================================ -->
 
 
 
 
+<!-- BANNER MARKUP -->
+<div class="ems-cookie-wrap" id="emsCookieWrap" role="dialog" aria-label="Cookie consent" aria-modal="true">
+  <div class="ems-cookie-card">
 
+    <!-- Icon + Close -->
+    <div class="ems-cookie-icon-row">
+      <div class="ems-cookie-icon">🍪</div>
+      <button class="ems-cookie-close" onclick="emsDismissBanner()" aria-label="Close cookie banner">✕</button>
+    </div>
+
+    <!-- Title & description -->
+    <h3 class="ems-cookie-title">We use <em>cookies</em></h3>
+    <p class="ems-cookie-body">
+      We use cookies to understand how visitors use our website so we can improve it. We do not use cookies for advertising. Read our
+      <a href="/cookies/" target="_blank">Cookie Policy</a> for full details.
+    </p>
+
+    <!-- Main buttons -->
+    <div class="ems-cookie-btns">
+      <button class="ems-cookie-btn ems-btn-accept" onclick="emsAcceptAll()">Accept all cookies</button>
+      <button class="ems-cookie-btn ems-btn-reject" onclick="emsRejectAll()">Reject non-essential</button>
+      <button class="ems-cookie-btn ems-btn-manage" onclick="emsTogglePrefs()">Manage preferences ▾</button>
+    </div>
+
+    <!-- Preferences panel -->
+    <div class="ems-prefs-panel" id="emsPrefsPanel">
+      <p class="ems-prefs-title">Cookie preferences</p>
+
+      <!-- Strictly necessary — always on, cannot be toggled -->
+      <div class="ems-pref-row">
+        <div class="ems-pref-info">
+          <div class="ems-pref-name">Strictly necessary</div>
+          <div class="ems-pref-desc">Required for the website to function. Cannot be disabled.</div>
+        </div>
+        <div class="ems-toggle-wrap">
+          <label class="ems-toggle" aria-label="Strictly necessary cookies — always on">
+            <input type="checkbox" checked disabled/>
+            <span class="ems-toggle-slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Analytics -->
+      <div class="ems-pref-row">
+        <div class="ems-pref-info">
+          <div class="ems-pref-name">Analytics</div>
+          <div class="ems-pref-desc">Helps us understand how visitors use our site (Google Analytics). Anonymous data only.</div>
+        </div>
+        <div class="ems-toggle-wrap">
+          <label class="ems-toggle" aria-label="Analytics cookies">
+            <input type="checkbox" id="emsAnalyticsToggle"/>
+            <span class="ems-toggle-slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Marketing — shown but disabled since we don't use it -->
+      <div class="ems-pref-row">
+        <div class="ems-pref-info">
+          <div class="ems-pref-name">Marketing</div>
+          <div class="ems-pref-desc">Advertising cookies. Not currently used by Eve Massage Services.</div>
+        </div>
+        <div class="ems-toggle-wrap">
+          <label class="ems-toggle" aria-label="Marketing cookies — not in use">
+            <input type="checkbox" disabled/>
+            <span class="ems-toggle-slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <button class="ems-btn-save-prefs" onclick="emsSavePrefs()">Save my preferences</button>
+    </div>
+
+  </div>
+</div>
 
 <script src="script.js"></script>
 <script src="seo.js"></script>
