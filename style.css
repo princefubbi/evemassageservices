@@ -204,39 +204,41 @@
     /* ── HERO CAROUSEL ── */
     .hero-fact-carousel {
       position: relative;
-      min-height: 160px;
-      margin-bottom: 0.6rem;
-    }
+      height: 270px;
+      margin-bottom: 0.9rem;
+      overflow: visible;
 
+    }
+ 
     .hero-fact {
       position: absolute;
-      top: 0; left: 0;
+      top: 0;
+      left: 0;
       width: 100%;
       opacity: 0;
-      transition: opacity 0.9s ease;
       pointer-events: none;
       display: flex;
       flex-direction: column;
       gap: 0.9rem;
     }
+ 
     .hero-fact.active {
       opacity: 1;
       pointer-events: auto;
-      position: relative; /* takes up space when active */
     }
-
+ 
     .hero-fact-icon {
       font-size: 1.6rem;
       display: block;
     }
-
+ 
     .hero-fact-text {
       /* inherits .hero-title styles, override margin */
       margin-bottom: 0 !important;
       opacity: 1 !important;
       animation: none !important;
     }
-
+ 
     .hero-fact-source {
       display: inline-flex;
       align-items: center;
@@ -252,16 +254,17 @@
       transition: color 0.2s, border-color 0.2s;
       /* TO EDITORS: replace href on each .hero-fact with your blog post URL */
     }
+
     .hero-fact-source:hover {
       color: var(--blue);
       border-color: var(--blue);
     }
-
+ 
     /* Hero carousel dots */
     .hero-carousel-dots {
       display: flex;
-      gap: 0.4rem;
-      margin-top: 1.2rem;
+      gap: 0.3rem;
+      margin-top: 15rem;
       margin-bottom: 1.6rem;
       flex-wrap: wrap;
       max-width: 220px;
@@ -280,7 +283,7 @@
       min-height: 100vh;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      padding-top: 90px;
+      padding-top: 30px;
       overflow: hidden;
     }
 
@@ -1358,3 +1361,134 @@
       .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; }
       footer { padding: 3rem 1.5rem 1.5rem; }
     }
+
+
+    /* ── FLOATING BUTTON WRAP ── */
+  .wa-float-wrap {
+    position: fixed;
+    bottom: 4rem;
+    right: 2rem;
+    z-index: 500;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.5rem;
+
+    /* Hidden by default — JS shows it once carousel leaves viewport */
+    opacity: 0;
+    transform: translateY(12px);
+    pointer-events: none;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+
+  /* Visible state — toggled by JS */
+  .wa-float-wrap.wa-visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  /* ── SOCIAL PROOF LABEL ── */
+  .wa-label {
+    background: white;
+    border: 1px solid #d5e5de;
+    border-radius: 100px;
+    padding: 0.3rem 0.85rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 400;
+    color: #4a5e57;
+    white-space: nowrap;
+    box-shadow: 0 2px 12px rgba(26,37,32,0.08);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    animation: wa-label-pulse 3s ease-in-out infinite;
+  }
+
+  @keyframes wa-label-pulse {
+    0%, 100% { box-shadow: 0 2px 12px rgba(26,37,32,0.08); }
+    50%       { box-shadow: 0 4px 20px rgba(37,211,102,0.18); }
+  }
+
+  .wa-label-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #25d366;
+    animation: wa-dot-blink 2s ease-in-out infinite;
+    flex-shrink: 0;
+  }
+
+  @keyframes wa-dot-blink {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%       { opacity: 0.4; transform: scale(1.3); }
+  }
+
+  .wa-label-text { color: #3a8c6e; font-weight: 500; }
+  .wa-label-sep  { color: #d5e5de; }
+  .wa-label-sub  { color: #8a9e97; font-weight: 300; }
+
+  /* ── MAIN BUTTON ── */
+  .wa-float-btn {
+    width: 3.6rem;
+    height: 3.6rem;
+    border-radius: 50%;
+    background: #25d366;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    position: relative;
+  }
+
+  .wa-float-btn:hover {
+    transform: scale(1.08);
+    box-shadow: 0 6px 28px rgba(37,211,102,0.55);
+  }
+
+  .wa-float-btn:active {
+    transform: scale(0.96);
+  }
+
+  /* WhatsApp SVG icon */
+  .wa-float-btn svg {
+    width: 1.8rem;
+    height: 1.8rem;
+    fill: white;
+  }
+
+  /* Ripple ring around the button */
+  .wa-float-btn::before {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    border: 2px solid rgba(37,211,102,0.35);
+    animation: wa-ring 2.5s ease-out infinite;
+  }
+
+  .wa-float-btn::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    border: 2px solid rgba(37,211,102,0.2);
+    animation: wa-ring 2.5s ease-out infinite 0.8s;
+  }
+
+  @keyframes wa-ring {
+    0%   { transform: scale(1); opacity: 1; }
+    100% { transform: scale(1.55); opacity: 0; }
+  }
+
+  /* ── MOBILE ADJUSTMENTS ── */
+  /* On mobile, button sits above the bottom mobile nav pill */
+  @media (max-width: 900px) {
+    .wa-float-wrap {
+      bottom: 5.5rem;
+      right: 1.2rem;
+    }
+  }

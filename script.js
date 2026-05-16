@@ -80,45 +80,85 @@
     window.open('https://wa.me/2349055853040?text=' + msg, '_blank');
   }
 
-  // ── HERO FACT CAROUSEL ──
-  const heroFacts = document.querySelectorAll('.hero-fact');
-  const heroDotsContainer = document.getElementById('heroCarouselDots');
-  const HERO_DURATION = 9000;
-  let heroCurrent = 0;
-  let heroTimer = null;
-
-  heroFacts.forEach((_, i) => {
-    const dot = document.createElement('button');
-    dot.className = 'q-dot' + (i === 0 ? ' active' : '');
-    dot.setAttribute('aria-label', `Health fact ${i + 1}`);
-    dot.addEventListener('click', () => heroGoTo(i));
-    heroDotsContainer.appendChild(dot);
-  });
-
-  function getHeroDots() { return heroDotsContainer.querySelectorAll('.q-dot'); }
-
-  function heroGoTo(index) {
-    clearTimeout(heroTimer);
-    const outgoing = heroFacts[heroCurrent];
-    outgoing.style.position = 'absolute';
-    outgoing.style.opacity = '0';
-    outgoing.style.pointerEvents = 'none';
-    outgoing.classList.remove('active');
-    getHeroDots()[heroCurrent].classList.remove('active');
-    heroCurrent = (index + heroFacts.length) % heroFacts.length;
-    const incoming = heroFacts[heroCurrent];
-    incoming.style.position = 'relative';
-    incoming.style.opacity = '0';
-    incoming.classList.add('active');
-    getHeroDots()[heroCurrent].classList.add('active');
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => { incoming.style.opacity = '1'; });
+// ── HERO FACT CAROUSEL ──
+    const heroFacts = document.querySelectorAll('.hero-fact');
+    const heroDotsContainer = document.getElementById('heroCarouselDots');
+    const HERO_DURATION = 7000; // 7 seconds per fact — comfortable reading time
+    let heroCurrent = 0;
+    let heroTimer = null;
+ 
+    // Build dots
+    heroFacts.forEach((_, i) => {
+      const dot = document.createElement('button');
+      dot.className = 'q-dot' + (i === 0 ? ' active' : '');
+      dot.setAttribute('aria-label', `Health fact ${i + 1}`);
+      dot.addEventListener('click', () => heroGoTo(i));
+      heroDotsContainer.appendChild(dot);
     });
-    heroTimer = setTimeout(() => heroGoTo(heroCurrent + 1), HERO_DURATION);
-  }
-
-  heroFacts.forEach(f => { f.style.transition = 'opacity 0.9s ease'; });
-  heroTimer = setTimeout(() => heroGoTo(1), HERO_DURATION);
+ 
+    function getHeroDots() { return heroDotsContainer.querySelectorAll('.q-dot'); }
+ 
+    // ── CAROUSEL: opacity-only crossfade — no position changes ever ──
+    // All facts stay position:absolute at all times (set in CSS).
+    // Only opacity and classList change. This guarantees zero layout shift.
+ 
+    const FADE_DURATION = 500; // ms — fade speed
+    let heroTransitioning = false;
+ 
+    // Apply transition once to all facts
+    heroFacts.forEach(f => {
+      f.style.transition = `opacity ${FADE_DURATION}ms ease`;
+    });
+ 
+    function heroGoTo(index) {
+      // Block if a fade is already in progress — prevents stacking
+      if (heroTransitioning) return;
+      heroTransitioning = true;
+      clearTimeout(heroTimer);
+ 
+      const outgoing = heroFacts[heroCurrent];
+ 
+      // ── Step 1: fade out outgoing ──
+      outgoing.style.opacity = '0';
+      outgoing.style.pointerEvents = 'none';
+      getHeroDots()[heroCurrent].classList.remove('active');
+ 
+      // ── Step 2: after fade out, switch active class and fade in incoming ──
+      setTimeout(() => {
+        outgoing.classList.remove('active');
+ 
+        heroCurrent = (index + heroFacts.length) % heroFacts.length;
+        const incoming = heroFacts[heroCurrent];
+ 
+        // Bring incoming to opacity:0 first (it may already be 0 from CSS)
+        incoming.style.opacity = '0';
+        incoming.classList.add('active');
+        getHeroDots()[heroCurrent].classList.add('active');
+ 
+        // Trigger fade in on the next two animation frames
+        // (double-rAF ensures the browser has committed the opacity:0 before transitioning)
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            incoming.style.opacity = '1';
+            incoming.style.pointerEvents = 'auto';
+          });
+        });
+ 
+        // Unlock and schedule next after fade in completes
+        setTimeout(() => {
+          heroTransitioning = false;
+          heroTimer = setTimeout(() => heroGoTo(heroCurrent + 1), HERO_DURATION);
+        }, FADE_DURATION + 50);
+ 
+      }, FADE_DURATION); // wait for full fade out before touching incoming
+    }
+ 
+    // Ensure the first fact is visible immediately
+    heroFacts[0].style.opacity = '1';
+    heroFacts[0].style.pointerEvents = 'auto';
+ 
+    // Kick off auto-advance
+    heroTimer = setTimeout(() => heroGoTo(1), HERO_DURATION);
 
   // ── SCROLL REVEAL ──
   const revealEls = document.querySelectorAll('.reveal');
@@ -161,3 +201,53 @@
       if (drawer) drawer.classList.remove('open');
     }
   });
+
+
+  (function () {
+    // ── CONFIG ──────────────────────────────────────────────────
+    // The number shown in the label can be updated anytime
+    var bookedCount = 312;
+
+    // Pre-filled WhatsApp message
+    var waMessage = "Hello%2C%20I%20found%20you%20on%20your%20website%20and%20I%27d%20like%20to%20learn%20more%20about%20your%20services.";
+    // ────────────────────────────────────────────────────────────
+
+    var wrap    = document.getElementById('waFloatWrap');
+    var btn     = document.getElementById('waFloatBtn');
+    var carousel = document.getElementById('heroCarousel');
+
+    if (!wrap || !carousel) return; // safety — do nothing if elements missing
+
+    // Update WhatsApp link with config message
+    btn.href = 'https://wa.me/2349055853040?text=' + waMessage;
+
+    // ── INTERSECTION OBSERVER ──
+    // Watches the carousel — when it leaves the viewport, show the button.
+    // When it re-enters the viewport, hide the button.
+    var observer = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            // Carousel is visible — hide the button
+            wrap.classList.remove('wa-visible');
+            wrap.setAttribute('aria-hidden', 'true');
+          } else {
+            // Carousel has left the viewport — show the button
+            wrap.classList.add('wa-visible');
+            wrap.setAttribute('aria-hidden', 'false');
+          }
+        });
+      },
+      {
+        // Fire when any part of the carousel enters/leaves the viewport.
+        // threshold: 0 means "fire as soon as even 1px crosses the edge"
+        threshold: 0,
+        // rootMargin: give a small top buffer so the button appears
+        // just after the carousel fully clears the top of the screen
+        rootMargin: '-60px 0px 0px 0px'
+      }
+    );
+
+    observer.observe(carousel);
+
+  })();
