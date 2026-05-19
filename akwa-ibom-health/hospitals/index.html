@@ -34,7 +34,10 @@
       property="og:url"
       content="https://www.evemassages.com/akwa-ibom-health/hospitals/"
     />
-    <meta property="og:image" content="https://www.evemassages.com/og-image.jpg"/>
+    <meta
+      property="og:image"
+      content="https://www.evemassages.com/og-image.jpg"
+    />
     <meta property="og:locale" content="en_NG" />
     <script type="application/ld+json">
       {
@@ -118,33 +121,49 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=DM+Sans:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&display=swap"
-      rel="stylesheet"/>
+      rel="stylesheet"
+    />
 
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-NKT89FYGD0"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-NKT89FYGD0"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+      gtag("config", "G-NKT89FYGD0");
+    </script>
 
-  gtag('config', 'G-NKT89FYGD0');
-</script>
-
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-KJP3GP2K');</script>
-<!-- End Google Tag Manager -->
-
+    <!-- Google Tag Manager -->
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-KJP3GP2K");
+    </script>
+    <!-- End Google Tag Manager -->
   </head>
   <body>
-
     <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KJP3GP2K"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-KJP3GP2K"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe
+    ></noscript>
     <!-- End Google Tag Manager (noscript) -->
 
     <!-- NAV -->
@@ -256,7 +275,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <select class="strip-select" id="featureSelect" onchange="runSearch()">
           <option value="">Any feature</option>
           <option value="emergency">24-Hour emergency</option>
-          <option value="nhis">NHIS accredited</option>
+          <option value="nhia">NHIA accredited</option>
           <option value="maternity">Maternity services</option>
         </select>
         <span class="strip-results-count"
@@ -360,8 +379,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               🚨 24-Hour emergency
             </label>
             <label class="feature-check-item">
-              <input type="checkbox" value="nhis" onchange="runSearch()" /> ✅
-              NHIS accredited
+              <input type="checkbox" value="nhia" onchange="runSearch()" /> ✅
+              NHIA accredited
             </label>
             <label class="feature-check-item">
               <input type="checkbox" value="maternity" onchange="runSearch()" />
@@ -427,7 +446,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div
               class="hospital-card"
               data-type="teaching"
-              data-features="emergency nhis laboratory maternity"
+              data-features="emergency nhia laboratory maternity"
               data-name="university of uyo teaching hospital uuth"
             >
               <div class="card-top">
@@ -440,12 +459,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 University of Uyo Teaching Hospital (UUTH)
               </div>
               <div class="card-address">
-                Hospital Road, Uyo, Akwa Ibom State
+                Inside University Of Uyo Teaching Hospital, Before Ekom Iman
+                junction, Abak Rd
               </div>
-              <a href="tel:08033062222" class="card-phone">0803 306 2222</a>
+              <a href="tel:08033597921" class="card-phone">0803 359 7921</a>
               <div class="card-tags">
                 <span class="card-tag emerg">24-Hr Emergency</span>
-                <span class="card-tag nhis">NHIS</span>
+                <span class="card-tag nhia">NHIA</span>
                 <span class="card-tag">Specialist</span>
                 <span class="card-tag">Surgery</span>
               </div>
@@ -456,7 +476,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   >View details</a
                 >
                 <a
-                  href="https://maps.google.com/?q=University+of+Uyo+Teaching+Hospital"
+                  href="https://maps.app.goo.gl/JHLprBVYsyErvxXX6"
                   target="_blank"
                   rel="noopener"
                   class="card-btn ghost"
@@ -468,7 +488,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div
               class="hospital-card"
               data-type="specialist"
-              data-features="emergency nhis"
+              data-features="emergency nhia"
               data-name="akwa ibom state specialist hospital uyo"
             >
               <div class="card-top">
@@ -480,11 +500,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 >
               </div>
               <div class="card-name">Akwa Ibom State Specialist Hospital</div>
-              <div class="card-address">IBB Avenue, Uyo, Akwa Ibom State</div>
-              <a href="tel:08020000001" class="card-phone">0802 000 0001</a>
+              <div class="card-address">
+                Ekit Itam II along Ikot Ekpene Road, Uyo, Akwa Ibom State
+              </div>
+              <a href="tel:08021814674" class="card-phone">0802 181 4674</a>
               <div class="card-tags">
                 <span class="card-tag emerg">24-Hr Emergency</span>
-                <span class="card-tag nhis">NHIS</span>
               </div>
               <div class="card-actions">
                 <a
@@ -493,7 +514,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   >View details</a
                 >
                 <a
-                  href="https://maps.google.com/?q=Akwa+Ibom+State+Specialist+Hospital+Uyo"
+                  href="https://maps.app.goo.gl/x1nt1YBYtxVFNkzy7"
                   target="_blank"
                   rel="noopener"
                   class="card-btn ghost"
@@ -504,34 +525,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
             <div
               class="hospital-card"
-              data-type="government"
-              data-features="nhis maternity laboratory"
-              data-name="general hospital uyo abak road"
+              data-type="specialist"
+              data-features="nhia maternity laboratory"
+              data-name="domingo specialist hospital uyo"
             >
               <div class="card-top">
-                <span class="type-badge badge-government"
-                  >Government Hospital</span
+                <span class="type-badge badge-specialist"
+                  >Specialist Hospital</span
                 >
                 <span class="verified-pill"
                   ><span class="v-dot"></span> Verified</span
                 >
               </div>
-              <div class="card-name">General Hospital Uyo</div>
-              <div class="card-address">Abak Road, Uyo, Akwa Ibom State</div>
-              <a href="tel:08030000010" class="card-phone">0803 000 0010</a>
+              <div class="card-name">Domingo Specialist Hospital</div>
+              <div class="card-address">
+                Plot 9, Unit E, Ben Udo Street, H Line, Ewet Housing Estate, Uyo
+              </div>
+              <a href="tel:08027306681" class="card-phone">0802 730 6681</a>
               <div class="card-tags">
-                <span class="card-tag nhis">NHIS</span>
+                <span class="card-tag nhia">NHIA</span>
                 <span class="card-tag">Maternity</span>
                 <span class="card-tag">Laboratory</span>
               </div>
               <div class="card-actions">
-                <a
-                  href="/akwa-ibom-health/hospitals/uyo/general-hospital-uyo/"
-                  class="card-btn primary"
+                <a href="/akwa-ibom-health/hospitals/" class="card-btn primary"
                   >View details</a
                 >
                 <a
-                  href="https://maps.google.com/?q=General+Hospital+Uyo"
+                  href="https://maps.app.goo.gl/59cdJosfAZZsqhDo6"
                   target="_blank"
                   rel="noopener"
                   class="card-btn ghost"
@@ -544,7 +565,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               class="hospital-card"
               data-type="private"
               data-features="emergency maternity"
-              data-name="sterling health hospital uyo nwaniba"
+              data-name="San dominique hospital uyo"
             >
               <div class="card-top">
                 <span class="type-badge badge-private">Private Hospital</span>
@@ -552,22 +573,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   ><span class="v-dot"></span> Verified</span
                 >
               </div>
-              <div class="card-name">Sterling Health Hospital</div>
-              <div class="card-address">Nwaniba Road, Uyo, Akwa Ibom State</div>
-              <a href="tel:08030000011" class="card-phone">0803 000 0011</a>
+              <div class="card-name">San Dominique Hospital</div>
+              <div class="card-address">
+                Plot 3, Unit G, Ewet Housing Estate, Uyo 520231, Akwa Ibom
+              </div>
+              <a href="tel:08069394484" class="card-phone">0806 939 4484</a>
               <div class="card-tags">
                 <span class="card-tag emerg">24-Hr Emergency</span>
+                <span class="card-tag nhia">NHIA</span>
                 <span class="card-tag">Maternity</span>
                 <span class="card-tag">Surgery</span>
               </div>
               <div class="card-actions">
-                <a
-                  href="/akwa-ibom-health/hospitals/uyo/sterling-health-hospital/"
-                  class="card-btn primary"
+                <a href="/akwa-ibom-health/hospitals/" class="card-btn primary"
                   >View details</a
                 >
                 <a
-                  href="https://maps.google.com/?q=Sterling+Health+Hospital+Uyo"
+                  href="https://maps.app.goo.gl/fsCsaxMtqy2xPqrY7"
                   target="_blank"
                   rel="noopener"
                   class="card-btn ghost"
@@ -579,8 +601,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div
               class="hospital-card"
               data-type="private"
-              data-features="nhis laboratory"
-              data-name="heritage hospital uyo aka road"
+              data-features="nhia laboratory maternity"
+              data-name="mitch don specialist hospital uyo"
             >
               <div class="card-top">
                 <span class="type-badge badge-private">Private Hospital</span>
@@ -588,66 +610,55 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   ><span class="v-dot"></span> Verified</span
                 >
               </div>
-              <div class="card-name">Heritage Hospital Uyo</div>
-              <div class="card-address">Aka Road, Uyo, Akwa Ibom State</div>
-              <a href="tel:08030000012" class="card-phone">0803 000 0012</a>
+              <div class="card-name">Mitch-Don Specialist Hospital</div>
+              <div class="card-address">
+                No. 30 Old Ring Rd, Afaha Ube Rd, Itam, Uyo
+              </div>
+              <a href="tel:08063924544" class="card-phone">0806 392 4544</a>
               <div class="card-tags">
-                <span class="card-tag nhis">NHIS</span>
+                <span class="card-tag nhia">NHIA</span>
                 <span class="card-tag">Laboratory</span>
-                <span class="card-tag">Pharmacy</span>
               </div>
               <div class="card-actions">
+                <a href="/akwa-ibom-health/hospitals/" class="card-btn primary"
+                  >View details</a>
                 <a
-                  href="/akwa-ibom-health/hospitals/uyo/heritage-hospital/"
-                  class="card-btn primary"
-                  >View details</a
-                >
-                <a
-                  href="https://maps.google.com/?q=Heritage+Hospital+Uyo"
+                  href="https://maps.app.goo.gl/PY6xEszVq5aXNKaK9"
                   target="_blank"
                   rel="noopener"
                   class="card-btn ghost"
-                  >Directions</a
-                >
+                  >Directions</a>
               </div>
             </div>
 
             <div
               class="hospital-card"
               data-type="government"
-              data-features="nhis maternity"
-              data-name="state hospital uyo ibom specialist"
-            >
+              data-features="nhia maternity"
+              data-name="state hospital uyo ibom specialist">
               <div class="card-top">
                 <span class="type-badge badge-government"
-                  >Government Hospital</span
-                >
-                <span class="verified-pill"
-                  ><span class="v-dot"></span> Verified</span
-                >
+                  >Government Hospital</span>
+                <span class="verified-pill"><span class="v-dot"></span> Verified</span>
               </div>
-              <div class="card-name">Ibom Specialist Hospital</div>
+              <div class="card-name">Saint Luke General Hospital</div>
               <div class="card-address">
-                Udo Udoma Avenue, Uyo, Akwa Ibom State
+                12 Akwa Efak St, Anua, Uyo
               </div>
-              <a href="tel:08030000013" class="card-phone">0803 000 0013</a>
+              <a href="tel:08071327862" class="card-phone">0807 132 7862</a>
               <div class="card-tags">
-                <span class="card-tag nhis">NHIS</span>
+                <span class="card-tag nhia">NHIA</span>
                 <span class="card-tag">Maternity</span>
               </div>
               <div class="card-actions">
                 <a
-                  href="/akwa-ibom-health/hospitals/uyo/ibom-specialist-hospital/"
-                  class="card-btn primary"
-                  >View details</a
-                >
+                  href="/akwa-ibom-health/hospitals/"
+                  class="card-btn primary">View details</a>
                 <a
-                  href="https://maps.google.com/?q=Ibom+Specialist+Hospital+Uyo"
+                  href="https://maps.app.goo.gl/tqZCnAk35WJexQCC7"
                   target="_blank"
                   rel="noopener"
-                  class="card-btn ghost"
-                  >Directions</a
-                >
+                  class="card-btn ghost">Directions</a>
               </div>
             </div>
           </div>
@@ -680,7 +691,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div
               class="hospital-card"
               data-type="government"
-              data-features="nhis emergency maternity"
+              data-features="nhia emergency maternity"
               data-name="general hospital eket oron road"
             >
               <div class="card-top">
@@ -698,7 +709,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               <a href="tel:08030000020" class="card-phone">0803 000 0020</a>
               <div class="card-tags">
                 <span class="card-tag emerg">24-Hr Emergency</span>
-                <span class="card-tag nhis">NHIS</span>
+                <span class="card-tag nhia">NHIA</span>
                 <span class="card-tag">Maternity</span>
               </div>
               <div class="card-actions">
@@ -757,7 +768,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div
               class="hospital-card"
               data-type="government"
-              data-features="nhis"
+              data-features="nhia"
               data-name="cottage hospital eket government"
             >
               <div class="card-top">
@@ -772,7 +783,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               <div class="card-address">Eket LGA, Akwa Ibom State</div>
               <a href="tel:08030000022" class="card-phone">0803 000 0022</a>
               <div class="card-tags">
-                <span class="card-tag nhis">NHIS</span>
+                <span class="card-tag nhia">NHIA</span>
                 <span class="card-tag">General Practice</span>
               </div>
               <div class="card-actions">
@@ -859,7 +870,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div
               class="hospital-card"
               data-type="government"
-              data-features="nhis emergency maternity"
+              data-features="nhia emergency maternity"
               data-name="general hospital ikot ekpene akwa ibom"
             >
               <div class="card-top">
@@ -875,7 +886,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               <a href="tel:08030000030" class="card-phone">0803 000 0030</a>
               <div class="card-tags">
                 <span class="card-tag emerg">24-Hr Emergency</span>
-                <span class="card-tag nhis">NHIS</span>
+                <span class="card-tag nhia">NHIA</span>
                 <span class="card-tag">Maternity</span>
               </div>
               <div class="card-actions">
@@ -958,7 +969,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div
               class="hospital-card"
               data-type="government"
-              data-features="nhis"
+              data-features="nhia"
               data-name="general hospital oron akwa ibom"
             >
               <div class="card-top">
@@ -973,7 +984,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               <div class="card-address">Oron, Akwa Ibom State</div>
               <a href="tel:08030000040" class="card-phone">0803 000 0040</a>
               <div class="card-tags">
-                <span class="card-tag nhis">NHIS</span>
+                <span class="card-tag nhia">NHIA</span>
                 <span class="card-tag">General Practice</span>
               </div>
               <div class="card-actions">
@@ -1046,7 +1057,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div
               class="hospital-card"
               data-type="government"
-              data-features="nhis"
+              data-features="nhia"
               data-name="general hospital itu akwa ibom"
             >
               <div class="card-top">
@@ -1061,7 +1072,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               <div class="card-address">Itu, Akwa Ibom State</div>
               <a href="tel:08030000050" class="card-phone">0803 000 0050</a>
               <div class="card-tags">
-                <span class="card-tag nhis">NHIS</span>
+                <span class="card-tag nhia">NHIA</span>
                 <span class="card-tag">General Practice</span>
               </div>
               <div class="card-actions">
@@ -1134,7 +1145,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div
               class="hospital-card"
               data-type="government"
-              data-features="nhis maternity"
+              data-features="nhia maternity"
               data-name="general hospital abak akwa ibom"
             >
               <div class="card-top">
@@ -1149,7 +1160,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               <div class="card-address">Abak, Akwa Ibom State</div>
               <a href="tel:08030000060" class="card-phone">0803 000 0060</a>
               <div class="card-tags">
-                <span class="card-tag nhis">NHIS</span>
+                <span class="card-tag nhia">NHIA</span>
                 <span class="card-tag">Maternity</span>
               </div>
               <div class="card-actions">

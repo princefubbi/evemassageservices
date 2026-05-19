@@ -156,7 +156,7 @@
     .card-phone:hover { color: #1a6644; }
     .card-tags { display: flex; gap: 0.35rem; flex-wrap: wrap; }
     .card-tag { font-size: 0.65rem; padding: 0.12rem 0.5rem; border-radius: 100px; border: 1px solid var(--border); color: var(--ink-muted); font-weight: 300; }
-    .card-tag.nhis { background: var(--green-light); color: var(--green); border-color: var(--green-mid); }
+    .card-tag.nhia { background: var(--green-light); color: var(--green); border-color: var(--green-mid); }
     .card-tag.emerg { background: var(--red-light); color: var(--red); border-color: #f5b0b5; }
     .card-actions { display: flex; gap: 0.5rem; padding-top: 0.7rem; border-top: 1px solid var(--border); }
     .card-btn { flex: 1; padding: 0.55rem 0.8rem; border-radius: 0.5rem; font-family: 'DM Sans', sans-serif; font-size: 0.76rem; font-weight: 500; text-align: center; text-decoration: none; transition: all 0.2s; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.3rem; }

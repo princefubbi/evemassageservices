@@ -38,7 +38,7 @@
       'General Emergency: 112\n' +
       'Police: 199\n' +
       'Fire Service: 193\n' +
-      'UUTH A&E (Uyo): 0803 306 2222\n' +
+      'UUTH A&E (Uyo): 0803 359 7921\n' +
       'AKSG Health Hotline: 0803 084 1666\n' +
       'Mental Health Crisis (NSMHF): 0800 227 3835\n' +
       'MANI Crisis Line: 0809 111 6264\n' +
