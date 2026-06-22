@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wellness Blog — Eve Massage Services</title>
+<meta name="description" content="Health, wellness and beauty insights from Eve Massage Services and our community of expert contributors.">
+<link rel="canonical" href="https://www.evemassages.com/blog/">
+<meta property="og:title" content="Wellness Blog — Eve Massage Services">
+<meta property="og:description" content="Health, wellness and beauty insights from expert contributors.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.evemassages.com/blog/">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+
+</head>
+<body>
+
+<!-- ─── Nav ───────────────────────────────────────────── -->
+<nav class="nav">
+  <a class="nav-logo" href="/">EMS<span> Blog</span></a>
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/services.html">Services</a>
+    <a href="/booking/index.html">Pricing</a>
+    <a href="/blog/index.html" class="active">Blog</a>
+    <a href="/akwa-ibom-health/">Health Directory</a>
+    <a href="/contact/">Contact</a>
+  </div>
+  <button class="nav-cta" onclick="window.open('https://wa.me/2349055853040','_blank')">Book Now</button>
+</nav>
+
+<!-- ─── Hero ───────────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero-eyebrow">Health · Wellness · Beauty </div>
+  <h1>Your guide to living <em>well</em>,<br>from experts who care</h1>
+  <p>Insights, tips and product stories from our community of health and wellness contributors.</p>
+  <div class="hero-search">
+    <input type="text" placeholder="Search articles…" id="searchInput" onkeydown="if(event.key==='Enter')doSearch()">
+    <button onclick="doSearch()">Search</button>
+  </div>
+</section>
+
+<!-- ─── Category filter strip ──────────────────────────── -->
+<div class="cat-strip" id="catStrip">
+  <button class="cat-pill active" data-cat="all" onclick="filterCat(this,'all')">All</button>
+  <button class="cat-pill" data-cat="massage" onclick="filterCat(this,'massage')">Massage &amp; Spa</button>
+  <button class="cat-pill" data-cat="fitness" onclick="filterCat(this,'fitness')">Fitness</button>
+  <button class="cat-pill" data-cat="skincare" onclick="filterCat(this,'skincare')">Skincare</button>
+  <button class="cat-pill" data-cat="nutrition" onclick="filterCat(this,'nutrition')">Nutrition &amp; Drinks</button>
+  <button class="cat-pill" data-cat="herbs" onclick="filterCat(this,'herbs')">Herbs &amp; Natural Remedies</button>
+</div>
+
+<main class="page-wrap">
+
+  <!-- ─── Featured Posts ─────────────────────────────── -->
+  <div class="section-label">
+    <h2>Featured this week</h2>
+    <a href="/blog/all/">See all posts →</a>
+  </div>
+
+  <div class="featured-grid" id="featuredGrid">
+
+    <article class="feat-card large" data-cat="massage">
+      <div class="feat-img" style="background:linear-gradient(135deg,#d4ede4,#a8d5c3);">
+        🌿
+        <span class="feat-img-label">Massage &amp; Spa</span>
+      </div>
+      <div class="feat-body">
+        <div class="feat-meta">
+          <span>Eve Wellness Team</span>
+          <span class="dot">·</span>
+          <span>Jun 14, 2026</span>
+          <span class="dot">·</span>
+          <span>5 min read</span>
+        </div>
+        <h2 class="feat-title">Why a monthly deep-tissue massage is the best health investment you can make</h2>
+        <p class="feat-excerpt">Chronic tension isn't just uncomfortable — it silently drives up cortisol, disrupts sleep and weakens immunity. Here's the evidence-backed case for making massage a non-negotiable part of your routine.</p>
+        <div class="feat-author">
+          <div class="avatar">EW</div>
+          <div>
+            <div class="feat-author-name">Eve Wellness Team</div>
+            <div class="feat-author-role">Eve Massage Services</div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="feat-card" data-cat="skincare">
+      <div class="feat-img" style="background:linear-gradient(135deg,#f0e8f8,#d8c2ed);">
+        ✨
+        <span class="feat-img-label">Skincare</span>
+      </div>
+      <div class="feat-body">
+        <div class="feat-meta">
+          <span>Amina Okon</span>
+          <span class="dot">·</span>
+          <span>Jun 12, 2026</span>
+        </div>
+        <h2 class="feat-title">The 3-step evening routine that transformed my skin in 30 days</h2>
+        <p class="feat-excerpt">Simple, affordable, and built for Nigerian skin in our climate.</p>
+        <div class="feat-author">
+          <div class="avatar" style="background:#f0e8f8;color:#7b4fa6;">AO</div>
+          <div>
+            <div class="feat-author-name">Amina Okon</div>
+            <div class="feat-author-role">Skincare contributor</div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="feat-card" data-cat="nutrition">
+      <div class="feat-img" style="background:linear-gradient(135deg,#fef6e8,#f5dfa8);">
+        🥤
+        <span class="feat-img-label" style="background:#c07d1a;">Nutrition</span>
+      </div>
+      <div class="feat-body">
+        <div class="feat-meta">
+          <span>Green Roots Nigeria</span>
+          <span class="dot">·</span>
+          <span>Jun 10, 2026</span>
+        </div>
+        <h2 class="feat-title">5 local health drinks that actually work — and one to avoid</h2>
+        <div class="feat-author">
+          <div class="avatar" style="background:#fef6e8;color:#c07d1a;">GR</div>
+          <div>
+            <div class="feat-author-name">Green Roots Nigeria</div>
+            <div class="feat-author-role">Nutrition &amp; Drinks</div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+  </div>
+
+  <!-- ─── Category sections with stacked vendor cards ── -->
+
+  <!-- MASSAGE & SPA -->
+  <section class="category-section" data-cat="massage" id="sec-massage">
+    <div class="section-label">
+      <h2>Massage &amp; Spa</h2>
+      <a href="/blog/massage/">All Massage posts →</a>
+    </div>
+
+    <div class="vendor-row">
+      <div class="vendor-row-header">
+        <div class="vendor-avatar" style="background:var(--green-l);color:var(--green);">EW</div>
+        <div class="vendor-info">
+          <div class="vendor-name">Eve Wellness Team</div>
+          <div class="vendor-tagline">Eve Massage Services · 14 posts</div>
+        </div>
+        <a class="vendor-see-all" href="/blog/massage/eve-wellness/">See all</a>
+      </div>
+      <div class="stack-scroll" id="scroll-ew" onmousedown="startDrag(event,this)" onmousemove="onDrag(event,this)" onmouseup="endDrag(this)" onmouseleave="endDrag(this)">
+        <article class="scard">
+          <div class="scard-img">🧘<span class="scard-cat">Massage</span></div>
+          <div class="scard-body">
+            <h3 class="scard-title">Hot stone vs Swedish: which is right for you?</h3>
+            <p class="scard-excerpt">Two of our most popular services compared — benefits, sensations and who should choose which.</p>
+            <div class="scard-foot"><span>Jun 8, 2026</span><span class="scard-readmore">Read →</span></div>
+          </div>
+        </article>
+        <article class="scard">
+          <div class="scard-img">💆<span class="scard-cat">Massage</span></div>
+          <div class="scard-body">
+            <h3 class="scard-title">How often should you actually get a massage?</h3>
+            <p class="scard-excerpt">A practical guide based on your lifestyle, stress levels and health goals.</p>
+            <div class="scard-foot"><span>Jun 1, 2026</span><span class="scard-readmore">Read →</span></div>
+          </div>
+        </article>
+        <article class="scard">
+          <div class="scard-img">🌸<span class="scard-cat">Massage</span></div>
+          <div class="scard-body">
+            <h3 class="scard-title">Aromatherapy oils we use and why they work</h3>
+            <p class="scard-excerpt">The science behind lavender, eucalyptus and four other staples in our treatment room.</p>
+            <div class="scard-foot"><span>May 25, 2026</span><span class="scard-readmore">Read →</span></div>
+          </div>
+        </article>
+        <article class="scard">
+          <div class="scard-img">🛁<span class="scard-cat">Massage</span></div>
+          <div class="scard-body">
+            <h3 class="scard-title">What to do before and after your massage for best results</h3>
+            <p class="scard-excerpt">Hydration, food, clothing and recovery habits that double the benefits.</p>
+            <div class="scard-foot"><span>May 18, 2026</span><span class="scard-readmore">Read →</span></div>
+          </div>
+        </article>
+        <article class="scard">
+          <div class="scard-img">✋<span class="scard-cat">Massage</span></div>
+          <div class="scard-body">
+            <h3 class="scard-title">Trigger point therapy: the hidden knots causing your pain</h3>
+            <p class="scard-excerpt">Understanding myofascial trigger points and how targeted massage releases them.</p>
+            <div class="scard-foot"><span>May 10, 2026</span><span class="scard-readmore">Read →</span></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- FITNESS -->
+  <section class="category-section" data-cat="fitness" id="sec-fitness">
+    <div class="section-label">
+      <h2>Fitness</h2>
+      <a href="/blog/fitness/">All Fitness posts →</a>
+    </div>
+
+    <div class="vendor-row v-blue">
+      <div class="vendor-row-header">
+        <div class="vendor-avatar" style="background:var(--blue-l);color:var(--blue);">JO</div>
+        <div class="vendor-info">
+          <div class="vendor-name">Joy Okafor</div>
+          <div class="vendor-tagline">Certified fitness coach · 12 posts</div>
+        </div>
+        <a class="vendor-see-all" href="/blog/fitness/joy-okafor/">See all</a>
+      </div>
+      <div class="stack-scroll" onmousedown="startDrag(event,this)" onmousemove="onDrag(event,this)" onmouseup="endDrag(this)" onmouseleave="endDrag(this)">
+        <article class="scard">
+          <div class="scard-img" style="background:linear-gradient(135deg,#e8eefa,#bccfed);">🏃<span class="scard-cat" style="background:var(--blue);">Fitness</span></div>
+          <div class="scard-body">
+            <h3 class="scard-title">5 morning routines to boost energy all day</h3>
+            <p class="scard-excerpt">No gym required — just 20 minutes and the right sequence to prime your body and mind.</p>
+            <div class="scard-foot"><span>Jun 10, 2026</span><span class="scard-readmore" style="color:var(--blue);">Read →</span></div>
+          </div>
+        </article>
+        <article class="scard">
+          <div class="scard-img" style="background:linear-gradient(135deg,#e8eefa,#bccfed);">💪<span class="scard-cat" style="background:var(--blue);">Fitness</span></div>
+          <div class="scard-body">
+            <h3 class="scard-title">Home workouts with zero equipment — beginner guide</h3>
+            <p class="scard-excerpt">A 4-week plan built around bodyweight, space you already have, and consistency.</p>
+            <div class="scard-foot"><span>Jun 3, 2026</span><span class="scard-readmore" style="color:var(--blue);">Read →</span></div>
+          </div>
+        </article>
+        <article class="scard">
+          <div class="scard-img" style="background:linear-gradient(135deg,#e8eefa,#bccfed);">🧘<span class="scard-cat" style="background:var(--blue);">Fitness</span></div>
+          <div class="scard-body">
+            <h3 class="scard-title">Why rest days are part of your training — not a break from it</h3>
+            <p class="scard-excerpt">The physiology of recovery and how to make your off days count.</p>
+            <div class="scard-foot"><span>May 28, 2026</span><span class="scard-readmore" style="color:var(--blue);">Read →</span></div>
+          </div>
+        </article>
+        <article class="scard">
+          <div class="scard-img" style="background:linear-gradient(135deg,#e8eefa,#bccfed);">🔥<span class="scard-cat" style="background:var(--blue);">Fitness</span></div>
+          <div class="scard-body">
+            <h3 class="scard-title">HIIT vs steady cardio — which burns more fat?</h3>
+            <p class="scard-excerpt">An honest breakdown of both approaches and how to pick for your body type and schedule.</p>
+            <div class="scard-foot"><span>May 20, 2026</span><span class="scard-readmore" style="color:var(--blue);">Read →</span></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKINCARE -->
+  <section class="category-section" data-cat="skincare" id="sec-skincare">
+    <div class="section-label">
+      <h2>Skincare</h2>
+      <a href="/blog/skincare/">All Skincare posts →</a>
+    </div>
+
+    <div class="vendor-row" style="--v-accent:#7b4fa6;--v-light:#f0e8f8;">
+      <div class="vendor-row-header">
+        <div class="vendor-avatar" style="background:#f0e8f8;color:#7b4fa6;">AO</div>
+        <div class="vendor-info">
+          <div class="vendor-name">Amina Okon</div>
+          <div class="vendor-tagline">Skincare specialist · 9 posts</div>
+        </div>
+        <a class="vendor-see-all" style="color:#7b4fa6;" href="/blog/skincare/amina-okon/">See all</a>
+      </div>
+      <div class="stack-scroll" onmousedown="startDrag(event,this)" onmousemove="onDrag(event,this)" onmouseup="endDrag(this)" onmouseleave="endDrag(this)">
+        <article class="scard">
+          <div class="scard-img" style="background:linear-gradient(135deg,#f0e8f8,#d8c2ed);">✨<span class="scard-cat" style="background:#7b4fa6;">Skincare</span></div>
+          <div class="scard-body">
+            <h3 class="scard-title">The 3-step evening routine that transformed my skin</h3>
+            <p class="scard-excerpt">Simple, affordable, and formulated for Nigerian skin in our humid climate.</p>
+            <div class="scard-foot"><span>Jun 12, 2026</span><span class="scard-readmore" style="color:#7b4fa6;">Read →</span></div>
+          </div>
+        </article>
+        <article class="scard">
+          <div class="scard-img" style="background:linear-gradient(135deg,#f0e8f8,#d8c2ed);">🧴<span class="scard-cat" style="background:#7b4fa6;">Skincare</span></div>
+          <div class="scard-body">
+            <h3 class="scard-title">SPF in Nigeria — why you still need sunscreen every day</h3>
+            <p class="scard-excerpt">The UV index in Akwa Ibom is no joke. Here's what to use and how.</p>
+            <div class="scard-foot"><span>Jun 5, 2026</span><span class="scard-readmore" style="color:#7b4fa6;">Read →</span></div>
+          </div>
+        </article>
+        <article class="scard">
+          <div class="scard-img" style="background:linear-gradient(135deg,#f0e8f8,#d8c2ed);">💧<span class="scard-cat" style="background:#7b4fa6;">Skincare</span></div>
+          <div class="scard-body">
+            <h3 class="scard-title">Hyperpigmentation: the products that actually fade dark spots</h3>
+            <p class="scard-excerpt">Niacinamide, kojic acid, and what to avoid — a clear breakdown without the jargon.</p>
+            <div class="scard-foot"><span>May 29, 2026</span><span class="scard-readmore" style="color:#7b4fa6;">Read →</span></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- NUTRITION -->
+  <section class="category-section v-amber" data-cat="nutrition" id="sec-nutrition">
+    <div class="section-label">
+      <h2>Nutrition &amp; Health Drinks</h2>
+      <a href="/blog/nutrition/" style="color:#c07d1a;">All Nutrition posts →</a>
+    </div>
+
+    <div class="vendor-row v-amber">
+      <div class="vendor-row-header">
+        <div class="vendor-avatar" style="background:#fef6e8;color:#c07d1a;">GR</div>
+        <div class="vendor-info">
+          <div class="vendor-name">Green Roots Nigeria</div>
+          <div class="vendor-tagline">Health drinks brand · 7 posts</div>
+        </div>
+        <a class="vendor-see-all" style="color:#c07d1a;" href="/blog/nutrition/green-roots/">See all</a>
+      </div>
+      <div class="stack-scroll" onmousedown="startDrag(event,this)" onmousemove="onDrag(event,this)" onmouseup="endDrag(this)" onmouseleave="endDrag(this)">
+        <article class="scard">
+          <div class="scard-img" style="background:linear-gradient(135deg,#fef6e8,#f5dfa8);">🥤<span class="scard-cat" style="background:#c07d1a;">Nutrition</span></div>
+          <div class="scard-body">
+            <h3 class="scard-title">5 local health drinks that actually work</h3>
+            <p class="scard-excerpt">Zobo, ginger shots, tiger nut milk and more — the benefits the science backs.</p>
+            <div class="scard-foot"><span>Jun 10, 2026</span><span class="scard-readmore" style="color:#c07d1a;">Read →</span></div>
+          </div>
+        </article>
+        <article class="scard">
+          <div class="scard-img" style="background:linear-gradient(135deg,#fef6e8,#f5dfa8);">🌿<span class="scard-cat" style="background:#c07d1a;">Nutrition</span></div>
+          <div class="scard-body">
+            <h3 class="scard-title">The truth about detox drinks — what works and what's a scam</h3>
+            <p class="scard-excerpt">A no-hype guide to liver support, hydration and what your body actually needs to "detox."</p>
+            <div class="scard-foot"><span>Jun 2, 2026</span><span class="scard-readmore" style="color:#c07d1a;">Read →</span></div>
+          </div>
+        </article>
+        <article class="scard">
+          <div class="scard-img" style="background:linear-gradient(135deg,#fef6e8,#f5dfa8);">🍋<span class="scard-cat" style="background:#c07d1a;">Nutrition</span></div>
+          <div class="scard-body">
+            <h3 class="scard-title">Morning drink habits of 5 Nigerian wellness coaches</h3>
+            <p class="scard-excerpt">We asked, they answered — and the results were surprisingly simple.</p>
+            <div class="scard-foot"><span>May 25, 2026</span><span class="scard-readmore" style="color:#c07d1a;">Read →</span></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- HERBS -->
+  <section class="category-section" data-cat="herbs" id="sec-herbs">
+    <div class="section-label">
+      <h2>Herbs &amp; Natural Remedies</h2>
+      <a href="/blog/herbs/">All Herbs posts →</a>
+    </div>
+
+    <div class="vendor-row">
+      <div class="vendor-row-header">
+        <div class="vendor-avatar" style="background:#e8f5e4;color:#2d7a2d;">NH</div>
+        <div class="vendor-info">
+          <div class="vendor-name">Nature's Healing Co.</div>
+          <div class="vendor-tagline">Herbal remedies brand · 6 posts</div>
+        </div>
+        <a class="vendor-see-all" style="color:#2d7a2d;" href="/blog/herbs/natures-healing/">See all</a>
+      </div>
+      <div class="stack-scroll" onmousedown="startDrag(event,this)" onmousemove="onDrag(event,this)" onmouseup="endDrag(this)" onmouseleave="endDrag(this)">
+        <article class="scard">
+          <div class="scard-img" style="background:linear-gradient(135deg,#e8f5e4,#b8ddb0);">🌱<span class="scard-cat" style="background:#2d7a2d;">Herbs</span></div>
+          <div class="scard-body">
+            <h3 class="scard-title">Moringa: Nigeria's quiet superfood and how to use it daily</h3>
+            <p class="scard-excerpt">From powder to leaves to tea — the different forms and what each one is best for.</p>
+            <div class="scard-foot"><span>Jun 9, 2026</span><span class="scard-readmore" style="color:#2d7a2d;">Read →</span></div>
+          </div>
+        </article>
+        <article class="scard">
+          <div class="scard-img" style="background:linear-gradient(135deg,#e8f5e4,#b8ddb0);">🍃<span class="scard-cat" style="background:#2d7a2d;">Herbs</span></div>
+          <div class="scard-body">
+            <h3 class="scard-title">7 herbs that help with sleep — no prescription needed</h3>
+            <p class="scard-excerpt">Valerian, ashwagandha and five locally available options that actually calm the nervous system.</p>
+            <div class="scard-foot"><span>Jun 2, 2026</span><span class="scard-readmore" style="color:#2d7a2d;">Read →</span></div>
+          </div>
+        </article>
+        <article class="scard">
+          <div class="scard-img" style="background:linear-gradient(135deg,#e8f5e4,#b8ddb0);">🫚<span class="scard-cat" style="background:#2d7a2d;">Herbs</span></div>
+          <div class="scard-body">
+            <h3 class="scard-title">Bitter leaf, scent leaf, uziza — the wellness uses you didn't know</h3>
+            <p class="scard-excerpt">Common Nigerian kitchen leaves with documented medicinal properties.</p>
+            <div class="scard-foot"><span>May 26, 2026</span><span class="scard-readmore" style="color:#2d7a2d;">Read →</span></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Newsletter ──────────────────────────────────── -->
+  <div class="newsletter">
+    <div class="newsletter-copy">
+      <h3>Get <em>wellness insights</em> weekly</h3>
+      <p>No spam. Just one well-researched article in your inbox every week.</p>
+    </div>
+    <div class="newsletter-form">
+      <input type="email" placeholder="Your email address">
+      <button>Subscribe</button>
+    </div>
+  </div>
+
+</main>
+
+<!-- ─── Footer ──────────────────────────────────────────── -->
+<footer class="footer">
+  <p>© 2026 Eve Massage Services · 1b Marina Road, Eket, Akwa Ibom · <a href="tel:08027272481">08027272481</a> · <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a></p>
+</footer>
+
+<script>
+/* ─── Drag-to-scroll ──────────────────────────────────── */
+let dragging = false, startX = 0, scrollLeft = 0;
+function startDrag(e, el) {
+  dragging = true;
+  startX = e.pageX - el.offsetLeft;
+  scrollLeft = el.scrollLeft;
+}
+function onDrag(e, el) {
+  if (!dragging) return;
+  e.preventDefault();
+  const x = e.pageX - el.offsetLeft;
+  el.scrollLeft = scrollLeft - (x - startX) * 1.2;
+}
+function endDrag(el) { dragging = false; }
+
+/* ─── Category filter ─────────────────────────────────── */
+function filterCat(btn, cat) {
+  document.querySelectorAll('.cat-pill').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  const sections = document.querySelectorAll('.category-section');
+  const featured = document.querySelectorAll('#featuredGrid .feat-card');
+  if (cat === 'all') {
+    sections.forEach(s => s.style.display = '');
+    featured.forEach(c => c.style.display = '');
+  } else {
+    sections.forEach(s => {
+      s.style.display = s.dataset.cat === cat ? '' : 'none';
+    });
+    featured.forEach(c => {
+      c.style.display = (c.dataset.cat === cat || c.dataset.cat === 'all') ? '' : 'none';
+    });
+  }
+}
+
+/* ─── Search ──────────────────────────────────────────── */
+function doSearch() {
+  const q = document.getElementById('searchInput').value.trim();
+  if (q) alert('Search for "' + q + '" — connect to Supabase full-text search to activate.');
+}
+</script>
+</body>
+</html>
