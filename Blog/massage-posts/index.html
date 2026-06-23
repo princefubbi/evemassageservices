@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ============================================================
+  🎨 CATEGORY CUSTOMISATION BLOCK — change these for each section
+  ============================================================ -->
+<script>
+const CAT_CONFIG = {
+  id:          'massage',                          // slug used in data-cat attributes
+  label:       'Massage & Spa',                    // display name
+  description: 'Techniques, tips and treatments from massage therapists and spa professionals.',
+  accentColor: '#3a8c6e',                          // pill / badge / link colour
+  accentLight: '#eef6f2',                          // light tint for backgrounds
+  accentMid:   '#c8e8da',                          // mid tint for hovers
+  heroEmoji:   '🌿',                              // hero icon
+  heroBg:      'linear-gradient(135deg,#1a2520 0%,#253d32 60%,#2a6b54 100%)', // hero gradient
+};
+</script>
+<!-- ============================================================ -->
+
+<title id="pageTitle">All Massage & Spa Posts — Wellness Blog · Eve Massage Services</title>
+<meta name="description" id="pageDesc" content="Browse all massage and spa articles from our community of therapists and wellness contributors.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<!-- ── Nav ──────────────────────────────────────────── -->
+<nav class="nav">
+  <a class="nav-logo" href="/">Eve <span>Massage</span></a>
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/services.html">Services</a>
+    <a href="/pricing.html">Pricing</a>
+    <a href="/blog/" class="active">Blog</a>
+    <a href="/akwa-ibom-health/">Health Directory</a>
+    <a href="/contact/">Contact</a>
+  </div>
+  <button class="nav-cta" onclick="window.open('https://wa.me/2349055853040','_blank')">Book Now</button>
+</nav>
+
+<!-- ── Hero ─────────────────────────────────────────── -->
+<section class="cat-hero" id="catHero">
+  <div class="cat-hero-inner">
+    <div class="breadcrumb">
+      <a href="/">Home</a><span class="breadcrumb-sep">›</span>
+      <a href="/blog/">Blog</a><span class="breadcrumb-sep">›</span>
+      <span id="heroLabel">Massage & Spa</span>
+    </div>
+    <div class="hero-row">
+      <div class="hero-left">
+        <div class="hero-eyebrow" id="heroEyebrow">🌿 Massage & Spa</div>
+        <h1 class="hero-title">All <em id="heroTitleEm">Massage & Spa</em> posts</h1>
+        <p class="hero-desc" id="heroDesc">Techniques, tips and treatments from massage therapists and spa professionals.</p>
+        <div class="hero-stats">
+          <div><div class="hero-stat-val" id="statPosts">18</div><div class="hero-stat-lbl">articles</div></div>
+          <div><div class="hero-stat-val" id="statContribs">3</div><div class="hero-stat-lbl">contributors</div></div>
+          <div><div class="hero-stat-val">New</div><div class="hero-stat-lbl">every week</div></div>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="hero-search">
+          <p>Search within this category</p>
+          <div class="search-row">
+            <input type="text" placeholder="e.g. aromatherapy…" id="heroSearchInput" oninput="handleSearch(this.value)">
+            <button onclick="handleSearch(document.getElementById('heroSearchInput').value)">Search</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Contributor filter strip ──────────────────────── -->
+<div class="contrib-strip">
+  <div class="contrib-strip-inner" id="contribStrip">
+    <span class="contrib-strip-label">Filter by contributor:</span>
+    <!-- chips injected by JS -->
+    <span class="contrib-all" onclick="filterContrib('all')">Show all</span>
+  </div>
+</div>
+
+<!-- ── Filter / sort bar ─────────────────────────────── -->
+<div class="filter-bar" id="filterBar">
+  <div class="filter-bar-inner" id="filterBarInner">
+
+    <!-- Collapsed summary — shows active filters at a glance -->
+    <div class="filter-summary" id="filterSummary">
+      <span id="fsSortChip" class="fs-chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 6h18M7 12h10M11 18h2"/></svg>
+        Newest
+      </span>
+      <span id="fsTagChip" class="fs-chip" style="display:none;">
+        <!-- active tag shown here -->
+      </span>
+      <span id="fsContribChip" class="fs-chip" style="display:none;">
+        <!-- active contributor shown here -->
+      </span>
+    </div>
+
+    <!-- tag pills injected by JS here -->
+
+    <div class="filter-right">
+      <select class="sort-select" onchange="handleSort(this.value)">
+        <option value="newest">Newest first</option>
+        <option value="oldest">Oldest first</option>
+        <option value="popular">Most popular</option>
+        <option value="read">Quickest read</option>
+      </select>
+      <button class="view-btn active" id="gridBtn" onclick="setView('grid')" title="Grid view">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+      </button>
+      <button class="view-btn" id="listBtn" onclick="setView('list')" title="List view">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+
+
+<main class="page-wrap">
+  <div class="layout">
+    <div>
+      <div class="posts-meta">
+        <span class="posts-meta-label" id="postsMetaLabel">18 articles from 3 contributors</span>
+      </div>
+      <div id="vendorSections"></div>
+      <div class="empty-state" id="emptyState">
+        <div class="empty-icon">🌿</div>
+        <h3>No articles found</h3>
+        <p>Try a different search term or filter.</p>
+      </div>
+      <div class="load-more-wrap" id="loadMoreWrap" style="display:none">
+        <button class="load-more" onclick="loadMore()">Load more articles</button>
+      </div>
+    </div>
+
+    <!-- ── Sidebar ──────────────────────────────────── -->
+    <aside class="sidebar" id="sidebarEl"></aside>
+  </div>
+</main>
+
+<!-- ── Back to top ──────────────────────────────────── -->
+<button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+
+<div class="toast" id="toast"></div>
+
+<!-- ── Share popover overlay (close on outside click) ─ -->
+<script>
+document.addEventListener('click', e => {
+  if (!e.target.closest('.share-wrap')) {
+    document.querySelectorAll('.share-pop.open').forEach(p => p.classList.remove('open'));
+  }
+});
+</script>
+
+<script>
+/* ════════════════════════════════════════════════════════
+   DATA — replace / extend this block for each category
+   ════════════════════════════════════════════════════════ */
+const CONTRIBUTORS = [
+  {
+    id: 'ew',
+    name: 'Eve Wellness Team',
+    initials: 'EW',
+    avatarBg: '#eef6f2', avatarColor: '#3a8c6e',
+    role: 'Official · Eve Massage Services',
+    bio: 'The in-house team at Eve Massage Services, sharing clinical knowledge, service guides and wellness education rooted in our 10+ years of practice.',
+    posts: 8,
+    badge: 'Official',
+    badgeColor: '#3a8c6e',
+  },
+  {
+    id: 'dr',
+    name: 'Dr. Remi Abara',
+    initials: 'RA',
+    avatarBg: '#eef3fa', avatarColor: '#2a6ea6',
+    role: 'Sports Therapist · Contributor',
+    bio: 'Sports and rehabilitation massage specialist based in Port Harcourt, with a focus on injury prevention and deep tissue techniques.',
+    posts: 6,
+    badge: 'Contributor',
+    badgeColor: '#2a6ea6',
+  },
+  {
+    id: 'sf',
+    name: 'Sade Fashola',
+    initials: 'SF',
+    avatarBg: '#f0e8f8', avatarColor: '#7b4fa6',
+    role: 'Spa Therapist · Contributor',
+    bio: 'Certified spa and aromatherapy therapist trained in Thailand and Lagos, specialising in holistic relaxation and prenatal massage.',
+    posts: 4,
+    badge: 'Contributor',
+    badgeColor: '#7b4fa6',
+  },
+];
+
+/* ── Posts — add more objects here to grow the page ── */
+const POSTS = [
+  /* Eve Wellness Team */
+  { id:1,  contrib:'ew', tags:['deep tissue','relaxation'], title:'Why a monthly deep-tissue massage is the best health investment you can make', excerpt:'Chronic tension silently drives up cortisol, disrupts sleep and weakens immunity. Here\'s the evidence-backed case.', date:'Jun 14, 2026', read:'5 min', views:842, emoji:'🌿', thumbBg:'linear-gradient(135deg,#d4ede4,#a8d5c3)' },
+  { id:2,  contrib:'ew', tags:['techniques','comparison'], title:'Hot stone vs Swedish: which massage is right for you?', excerpt:'Two of our most popular services compared — benefits, sensations and who should choose which.', date:'Jun 8, 2026', read:'4 min', views:480, emoji:'🧘', thumbBg:'linear-gradient(135deg,#c8e8da,#9cd4bc)' },
+  { id:3,  contrib:'ew', tags:['routine','aftercare'], title:'What to do before and after your massage for best results', excerpt:'Hydration, food, clothing and recovery habits that genuinely double the benefits.', date:'May 18, 2026', read:'3 min', views:187, emoji:'🛁', thumbBg:'linear-gradient(135deg,#daf0e8,#b0d8c4)' },
+  { id:4,  contrib:'ew', tags:['frequency','wellness'], title:'How often should you actually get a massage?', excerpt:'A practical guide based on your lifestyle, stress levels and health goals.', date:'Jun 1, 2026', read:'3 min', views:344, emoji:'💆', thumbBg:'linear-gradient(135deg,#c4e4d8,#9ccabb)' },
+  { id:5,  contrib:'ew', tags:['aromatherapy','oils'], title:'Aromatherapy oils we use and why they actually work', excerpt:'The science behind lavender, eucalyptus and four other staples in our treatment room.', date:'May 25, 2026', read:'4 min', views:254, emoji:'🌸', thumbBg:'linear-gradient(135deg,#dceee6,#b4d8c4)' },
+  { id:6,  contrib:'ew', tags:['membership','value'], title:'The Eve Membership: is it worth it for regular clients?', excerpt:'We break down the savings, perks and who gets the most from a monthly membership.', date:'May 10, 2026', read:'3 min', views:210, emoji:'🎁', thumbBg:'linear-gradient(135deg,#d0ece0,#a4d0b8)' },
+  { id:7,  contrib:'ew', tags:['pregnancy','prenatal'], title:'Prenatal massage: what to expect and when to book', excerpt:'Safe, soothing and specifically designed for mums-to-be — here\'s everything you need to know.', date:'Apr 28, 2026', read:'5 min', views:195, emoji:'🤱', thumbBg:'linear-gradient(135deg,#c8e8da,#a0d0be)' },
+  { id:8,  contrib:'ew', tags:['trigger point','pain'], title:'Trigger point therapy: the hidden knots causing your pain', excerpt:'Understanding myofascial trigger points and how targeted massage releases them.', date:'May 10, 2026', read:'6 min', views:178, emoji:'✋', thumbBg:'linear-gradient(135deg,#b8ddd0,#8ccab8)' },
+  /* Dr. Remi Abara */
+  { id:9,  contrib:'dr', tags:['sports','recovery'], title:'Why athletes need sports massage — not just stretching', excerpt:'A sports therapist\'s case for adding structured massage to any training programme, amateur or elite.', date:'Jun 11, 2026', read:'5 min', views:390, emoji:'🏃', thumbBg:'linear-gradient(135deg,#dce8f8,#b4ccec)' },
+  { id:10, contrib:'dr', tags:['deep tissue','posture'], title:'Desk job pain: how deep tissue massage targets office injuries', excerpt:'The three posture-related problems massage addresses better than physiotherapy alone.', date:'Jun 4, 2026', read:'4 min', views:312, emoji:'💻', thumbBg:'linear-gradient(135deg,#d4e4f4,#aac4e4)' },
+  { id:11, contrib:'dr', tags:['recovery','muscle'], title:'Post-surgery massage: what\'s safe and when to start', excerpt:'A clinical guide on timing, pressure and technique for safe recovery after common surgeries.', date:'May 22, 2026', read:'6 min', views:265, emoji:'🩺', thumbBg:'linear-gradient(135deg,#ccddf0,#a0bee0)' },
+  { id:12, contrib:'dr', tags:['pain','relief'], title:'Lower back pain and massage — what the research actually says', excerpt:'We looked at 12 clinical trials so you don\'t have to. The results are clearer than you\'d think.', date:'May 8, 2026', read:'7 min', views:234, emoji:'🔬', thumbBg:'linear-gradient(135deg,#c4d8ec,#9ab8d8)' },
+  { id:13, contrib:'dr', tags:['technique','sports'], title:'Effleurage, petrissage, tapotement — a guide to the real techniques', excerpt:'What those French massage terms actually mean, and why each one is used at a specific moment.', date:'Apr 18, 2026', read:'5 min', views:198, emoji:'📖', thumbBg:'linear-gradient(135deg,#bcd0e8,#94b0d0)' },
+  { id:14, contrib:'dr', tags:['inflammation','recovery'], title:'Ice, heat or massage? Choosing the right recovery method', excerpt:'A straightforward decision framework for muscle soreness, injury and chronic pain scenarios.', date:'Apr 5, 2026', read:'4 min', views:176, emoji:'🧊', thumbBg:'linear-gradient(135deg,#b4c8e0,#8caac8)' },
+  /* Sade Fashola */
+  { id:15, contrib:'sf', tags:['aromatherapy','relaxation'], title:'Building your home spa ritual — a step-by-step guide', excerpt:'How to recreate the calm of a professional spa treatment in your own bathroom, on any budget.', date:'Jun 6, 2026', read:'5 min', views:310, emoji:'🕯️', thumbBg:'linear-gradient(135deg,#ede4f8,#d0b8e8)' },
+  { id:16, contrib:'sf', tags:['couples','relaxation'], title:'Couples massage: more than a romantic gesture', excerpt:'The physiological and psychological benefits of synchronised relaxation for two.', date:'May 30, 2026', read:'4 min', views:272, emoji:'💑', thumbBg:'linear-gradient(135deg,#e4d8f4,#c4a8e4)' },
+  { id:17, contrib:'sf', tags:['facial','skin'], title:'Face massage techniques that reduce puffiness and lift your complexion', excerpt:'The lymphatic drainage moves our therapists swear by, broken down into a 10-minute routine.', date:'May 14, 2026', read:'5 min', views:240, emoji:'✨', thumbBg:'linear-gradient(135deg,#dcd0f0,#bcaae0)' },
+  { id:18, contrib:'sf', tags:['oil','diy'], title:'Which massage oil for which need — a practical guide', excerpt:'Jojoba, coconut, sweet almond and more. What each one does, and when to use it.', date:'Apr 22, 2026', read:'4 min', views:198, emoji:'🫙', thumbBg:'linear-gradient(135deg,#d4c8ec,#b4a0d8)' },
+];
+
+/* ══════════════════════════════════════════════════════
+   ENGINE — no need to edit below this line
+   ══════════════════════════════════════════════════════ */
+
+let activeContrib = 'all';
+let activeTag     = 'all';
+let searchQ       = '';
+let sortMode      = 'newest';
+let savedIds      = new Set();
+let currentView   = 'grid';
+const PAGE_SIZE   = 6; // per vendor
+let vendorPages   = {}; // tracks how many pages shown per vendor
+
+/* ── Apply config tokens ─────────────────────────────── */
+function applyConfig() {
+  const c = CAT_CONFIG;
+  document.documentElement.style.setProperty('--accent',   c.accentColor);
+  document.documentElement.style.setProperty('--accent-d', adjustColor(c.accentColor, -20));
+  document.documentElement.style.setProperty('--accent-l', c.accentLight);
+  document.documentElement.style.setProperty('--accent-m', c.accentMid);
+  document.getElementById('catHero').style.background     = c.heroBg;
+  document.getElementById('heroLabel').textContent        = c.label;
+  document.getElementById('heroEyebrow').textContent      = c.heroEmoji + ' ' + c.label;
+  document.getElementById('heroTitleEm').textContent      = c.label;
+  document.getElementById('heroDesc').textContent         = c.description;
+  document.getElementById('pageTitle').textContent        = 'All ' + c.label + ' Posts — Wellness Blog · Eve Massage Services';
+  document.getElementById('pageDesc').setAttribute('content', 'Browse all ' + c.label.toLowerCase() + ' articles.');
+}
+function adjustColor(hex, pct) {
+  // very simple lightness shift — good enough for token generation
+  return hex; // leave as-is if you want manual accent-d
+}
+
+/* ── Collect unique tags ─────────────────────────────── */
+function getAllTags() {
+  const set = new Set();
+  POSTS.forEach(p => p.tags.forEach(t => set.add(t)));
+  return [...set];
+}
+
+/* ── Filtering ──────────────────────────────────────── */
+function getFiltered() {
+  let posts = [...POSTS];
+  if (activeContrib !== 'all') posts = posts.filter(p => p.contrib === activeContrib);
+  if (activeTag !== 'all')     posts = posts.filter(p => p.tags.includes(activeTag));
+  if (searchQ) {
+    const q = searchQ.toLowerCase();
+    posts = posts.filter(p =>
+      p.title.toLowerCase().includes(q) ||
+      p.excerpt.toLowerCase().includes(q) ||
+      p.tags.some(t => t.includes(q))
+    );
+  }
+  if (sortMode === 'oldest')   posts.sort((a,b) => a.id - b.id);
+  else if (sortMode === 'popular') posts.sort((a,b) => b.views - a.views);
+  else if (sortMode === 'read')    posts.sort((a,b) => parseInt(a.read) - parseInt(b.read));
+  else posts.sort((a,b) => b.id - a.id);
+  return posts;
+}
+
+/* ── Render ─────────────────────────────────────────── */
+function renderAll() {
+  const filtered = getFiltered();
+  const empty    = document.getElementById('emptyState');
+  const container = document.getElementById('vendorSections');
+
+  if (filtered.length === 0) {
+    container.innerHTML = '';
+    empty.classList.add('show');
+    document.getElementById('postsMetaLabel').textContent = '0 results';
+    return;
+  }
+  empty.classList.remove('show');
+
+  // group by contributor
+  const groups = {};
+  CONTRIBUTORS.forEach(c => { groups[c.id] = []; });
+  filtered.forEach(p => { if (groups[p.contrib]) groups[p.contrib].push(p); });
+
+  // only show contributors that have posts after filtering
+  const activeContribs = CONTRIBUTORS.filter(c => groups[c.id].length > 0);
+
+  container.innerHTML = activeContribs.map(c => renderVendorSection(c, groups[c.id])).join('');
+
+  // stats
+  const totalContribs = activeContribs.length;
+  document.getElementById('postsMetaLabel').textContent =
+    `${filtered.length} article${filtered.length!==1?'s':''} from ${totalContribs} contributor${totalContribs!==1?'s':''}`;
+  document.getElementById('statPosts').textContent = filtered.length;
+  document.getElementById('statContribs').textContent = totalContribs;
+}
+
+function renderVendorSection(contrib, posts) {
+  const showing = posts.slice(0, (vendorPages[contrib.id] || 1) * PAGE_SIZE);
+  const hasMore = showing.length < posts.length;
+  return `
+  <div class="vendor-section ${currentView==='list'?'list-view':''}" data-contrib="${contrib.id}">
+    <div class="vendor-section-header">
+      <div class="vsec-avatar" style="background:${contrib.avatarBg};color:${contrib.avatarColor};">${contrib.initials}</div>
+      <div>
+        <div class="vsec-name">${contrib.name} <span class="vsec-badge" style="background:${contrib.badgeColor}">${contrib.badge}</span></div>
+        <div class="vsec-meta">${contrib.role} · ${posts.length} post${posts.length!==1?'s':''} in this category</div>
+      </div>
+      <a class="vsec-all" href="#">See all by ${contrib.name.split(' ')[0]}</a>
+    </div>
+    <div class="vendor-posts">
+      ${showing.map((p,i) => renderCard(p, contrib, i)).join('')}
+    </div>
+    ${hasMore ? `<div style="text-align:center;padding:.8rem;background:var(--card);border:1px solid var(--border);border-top:none;border-radius:0 0 var(--r-lg) var(--r-lg)"><button class="load-more" onclick="loadMoreVendor('${contrib.id}')">Load ${Math.min(PAGE_SIZE, posts.length - showing.length)} more from ${contrib.name.split(' ')[0]}</button></div>` : ''}
+  </div>`;
+}
+
+function renderCard(post, contrib, i) {
+  const isSaved = savedIds.has(post.id);
+  return `
+  <div class="post-card" style="animation-delay:${i*.05}s" data-id="${post.id}">
+    <div class="card-thumb" style="background:${post.thumbBg}">
+      ${post.emoji}
+      <span class="card-cat-badge">${CAT_CONFIG.label}</span>
+    </div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span>${contrib.name}</span><span class="dot">·</span>
+        <span>${post.date}</span><span class="dot">·</span>
+        <span>${post.views} views</span>
+      </div>
+      <h2 class="card-title">${post.title}</h2>
+      <p class="card-excerpt">${post.excerpt}</p>
+      <div class="card-meta" style="margin-top:.3rem;margin-bottom:0;gap:.3rem;">
+        ${post.tags.map(t => `<span style="background:var(--accent-l);color:var(--accent);border-radius:999px;padding:.15rem .55rem;font-size:10px;font-weight:500;">${t}</span>`).join('')}
+      </div>
+      <div class="card-footer">
+        <div class="vsec-avatar" style="width:22px;height:22px;font-size:9px;background:${contrib.avatarBg};color:${contrib.avatarColor};">${contrib.initials}</div>
+        <span style="font-size:12px;font-weight:500;color:var(--ink-m);">${contrib.name.split(' ')[0]}</span>
+        <span class="card-read">${post.read} read</span>
+        <div class="card-actions">
+          <button class="card-action-btn ${isSaved?'saved':''}" onclick="toggleSave(event,${post.id})" title="Save">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="${isSaved?'currentColor':'none'}" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+          </button>
+          <div class="share-wrap" style="position:relative;">
+            <button class="card-action-btn" onclick="toggleShare(event,${post.id})" title="Share">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>
+            <div class="share-pop" id="share-${post.id}">
+              <div class="share-pop-title">Share this article</div>
+              <button class="share-item" onclick="shareVia('whatsapp','${escQ(post.title)}')">
+                <span class="share-icon" style="background:#25d366;color:#fff;">W</span> WhatsApp
+              </button>
+              <button class="share-item" onclick="shareVia('twitter','${escQ(post.title)}')">
+                <span class="share-icon" style="background:#000;color:#fff;">𝕏</span> X / Twitter
+              </button>
+              <button class="share-item" onclick="shareVia('facebook','${escQ(post.title)}')">
+                <span class="share-icon" style="background:#1877f2;color:#fff;">f</span> Facebook
+              </button>
+              <button class="share-item" onclick="shareVia('copy','${escQ(post.title)}')">
+                <span class="share-icon" style="background:var(--accent-l);color:var(--accent);">🔗</span> Copy link
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>`;
+}
+
+function escQ(s) { return s.replace(/'/g,"\\'").replace(/"/g,'&quot;'); }
+
+/* ── Sidebar ─────────────────────────────────────────── */
+function renderSidebar() {
+  const tags = getAllTags();
+  document.getElementById('sidebarEl').innerHTML = `
+    <div class="about-cat">
+      <div class="about-cat-emoji">${CAT_CONFIG.heroEmoji}</div>
+      <h3>${CAT_CONFIG.label}</h3>
+      <p>${CAT_CONFIG.description}</p>
+      <a class="about-cta" href="/services.html">Our services →</a>
+    </div>
+
+    <div class="s-card">
+      <div class="s-title">Our contributors</div>
+      <div class="contrib-detail">
+        ${CONTRIBUTORS.map(c => `
+        <div class="contrib-card" onclick="filterContrib('${c.id}')">
+          <div class="contrib-av" style="background:${c.avatarBg};color:${c.avatarColor};">${c.initials}</div>
+          <div>
+            <div class="contrib-card-name">${c.name} <span style="background:${c.badgeColor};color:#fff;font-size:10px;font-weight:600;padding:.1rem .45rem;border-radius:999px;vertical-align:middle;">${c.badge}</span></div>
+            <div class="contrib-card-role">${c.role}</div>
+            <div class="contrib-card-bio">${c.bio}</div>
+            <div class="contrib-posts-count">${c.posts} posts in ${CAT_CONFIG.label}</div>
+          </div>
+        </div>`).join('')}
+      </div>
+    </div>
+
+    <div class="s-card">
+      <div class="s-title">Browse by topic</div>
+      <div style="display:flex;flex-wrap:wrap;gap:.4rem;">
+        <button class="tag-pill active" data-tag="all" onclick="filterTag(this,'all')">All topics</button>
+        ${tags.map(t => `<button class="tag-pill" data-tag="${t}" onclick="filterTag(this,'${t}')">${t}</button>`).join('')}
+      </div>
+    </div>
+
+    <div class="s-card">
+      <div class="s-title">Other categories</div>
+      <div class="related-cats">
+        <div class="related-cat-item" onclick="location.href='/blog/fitness/'"><span class="rci-dot" style="background:#2a6ea6"></span>Fitness<span class="rci-count">18 posts</span></div>
+        <div class="related-cat-item" onclick="location.href='/blog/skincare/'"><span class="rci-dot" style="background:#7b4fa6"></span>Skincare<span class="rci-count">9 posts</span></div>
+        <div class="related-cat-item" onclick="location.href='/blog/nutrition/'"><span class="rci-dot" style="background:#c07d1a"></span>Nutrition &amp; Drinks<span class="rci-count">7 posts</span></div>
+        <div class="related-cat-item" onclick="location.href='/blog/herbs/'"><span class="rci-dot" style="background:#2d7a2d"></span>Herbs &amp; Remedies<span class="rci-count">6 posts</span></div>
+      </div>
+    </div>
+
+    <div class="nl-mini">
+      <h4>Get <em>wellness insights</em> weekly</h4>
+      <p>One well-researched article, every Tuesday. No spam.</p>
+      <input class="nl-input" type="email" placeholder="your@email.com">
+      <button class="nl-btn">Subscribe free</button>
+    </div>`;
+}
+
+/* ── Contributor strip ──────────────────────────────── */
+function renderContribStrip() {
+  const strip  = document.getElementById('contribStrip');
+  const label  = strip.querySelector('.contrib-strip-label');
+  const showAll = strip.querySelector('.contrib-all');
+  strip.innerHTML = '';
+  strip.appendChild(label);
+  CONTRIBUTORS.forEach(c => {
+    const chip = document.createElement('button');
+    chip.className = 'contrib-chip' + (activeContrib === c.id ? ' active' : '');
+    chip.dataset.id = c.id;
+    chip.innerHTML = `<div class="contrib-chip-av" style="background:${c.avatarBg};color:${c.avatarColor};">${c.initials}</div><span>${c.name}</span>`;
+    chip.onclick = () => filterContrib(c.id);
+    strip.appendChild(chip);
+    // add to the bottom of: handleSort(), filterTag(), filterContrib()
+  updateFilterSummary();
+  });
+  strip.appendChild(showAll);
+}
+
+/* ── Filter bar tags ────────────────────────────────── */
+function renderFilterBar() {
+  const inner = document.getElementById('filterBarInner');
+  const right = inner.querySelector('.filter-right');
+  // remove old pills
+  inner.querySelectorAll('.tag-pill').forEach(p => p.remove());
+  const tags = ['all', ...getAllTags()];
+  tags.forEach(t => {
+    const btn = document.createElement('button');
+    btn.className = 'tag-pill' + (activeTag === t ? ' active' : '');
+    btn.dataset.tag = t;
+    btn.textContent = t === 'all' ? 'All topics' : t;
+    btn.onclick = () => filterTag(btn, t);
+    inner.insertBefore(btn, right);
+    // add to the bottom of: handleSort(), filterTag(), filterContrib()
+  updateFilterSummary();
+  });
+}
+
+/* ── Controls ───────────────────────────────────────── */
+function filterContrib(id) {
+  activeContrib = id;
+  vendorPages = {};
+  document.querySelectorAll('.contrib-chip').forEach(c => c.classList.toggle('active', c.dataset.id === id));
+  renderAll();
+  // add to the bottom of: handleSort(), filterTag(), filterContrib()
+  updateFilterSummary();
+}
+
+function filterTag(btn, tag) {
+  activeTag = tag;
+  vendorPages = {};
+  document.querySelectorAll('.tag-pill').forEach(p => p.classList.toggle('active', p.dataset.tag === tag));
+  // sync sidebar tags too
+  document.querySelectorAll('[data-tag]').forEach(p => p.classList.toggle('active', p.dataset.tag === tag));
+  renderAll();
+  // add to the bottom of: handleSort(), filterTag(), filterContrib()
+  updateFilterSummary();
+}
+
+function handleSearch(val) {
+  searchQ = val;
+  vendorPages = {};
+  renderAll();
+}
+
+function handleSort(val) {
+  sortMode = val;
+  vendorPages = {};
+  renderAll();
+  // add to the bottom of: handleSort(), filterTag(), filterContrib()
+  updateFilterSummary();
+}
+
+function setView(mode) {
+  currentView = mode;
+  document.getElementById('gridBtn').classList.toggle('active', mode==='grid');
+  document.getElementById('listBtn').classList.toggle('active', mode==='list');
+  renderAll();
+}
+
+function loadMoreVendor(contribId) {
+  vendorPages[contribId] = (vendorPages[contribId] || 1) + 1;
+  renderAll();
+}
+
+function toggleSave(e, id) {
+  e.stopPropagation();
+  if (savedIds.has(id)) { savedIds.delete(id); showToast('Removed from saved'); }
+  else { savedIds.add(id); showToast('Saved to your list ✓'); }
+  renderAll();
+}
+
+function toggleShare(e, id) {
+  e.stopPropagation();
+  document.querySelectorAll('.share-pop').forEach(p => {
+    if (p.id !== 'share-'+id) p.classList.remove('open');
+  });
+  const pop = document.getElementById('share-'+id);
+  if (pop) pop.classList.toggle('open');
+}
+
+function shareVia(platform, title) {
+  const url  = encodeURIComponent(window.location.href);
+  const text = encodeURIComponent('Check out this article: ' + title);
+  const links = {
+    whatsapp: `https://wa.me/?text=${text}%20${url}`,
+    twitter:  `https://twitter.com/intent/tweet?text=${text}&url=${url}`,
+    facebook: `https://www.facebook.com/sharer/sharer.php?u=${url}`,
+  };
+  if (platform === 'copy') {
+    navigator.clipboard.writeText(window.location.href).then(() => showToast('Link copied! ✓'));
+  } else {
+    window.open(links[platform], '_blank', 'width=600,height=400');
+  }
+  document.querySelectorAll('.share-pop').forEach(p => p.classList.remove('open'));
+}
+
+/* ── Collapsing filter bar ──────────────────────────── */
+let lastScrollY = 0;
+let filterManuallyExpanded = false;
+
+window.addEventListener('scroll', () => {
+  const bar = document.getElementById('filterBar');
+  const scrollY = window.scrollY;
+  const isMobile = window.innerWidth <= 600;
+
+  // collapse after scrolling 120px down, expand when near top
+  if (scrollY > 120 && scrollY > lastScrollY && !filterManuallyExpanded) {
+    bar.classList.add('collapsed');
+    bar.classList.remove('mobile-open');
+  } else if (scrollY < 80 || scrollY < lastScrollY - 40) {
+    bar.classList.remove('collapsed');
+    filterManuallyExpanded = false;
+  }
+  lastScrollY = scrollY;
+
+  // progress bar + back to top (your existing code)
+  const doc = document.documentElement;
+  document.getElementById('progressBar').style.width =
+    (scrollY / (doc.scrollHeight - doc.clientHeight) * 100) + '%';
+  document.getElementById('backTop').classList.toggle('show', scrollY > 400);
+});
+
+function toggleFilterExpand() {
+  const bar = document.getElementById('filterBar');
+  const isMobile = window.innerWidth <= 600;
+  if (isMobile) {
+    bar.classList.toggle('mobile-open');
+  } else {
+    bar.classList.toggle('collapsed');
+    filterManuallyExpanded = !bar.classList.contains('collapsed');
+  }
+}
+
+/* ── Update the summary chips when filters change ───── */
+function updateFilterSummary() {
+  const sortLabels = { newest:'Newest', oldest:'Oldest', popular:'Popular', read:'Quick reads' };
+  document.getElementById('fsSortChip').innerHTML = `
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="10" height="10"><path d="M3 6h18M7 12h10M11 18h2"/></svg>
+    ${sortLabels[sortMode]}`;
+
+  const tagChip = document.getElementById('fsTagChip');
+  if (activeTag && activeTag !== 'all') {
+    tagChip.textContent = activeTag;
+    tagChip.style.display = 'flex';
+  } else {
+    tagChip.style.display = 'none';
+  }
+
+  const contribChip = document.getElementById('fsContribChip');
+  if (activeContrib && activeContrib !== 'all') {
+    const c = CONTRIBUTORS.find(x => x.id === activeContrib);
+    contribChip.textContent = c ? c.name.split(' ')[0] : '';
+    contribChip.style.display = 'flex';
+  } else {
+    contribChip.style.display = 'none';
+  }
+}
+
+/* ── Toast ──────────────────────────────────────────── */
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2200);
+}
+
+/* ── Progress + back to top ─────────────────────────── */
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  document.getElementById('progressBar').style.width =
+    (window.scrollY / (doc.scrollHeight - doc.clientHeight) * 100) + '%';
+  document.getElementById('backTop').classList.toggle('show', window.scrollY > 400);
+});
+
+/* ── Init ───────────────────────────────────────────── */
+applyConfig();
+renderContribStrip();
+renderFilterBar();
+renderSidebar();
+renderAll();
+</script>
+</body>
+</html>

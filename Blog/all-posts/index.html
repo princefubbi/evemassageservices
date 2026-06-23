@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>All Posts — Wellness Blog · Eve Massage Services</title>
+<meta name="description" content="Browse all wellness, skincare, fitness, nutrition and herbal health articles from our community of expert contributors.">
+<link rel="canonical" href="https://www.evemassages.com/blog/all/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<!-- ── Nav ───────────────────────────────────────────── -->
+<nav class="nav">
+  <a class="nav-logo" href="/">Eve <span>Massage</span></a>
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/services.html">Services</a>
+    <a href="/booking/index.html">Pricing</a>
+    <a href="/blog/" class="active">Blog</a>
+    <a href="/akwa-ibom-health/">Health Directory</a>
+    <a href="/contact/">Contact</a>
+  </div>
+  <button class="nav-cta" onclick="window.open('https://wa.me/2349055853040','_blank')">Book Now</button>
+</nav>
+
+<!-- ── Page header ────────────────────────────────────── -->
+<div class="page-header">
+  <div class="page-header-inner">
+    <div class="breadcrumb">
+      <a href="/">Home</a>
+      <span class="breadcrumb-sep">›</span>
+      <a href="/blog/">Blog</a>
+      <span class="breadcrumb-sep">›</span>
+      <span>All Posts</span>
+    </div>
+    <div class="ph-row">
+      <h1 class="ph-title">All <em>Wellness</em> Posts</h1>
+      <span class="ph-count" id="postCount">Showing all 18 articles</span>
+    </div>
+    <!-- Tab strip -->
+    <div style="display:flex;gap:0;margin-top:1.25rem;overflow-x:auto;scrollbar-width:none;">
+      <button class="tab-btn active" data-cat="all" onclick="filterPosts(this,'all')" style="padding:.65rem 1.1rem;font-size:13px;font-weight:500;border:none;background:none;border-bottom:2px solid var(--green);color:var(--green);cursor:pointer;white-space:nowrap;font-family:var(--font-b);transition:all .18s;">All posts</button>
+      <button class="tab-btn" data-cat="massage" onclick="filterPosts(this,'massage')" style="padding:.65rem 1.1rem;font-size:13px;font-weight:500;border:none;background:none;border-bottom:2px solid transparent;color:var(--muted);cursor:pointer;white-space:nowrap;font-family:var(--font-b);transition:all .18s;">Massage &amp; Spa</button>
+      <button class="tab-btn" data-cat="fitness" onclick="filterPosts(this,'fitness')" style="padding:.65rem 1.1rem;font-size:13px;font-weight:500;border:none;background:none;border-bottom:2px solid transparent;color:var(--muted);cursor:pointer;white-space:nowrap;font-family:var(--font-b);transition:all .18s;">Fitness</button>
+      <button class="tab-btn" data-cat="skincare" onclick="filterPosts(this,'skincare')" style="padding:.65rem 1.1rem;font-size:13px;font-weight:500;border:none;background:none;border-bottom:2px solid transparent;color:var(--muted);cursor:pointer;white-space:nowrap;font-family:var(--font-b);transition:all .18s;">Skincare</button>
+      <button class="tab-btn" data-cat="nutrition" onclick="filterPosts(this,'nutrition')" style="padding:.65rem 1.1rem;font-size:13px;font-weight:500;border:none;background:none;border-bottom:2px solid transparent;color:var(--muted);cursor:pointer;white-space:nowrap;font-family:var(--font-b);transition:all .18s;">Nutrition</button>
+      <button class="tab-btn" data-cat="herbs" onclick="filterPosts(this,'herbs')" style="padding:.65rem 1.1rem;font-size:13px;font-weight:500;border:none;background:none;border-bottom:2px solid transparent;color:var(--muted);cursor:pointer;white-space:nowrap;font-family:var(--font-b);transition:all .18s;">Herbs</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── Filter / search bar ────────────────────────────── -->
+<div class="filter-bar">
+  <div class="filter-bar-inner">
+    <div class="search-wrap">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="text" id="searchInput" placeholder="Search articles…" oninput="handleSearch(this.value)">
+    </div>
+    <div class="pills" id="tagPills">
+      <button class="pill active" data-cat="all" onclick="filterPosts(this,'all')">All</button>
+      <button class="pill" data-cat="massage" onclick="filterPosts(this,'massage')">Massage &amp; Spa</button>
+      <button class="pill" data-cat="fitness" onclick="filterPosts(this,'fitness')">Fitness</button>
+      <button class="pill" data-cat="skincare" onclick="filterPosts(this,'skincare')">Skincare</button>
+      <button class="pill" data-cat="nutrition" onclick="filterPosts(this,'nutrition')">Nutrition</button>
+      <button class="pill" data-cat="herbs" onclick="filterPosts(this,'herbs')">Herbs</button>
+    </div>
+    <div class="sort-wrap">
+      <select class="sort-select" onchange="handleSort(this.value)">
+        <option value="newest">Newest first</option>
+        <option value="oldest">Oldest first</option>
+        <option value="popular">Most popular</option>
+        <option value="read">Quickest read</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<main class="page-wrap">
+  <div class="content-grid">
+
+    <!-- ── Posts column ──────────────────────────────── -->
+    <div>
+      <div class="posts-header">
+        <span class="posts-header-label" id="resultLabel">18 articles</span>
+        <div class="view-toggle">
+          <button class="view-btn active" id="gridBtn" onclick="setView('grid')" title="Grid view">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+          </button>
+          <button class="view-btn" id="listBtn" onclick="setView('list')" title="List view">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="posts-grid" id="postsGrid"></div>
+
+      <div class="empty-state" id="emptyState">
+        <div class="empty-icon">🌿</div>
+        <h3>No articles found</h3>
+        <p>Try a different search term or category.</p>
+      </div>
+
+      <div class="load-more-wrap" id="loadMoreWrap">
+        <button class="load-more" onclick="loadMore()">Load more articles</button>
+      </div>
+    </div>
+
+    <!-- ── Sidebar ────────────────────────────────────── -->
+    <aside class="sidebar">
+
+      <!-- Trending -->
+      <div class="sidebar-card">
+        <div class="sidebar-title">Trending this week</div>
+        <div class="trending-item">
+          <div class="trending-num">01</div>
+          <div>
+            <div class="ti-title">Why a monthly deep-tissue massage is the best health investment you can make</div>
+            <div class="ti-meta">Massage &amp; Spa · 5 min read</div>
+          </div>
+        </div>
+        <div class="trending-item">
+          <div class="trending-num">02</div>
+          <div>
+            <div class="ti-title">Moringa: Nigeria's quiet superfood and how to use it daily</div>
+            <div class="ti-meta">Herbs · 4 min read</div>
+          </div>
+        </div>
+        <div class="trending-item">
+          <div class="trending-num">03</div>
+          <div>
+            <div class="ti-title">The 3-step evening routine that transformed my skin in 30 days</div>
+            <div class="ti-meta">Skincare · 3 min read</div>
+          </div>
+        </div>
+        <div class="trending-item">
+          <div class="trending-num">04</div>
+          <div>
+            <div class="ti-title">5 local health drinks that actually work — and one to avoid</div>
+            <div class="ti-meta">Nutrition · 6 min read</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tags -->
+      <div class="sidebar-card">
+        <div class="sidebar-title">Browse by topic</div>
+        <div class="tags-cloud">
+          <button class="tag-chip" onclick="filterPosts(null,'massage')">Deep tissue</button>
+          <button class="tag-chip" onclick="filterPosts(null,'massage')">Aromatherapy</button>
+          <button class="tag-chip" onclick="filterPosts(null,'skincare')">Hyperpigmentation</button>
+          <button class="tag-chip" onclick="filterPosts(null,'nutrition')">Zobo</button>
+          <button class="tag-chip" onclick="filterPosts(null,'herbs')">Moringa</button>
+          <button class="tag-chip" onclick="filterPosts(null,'fitness')">Home workouts</button>
+          <button class="tag-chip" onclick="filterPosts(null,'skincare')">SPF</button>
+          <button class="tag-chip" onclick="filterPosts(null,'herbs')">Bitter leaf</button>
+          <button class="tag-chip" onclick="filterPosts(null,'nutrition')">Detox</button>
+          <button class="tag-chip" onclick="filterPosts(null,'fitness')">HIIT</button>
+          <button class="tag-chip" onclick="filterPosts(null,'massage')">Hot stone</button>
+          <button class="tag-chip" onclick="filterPosts(null,'herbs')">Sleep</button>
+        </div>
+      </div>
+
+      <!-- Contributors -->
+      <div class="sidebar-card">
+        <div class="sidebar-title">Our contributors</div>
+        <div class="contributor-row">
+          <div class="contrib-avatar" style="background:var(--green-l);color:var(--green);">EW</div>
+          <div>
+            <div class="contrib-name">Eve Wellness Team</div>
+            <div class="contrib-posts">14 posts · Massage &amp; Spa</div>
+          </div>
+          <span class="contrib-arrow">›</span>
+        </div>
+        <div class="contributor-row">
+          <div class="contrib-avatar" style="background:#f0e8f8;color:#7b4fa6;">AO</div>
+          <div>
+            <div class="contrib-name">Amina Okon</div>
+            <div class="contrib-posts">9 posts · Skincare</div>
+          </div>
+          <span class="contrib-arrow">›</span>
+        </div>
+        <div class="contributor-row">
+          <div class="contrib-avatar" style="background:var(--blue-l);color:var(--blue);">JO</div>
+          <div>
+            <div class="contrib-name">Joy Okafor</div>
+            <div class="contrib-posts">12 posts · Fitness</div>
+          </div>
+          <span class="contrib-arrow">›</span>
+        </div>
+        <div class="contributor-row">
+          <div class="contrib-avatar" style="background:#fef6e8;color:#c07d1a;">GR</div>
+          <div>
+            <div class="contrib-name">Green Roots Nigeria</div>
+            <div class="contrib-posts">7 posts · Nutrition</div>
+          </div>
+          <span class="contrib-arrow">›</span>
+        </div>
+        <div class="contributor-row">
+          <div class="contrib-avatar" style="background:#e8f5e4;color:#2d7a2d;">NH</div>
+          <div>
+            <div class="contrib-name">Nature's Healing Co.</div>
+            <div class="contrib-posts">6 posts · Herbs</div>
+          </div>
+          <span class="contrib-arrow">›</span>
+        </div>
+      </div>
+
+      <!-- Newsletter mini -->
+      <div class="nl-mini">
+        <h4>Get <em>wellness insights</em> weekly</h4>
+        <p>One well-researched article, every Tuesday. No spam.</p>
+        <input class="nl-input" type="email" placeholder="your@email.com">
+        <button class="nl-btn">Subscribe free</button>
+      </div>
+
+    </aside>
+  </div>
+</main>
+
+<button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+
+<script>
+/* ── Data ───────────────────────────────────────────── */
+const POSTS = [
+  { id:1,  cat:'massage',   emoji:'🌿', title:'Why a monthly deep-tissue massage is the best health investment you can make', excerpt:'Chronic tension silently drives up cortisol, disrupts sleep and weakens immunity. Here\'s the evidence-backed case.', author:'Eve Wellness Team', initials:'EW', avatarBg:'#eef6f2', avatarColor:'#3a8c6e', date:'Jun 14, 2026', read:'5 min', views:842, thumbBg:'linear-gradient(135deg,#d4ede4,#a8d5c3)' },
+  { id:2,  cat:'skincare',  emoji:'✨', title:'The 3-step evening routine that transformed my skin in 30 days', excerpt:'Simple, affordable, and built for Nigerian skin in our humid climate.', author:'Amina Okon', initials:'AO', avatarBg:'#f0e8f8', avatarColor:'#7b4fa6', date:'Jun 12, 2026', read:'3 min', views:671, thumbBg:'linear-gradient(135deg,#f0e8f8,#d8c2ed)' },
+  { id:3,  cat:'nutrition', emoji:'🥤', title:'5 local health drinks that actually work — and one to avoid', excerpt:'Zobo, ginger shots, tiger nut milk and more — the benefits the science actually backs.', author:'Green Roots Nigeria', initials:'GR', avatarBg:'#fef6e8', avatarColor:'#c07d1a', date:'Jun 10, 2026', read:'6 min', views:590, thumbBg:'linear-gradient(135deg,#fef6e8,#f5dfa8)' },
+  { id:4,  cat:'massage',   emoji:'🧘', title:'Hot stone vs Swedish massage: which is right for you?', excerpt:'Two of our most popular services compared — benefits, sensations and who should choose which.', author:'Eve Wellness Team', initials:'EW', avatarBg:'#eef6f2', avatarColor:'#3a8c6e', date:'Jun 8, 2026', read:'4 min', views:480, thumbBg:'linear-gradient(135deg,#d4ede4,#b8dccf)' },
+  { id:5,  cat:'herbs',     emoji:'🌱', title:'Moringa: Nigeria\'s quiet superfood and how to use it daily', excerpt:'From powder to leaves to tea — the different forms and what each one is best for.', author:'Nature\'s Healing Co.', initials:'NH', avatarBg:'#e8f5e4', avatarColor:'#2d7a2d', date:'Jun 9, 2026', read:'4 min', views:412, thumbBg:'linear-gradient(135deg,#e8f5e4,#b8ddb0)' },
+  { id:6,  cat:'fitness',   emoji:'🏃', title:'5 morning routines to boost your energy all day', excerpt:'No gym required — just 20 minutes and the right sequence to prime your body and mind.', author:'Joy Okafor', initials:'JO', avatarBg:'#eef3fa', avatarColor:'#2a6ea6', date:'Jun 10, 2026', read:'5 min', views:389, thumbBg:'linear-gradient(135deg,#e8eefa,#bccfed)' },
+  { id:7,  cat:'skincare',  emoji:'🧴', title:'SPF in Nigeria — why you still need sunscreen every single day', excerpt:'The UV index in Akwa Ibom is no joke. Here\'s what to use and exactly how.', author:'Amina Okon', initials:'AO', avatarBg:'#f0e8f8', avatarColor:'#7b4fa6', date:'Jun 5, 2026', read:'4 min', views:360, thumbBg:'linear-gradient(135deg,#f0e8f8,#dcc8ef)' },
+  { id:8,  cat:'massage',   emoji:'💆', title:'How often should you actually get a massage?', excerpt:'A practical guide based on your lifestyle, stress levels and health goals.', author:'Eve Wellness Team', initials:'EW', avatarBg:'#eef6f2', avatarColor:'#3a8c6e', date:'Jun 1, 2026', read:'3 min', views:344, thumbBg:'linear-gradient(135deg,#c8e8da,#a0d4be)' },
+  { id:9,  cat:'nutrition', emoji:'🌿', title:'The truth about detox drinks — what works and what\'s a scam', excerpt:'A no-hype guide to liver support, hydration and what your body actually needs to "detox."', author:'Green Roots Nigeria', initials:'GR', avatarBg:'#fef6e8', avatarColor:'#c07d1a', date:'Jun 2, 2026', read:'5 min', views:310, thumbBg:'linear-gradient(135deg,#fef6e8,#f0d898)' },
+  { id:10, cat:'fitness',   emoji:'💪', title:'Home workouts with zero equipment — a complete beginner guide', excerpt:'A 4-week plan built around bodyweight, space you already have, and consistency.', author:'Joy Okafor', initials:'JO', avatarBg:'#eef3fa', avatarColor:'#2a6ea6', date:'Jun 3, 2026', read:'7 min', views:298, thumbBg:'linear-gradient(135deg,#dce6f8,#b0c8ec)' },
+  { id:11, cat:'herbs',     emoji:'🍃', title:'7 herbs that help with sleep — no prescription needed', excerpt:'Valerian, ashwagandha and five locally available options that actually calm the nervous system.', author:'Nature\'s Healing Co.', initials:'NH', avatarBg:'#e8f5e4', avatarColor:'#2d7a2d', date:'Jun 2, 2026', read:'5 min', views:276, thumbBg:'linear-gradient(135deg,#d8f0d4,#acd8a4)' },
+  { id:12, cat:'massage',   emoji:'🌸', title:'Aromatherapy oils we use and why they actually work', excerpt:'The science behind lavender, eucalyptus and four other staples in our treatment room.', author:'Eve Wellness Team', initials:'EW', avatarBg:'#eef6f2', avatarColor:'#3a8c6e', date:'May 25, 2026', read:'4 min', views:254, thumbBg:'linear-gradient(135deg,#dceee6,#b4d8c4)' },
+  { id:13, cat:'skincare',  emoji:'💧', title:'Hyperpigmentation: the products that actually fade dark spots', excerpt:'Niacinamide, kojic acid, and what to avoid — a clear breakdown without the jargon.', author:'Amina Okon', initials:'AO', avatarBg:'#f0e8f8', avatarColor:'#7b4fa6', date:'May 29, 2026', read:'5 min', views:241, thumbBg:'linear-gradient(135deg,#ede4f8,#d0b8e8)' },
+  { id:14, cat:'herbs',     emoji:'🫚', title:'Bitter leaf, scent leaf, uziza — the wellness uses you didn\'t know', excerpt:'Common Nigerian kitchen leaves with documented medicinal properties.', author:'Nature\'s Healing Co.', initials:'NH', avatarBg:'#e8f5e4', avatarColor:'#2d7a2d', date:'May 26, 2026', read:'6 min', views:228, thumbBg:'linear-gradient(135deg,#cceccc,#9ccf9c)' },
+  { id:15, cat:'fitness',   emoji:'🔥', title:'HIIT vs steady cardio — which one actually burns more fat?', excerpt:'An honest breakdown of both approaches and how to pick for your body type and schedule.', author:'Joy Okafor', initials:'JO', avatarBg:'#eef3fa', avatarColor:'#2a6ea6', date:'May 20, 2026', read:'5 min', views:215, thumbBg:'linear-gradient(135deg,#d4e0f4,#a8bce0)' },
+  { id:16, cat:'nutrition', emoji:'🍋', title:'Morning drink habits of 5 Nigerian wellness coaches', excerpt:'We asked, they answered — and the results were surprisingly simple.', author:'Green Roots Nigeria', initials:'GR', avatarBg:'#fef6e8', avatarColor:'#c07d1a', date:'May 25, 2026', read:'4 min', views:198, thumbBg:'linear-gradient(135deg,#fff0cc,#f0d880)' },
+  { id:17, cat:'massage',   emoji:'🛁', title:'What to do before and after your massage for best results', excerpt:'Hydration, food, clothing and recovery habits that double the benefits.', author:'Eve Wellness Team', initials:'EW', avatarBg:'#eef6f2', avatarColor:'#3a8c6e', date:'May 18, 2026', read:'3 min', views:187, thumbBg:'linear-gradient(135deg,#c4e4d8,#9ccabb)' },
+  { id:18, cat:'fitness',   emoji:'🧘', title:'Why rest days are part of your training — not a break from it', excerpt:'The physiology of recovery and how to make your off days genuinely count.', author:'Joy Okafor', initials:'JO', avatarBg:'#eef3fa', avatarColor:'#2a6ea6', date:'May 28, 2026', read:'4 min', views:176, thumbBg:'linear-gradient(135deg,#d0daec,#a8b8d8)' },
+];
+
+const CAT_COLORS = { massage:'#3a8c6e', fitness:'#2a6ea6', skincare:'#7b4fa6', nutrition:'#c07d1a', herbs:'#2d7a2d' };
+const PAGE_SIZE = 9;
+
+let activeCat = 'all';
+let searchQ   = '';
+let sortMode  = 'newest';
+let page      = 1;
+let savedIds  = new Set();
+
+/* ── Filtering & sorting ────────────────────────────── */
+function getFiltered() {
+  let posts = [...POSTS];
+  if (activeCat !== 'all') posts = posts.filter(p => p.cat === activeCat);
+  if (searchQ) {
+    const q = searchQ.toLowerCase();
+    posts = posts.filter(p => p.title.toLowerCase().includes(q) || p.excerpt.toLowerCase().includes(q) || p.author.toLowerCase().includes(q));
+  }
+  if (sortMode === 'oldest')  posts.sort((a,b) => a.id - b.id);
+  else if (sortMode === 'popular') posts.sort((a,b) => b.views - a.views);
+  else if (sortMode === 'read')    posts.sort((a,b) => parseInt(a.read) - parseInt(b.read));
+  else posts.sort((a,b) => b.id - a.id);
+  return posts;
+}
+
+/* ── Render ─────────────────────────────────────────── */
+function renderCard(post, i) {
+  const catLabel = { massage:'Massage & Spa', fitness:'Fitness', skincare:'Skincare', nutrition:'Nutrition', herbs:'Herbs' }[post.cat];
+  const isSaved  = savedIds.has(post.id);
+  return `
+  <article class="post-card" style="animation-delay:${i*0.04}s" onclick="void(0)" data-cat="${post.cat}" data-id="${post.id}">
+    <div class="card-thumb" style="background:${post.thumbBg}">
+      ${post.emoji}
+      <span class="card-cat-badge cat-${post.cat}">${catLabel}</span>
+    </div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span>${post.author}</span>
+        <span class="dot">·</span>
+        <span>${post.date}</span>
+        <span class="dot">·</span>
+        <span>${post.views} views</span>
+      </div>
+      <h2 class="card-title">${post.title}</h2>
+      <p class="card-excerpt">${post.excerpt}</p>
+      <div class="card-footer">
+        <div class="mini-avatar" style="background:${post.avatarBg};color:${post.avatarColor};">${post.initials}</div>
+        <span class="card-author-name">${post.author}</span>
+        <span class="card-read">${post.read} read</span>
+        <button class="card-bookmark ${isSaved?'saved':''}" onclick="toggleSave(event,${post.id})" title="${isSaved?'Unsave':'Save'}">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="${isSaved?'currentColor':'none'}" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+        </button>
+      </div>
+    </div>
+  </article>`;
+}
+
+function renderGrid() {
+  const filtered = getFiltered();
+  const visible  = filtered.slice(0, page * PAGE_SIZE);
+  const grid     = document.getElementById('postsGrid');
+  const empty    = document.getElementById('emptyState');
+  const lmw      = document.getElementById('loadMoreWrap');
+  const label    = document.getElementById('resultLabel');
+  const count    = document.getElementById('postCount');
+
+  if (filtered.length === 0) {
+    grid.innerHTML = '';
+    empty.classList.add('show');
+    lmw.style.display = 'none';
+    label.textContent = '0 articles';
+    count.textContent = 'No articles match your search';
+    return;
+  }
+
+  empty.classList.remove('show');
+  grid.innerHTML = visible.map((p,i) => renderCard(p,i)).join('');
+  label.textContent = `${filtered.length} article${filtered.length !== 1 ? 's' : ''}`;
+  const catName = activeCat === 'all' ? 'all' : activeCat;
+  count.textContent = `Showing ${Math.min(visible.length, filtered.length)} of ${filtered.length} ${catName} articles`;
+  lmw.style.display = visible.length < filtered.length ? 'block' : 'none';
+}
+
+/* ── Controls ───────────────────────────────────────── */
+function filterPosts(btn, cat) {
+  activeCat = cat; page = 1;
+  // sync pills
+  document.querySelectorAll('.pill').forEach(p => {
+    p.classList.toggle('active', p.dataset.cat === cat);
+  });
+  // sync tabs
+  document.querySelectorAll('.tab-btn').forEach(t => {
+    const isActive = t.dataset.cat === cat;
+    t.style.borderBottomColor = isActive ? 'var(--green)' : 'transparent';
+    t.style.color = isActive ? 'var(--green)' : 'var(--muted)';
+    t.style.fontWeight = isActive ? '600' : '500';
+  });
+  renderGrid();
+}
+
+function handleSearch(val) {
+  searchQ = val; page = 1;
+  renderGrid();
+}
+
+function handleSort(val) {
+  sortMode = val; page = 1;
+  renderGrid();
+}
+
+function loadMore() {
+  page++;
+  renderGrid();
+  // smooth scroll to new cards
+  setTimeout(() => {
+    const cards = document.querySelectorAll('.post-card');
+    const idx = (page-1) * PAGE_SIZE;
+    if (cards[idx]) cards[idx].scrollIntoView({ behavior:'smooth', block:'start' });
+  }, 80);
+}
+
+function setView(mode) {
+  const grid = document.getElementById('postsGrid');
+  const gb = document.getElementById('gridBtn');
+  const lb = document.getElementById('listBtn');
+  if (mode === 'list') {
+    grid.classList.add('list-view');
+    lb.classList.add('active'); gb.classList.remove('active');
+  } else {
+    grid.classList.remove('list-view');
+    gb.classList.add('active'); lb.classList.remove('active');
+  }
+}
+
+function toggleSave(e, id) {
+  e.stopPropagation();
+  if (savedIds.has(id)) savedIds.delete(id);
+  else savedIds.add(id);
+  renderGrid();
+}
+
+/* ── Progress bar ───────────────────────────────────── */
+window.addEventListener('scroll', () => {
+  const doc  = document.documentElement;
+  const pct  = (window.scrollY / (doc.scrollHeight - doc.clientHeight)) * 100;
+  document.getElementById('progressBar').style.width = pct + '%';
+  const bt = document.getElementById('backTop');
+  if (window.scrollY > 400) bt.classList.add('show');
+  else bt.classList.remove('show');
+});
+
+/* ── Init ───────────────────────────────────────────── */
+renderGrid();
+</script>
+</body>
+</html>
