@@ -80,85 +80,79 @@
     window.open('https://wa.me/2349055853040?text=' + msg, '_blank');
   }
 
-// ── HERO FACT CAROUSEL ──
-    const heroFacts = document.querySelectorAll('.hero-fact');
-    const heroDotsContainer = document.getElementById('heroCarouselDots');
-    const HERO_DURATION = 7000; // 7 seconds per fact — comfortable reading time
-    let heroCurrent = 0;
-    let heroTimer = null;
- 
-    // Build dots
-    heroFacts.forEach((_, i) => {
-      const dot = document.createElement('button');
-      dot.className = 'q-dot' + (i === 0 ? ' active' : '');
-      dot.setAttribute('aria-label', `Health fact ${i + 1}`);
-      dot.addEventListener('click', () => heroGoTo(i));
-      heroDotsContainer.appendChild(dot);
+// ── HERO FACT CAROUSEL (manual, button-driven) ──
+const heroFacts = document.querySelectorAll('.hero-fact');
+const heroDotsContainer = document.getElementById('heroCarouselDots');
+const heroPrevBtn = document.getElementById('heroPrevBtn');
+const heroNextBtn = document.getElementById('heroNextBtn');
+let heroCurrent = 0;
+
+// Build dots
+heroFacts.forEach((_, i) => {
+  const dot = document.createElement('button');
+  dot.className = 'q-dot' + (i === 0 ? ' active' : '');
+  dot.setAttribute('aria-label', `Health fact ${i + 1}`);
+  dot.addEventListener('click', () => heroGoTo(i));
+  heroDotsContainer.appendChild(dot);
+});
+
+function getHeroDots() { return heroDotsContainer.querySelectorAll('.q-dot'); }
+
+const FADE_DURATION = 500; // ms — fade speed
+let heroTransitioning = false;
+
+// Apply transition once to all facts
+heroFacts.forEach(f => {
+  f.style.transition = `opacity ${FADE_DURATION}ms ease`;
+});
+
+function heroGoTo(index) {
+  if (heroTransitioning) return;
+  if (index === heroCurrent) return;
+  heroTransitioning = true;
+
+  const outgoing = heroFacts[heroCurrent];
+
+  // Step 1: fade out outgoing
+  outgoing.style.opacity = '0';
+  outgoing.style.pointerEvents = 'none';
+  getHeroDots()[heroCurrent].classList.remove('active');
+
+  // Step 2: after fade out, switch active class and fade in incoming
+  setTimeout(() => {
+    outgoing.classList.remove('active');
+
+    heroCurrent = (index + heroFacts.length) % heroFacts.length;
+    const incoming = heroFacts[heroCurrent];
+
+    incoming.style.opacity = '0';
+    incoming.classList.add('active');
+    getHeroDots()[heroCurrent].classList.add('active');
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        incoming.style.opacity = '1';
+        incoming.style.pointerEvents = 'auto';
+      });
     });
- 
-    function getHeroDots() { return heroDotsContainer.querySelectorAll('.q-dot'); }
- 
-    // ── CAROUSEL: opacity-only crossfade — no position changes ever ──
-    // All facts stay position:absolute at all times (set in CSS).
-    // Only opacity and classList change. This guarantees zero layout shift.
- 
-    const FADE_DURATION = 500; // ms — fade speed
-    let heroTransitioning = false;
- 
-    // Apply transition once to all facts
-    heroFacts.forEach(f => {
-      f.style.transition = `opacity ${FADE_DURATION}ms ease`;
-    });
- 
-    function heroGoTo(index) {
-      // Block if a fade is already in progress — prevents stacking
-      if (heroTransitioning) return;
-      heroTransitioning = true;
-      clearTimeout(heroTimer);
- 
-      const outgoing = heroFacts[heroCurrent];
- 
-      // ── Step 1: fade out outgoing ──
-      outgoing.style.opacity = '0';
-      outgoing.style.pointerEvents = 'none';
-      getHeroDots()[heroCurrent].classList.remove('active');
- 
-      // ── Step 2: after fade out, switch active class and fade in incoming ──
-      setTimeout(() => {
-        outgoing.classList.remove('active');
- 
-        heroCurrent = (index + heroFacts.length) % heroFacts.length;
-        const incoming = heroFacts[heroCurrent];
- 
-        // Bring incoming to opacity:0 first (it may already be 0 from CSS)
-        incoming.style.opacity = '0';
-        incoming.classList.add('active');
-        getHeroDots()[heroCurrent].classList.add('active');
- 
-        // Trigger fade in on the next two animation frames
-        // (double-rAF ensures the browser has committed the opacity:0 before transitioning)
-        requestAnimationFrame(() => {
-          requestAnimationFrame(() => {
-            incoming.style.opacity = '1';
-            incoming.style.pointerEvents = 'auto';
-          });
-        });
- 
-        // Unlock and schedule next after fade in completes
-        setTimeout(() => {
-          heroTransitioning = false;
-          heroTimer = setTimeout(() => heroGoTo(heroCurrent + 1), HERO_DURATION);
-        }, FADE_DURATION + 50);
- 
-      }, FADE_DURATION); // wait for full fade out before touching incoming
-    }
- 
-    // Ensure the first fact is visible immediately
-    heroFacts[0].style.opacity = '1';
-    heroFacts[0].style.pointerEvents = 'auto';
- 
-    // Kick off auto-advance
-    heroTimer = setTimeout(() => heroGoTo(1), HERO_DURATION);
+
+    setTimeout(() => {
+      heroTransitioning = false;
+    }, FADE_DURATION + 50);
+
+  }, FADE_DURATION);
+}
+
+function heroNext() { heroGoTo(heroCurrent + 1); }
+function heroPrev() { heroGoTo(heroCurrent - 1); }
+
+heroNextBtn.addEventListener('click', heroNext);
+heroPrevBtn.addEventListener('click', heroPrev);
+
+// Ensure the first fact is visible immediately — no auto-advance timer
+heroFacts[0].style.opacity = '1';
+heroFacts[0].style.pointerEvents = 'auto';
+
 
   // ── SCROLL REVEAL ──
   const revealEls = document.querySelectorAll('.reveal');

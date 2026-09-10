@@ -204,12 +204,68 @@
     /* ── HERO CAROUSEL ── */
     .hero-fact-carousel {
       position: relative;
-      height: 270px;
-      margin-bottom: 0.9rem;
-      overflow: visible;
-
+      height: 180px;
+      margin-bottom: 0;
+      overflow: hidden;
     }
  
+    /* ── HERO CAROUSEL NAV BUTTONS ── */
+.hero-carousel-nav {
+  position: static;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  background: rgba(58, 140, 110, 0.14);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(58, 140, 110, 0.28);
+  box-shadow: 0 4px 16px rgba(58, 140, 110, 0.12), inset 0 1px 0 rgba(255,255,255,0.35);
+  color: var(--green-d);
+
+  transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+}
+
+.hero-carousel-controls {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  margin-top: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.hero-carousel-nav svg {
+  width: 22px;
+  height: 22px;
+}
+
+.hero-carousel-nav:hover {
+  background: rgba(58, 140, 110, 0.24);
+  box-shadow: 0 6px 20px rgba(58, 140, 110, 0.18), inset 0 1px 0 rgba(255,255,255,0.45);
+  transform: translateY(-1px);
+}
+
+.hero-carousel-nav:active {
+  transform: translateY(0) scale(0.94);
+}
+
+/* Mobile: slightly smaller buttons so they don't crowd the narrower column */
+@media (max-width: 640px) {
+  .hero-carousel-nav {
+    width: 44px;
+    height: 44px;
+  }
+  .hero-carousel-nav svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
     .hero-fact {
       position: absolute;
       top: 0;
@@ -232,12 +288,13 @@
       display: block;
     }
  
-    .hero-fact-text {
-      /* inherits .hero-title styles, override margin */
-      margin-bottom: 0 !important;
-      opacity: 1 !important;
-      animation: none !important;
-    }
+   .hero-fact-text {
+  font-size: clamp(2rem, 3.4vw, 3.4rem) !important;  /* smaller than before */
+  line-height: 1.18 !important;
+  margin-bottom: 0 !important;
+  opacity: 1 !important;
+  animation: none !important;
+}
  
     .hero-fact-source {
       display: inline-flex;
@@ -264,7 +321,7 @@
     .hero-carousel-dots {
       display: flex;
       gap: 0.3rem;
-      margin-top: 15rem;
+      margin-top: 0.9rem;
       margin-bottom: 1.6rem;
       flex-wrap: wrap;
       max-width: 220px;
@@ -291,7 +348,7 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 6rem 4rem 6rem 4rem;
+      padding: 3rem 4rem 6rem 4rem;
       position: relative;
     }
 
@@ -304,7 +361,7 @@
       text-transform: uppercase;
       color: var(--green);
       font-weight: 500;
-      margin-bottom: 1.8rem;
+      margin-bottom: 1.9rem;
       opacity: 0;
       animation: fadeUp 0.8s 0.2s forwards;
     }
@@ -330,17 +387,6 @@
     .hero-title em {
       font-style: italic;
       color: var(--green);
-    }
-
-    .hero-sub {
-      font-size: 1rem;
-      line-height: 1.7;
-      color: var(--ink-soft);
-      max-width: 38ch;
-      font-weight: 300;
-      margin-bottom: 3rem;
-      opacity: 0;
-      animation: fadeUp 0.8s 0.5s forwards;
     }
 
     .hero-actions {
