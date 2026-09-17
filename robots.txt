@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://evemassages.com/sitemap.xml
+Sitemap: https://www.evemassages.com/sitemap.xml
