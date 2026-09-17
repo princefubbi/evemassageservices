@@ -1,121 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-  <!-- ── CORE PAGES ── -->
-
   <url>
-    <loc>https://www.evemassages.com/</loc>
-    <lastmod>2026-09-17</lastmod>
+    <loc>https://evemassages.com</loc>
+    <lastmod>2026-05-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
   <url>
-    <loc>https://www.evemassages.com/services/index.html</loc>
-    <lastmod>2026-09-17</lastmod>
+    <loc>https://evemassages.com/services/index.html</loc>
+    <lastmod>2026-05-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://www.evemassages.com/booking/index.html</loc>
-    <lastmod>2026-09-17</lastmod>
+    <loc>https://evemassages.com/booking/index.html</loc>
+    <lastmod>2026-05-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://www.evemassages.com/reviews/index.html</loc>
-    <lastmod>2026-09-17</lastmod>
+    <loc>https://evemassages.com/reviews/index.html</loc>
+    <lastmod>2026-05-11</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- ── NEW PAGES ADDED ── -->
-
-  <url>
-    <loc>https://www.evemassages.com/Blog/index.html</loc>
-    <lastmod>2026-09-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://www.evemassages.com/Contact/index.html</loc>
-    <lastmod>2026-09-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://www.evemassages.com/privacy/index.html</loc>
-    <lastmod>2026-09-17</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.4</priority>
-  </url>
-
-  <url>
-    <loc>https://www.evemassages.com/terms.html</loc>
-    <lastmod>2026-09-17</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.4</priority>
-  </url>
-
-  <!-- ── HEALTH DIRECTORY ── -->
-
-  <url>
-    <loc>https://www.evemassages.com/akwa-ibom-health/index.html</loc>
-    <lastmod>2026-09-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://www.evemassages.com/akwa-ibom-health/hospitals/</loc>
-    <lastmod>2026-09-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://www.evemassages.com/akwa-ibom-health/hospitals/uyo/</loc>
-    <lastmod>2026-09-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://www.evemassages.com/akwa-ibom-health/hospitals/uyo/page-2/</loc>
-    <lastmod>2026-09-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://www.evemassages.com/akwa-ibom-health/hospitals/uyo/uuth/</loc>
-    <lastmod>2026-09-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://www.evemassages.com/akwa-ibom-health/clinics/</loc>
-    <lastmod>2026-09-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://www.evemassages.com/akwa-ibom-health/pharmacies/</loc>
-    <lastmod>2026-09-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://www.evemassages.com/akwa-ibom-health/emergency/</loc>
-    <lastmod>2026-09-17</lastmod>
-    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
