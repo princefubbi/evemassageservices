@@ -226,6 +226,19 @@
 
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <script>
+// Check if we're viewing a single post
+const urlParams = new URLSearchParams(window.location.search);
+const singlePost = urlParams.get('post');
+
+if (singlePost) {
+  // Hide the listing, load and show just this post
+  document.getElementById('postsGrid').style.display = 'none';
+  loadSinglePost(singlePost);
+} else {
+  // Normal listing mode
+  fetchPosts();
+}
+  
   // ── CONFIG ──────────────────────────────────────────────
   const GITHUB_USER = 'princefubbi';
   const GITHUB_REPO = 'evemassageservices';
