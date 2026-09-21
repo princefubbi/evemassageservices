@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Blog — Eve Massage Services | Health & Wellness in Akwa Ibom</title>
-  <meta name="description" content="Health and wellness insights, Akwa Ibom healthcare guides, and therapeutic advice from Eve Massage Services."/>
+  <title id="pageTitle">All Posts — Eve Massage Services | Health & Wellness in Akwa Ibom</title>
+  <meta name="description" id="pageDescription" content="All health and wellness articles, Akwa Ibom healthcare guides, and therapeutic advice from Eve Massage Services."/>
   <meta name="robots" content="index, follow"/>
-  <link rel="canonical" href="https://www.evemassages.com/Blog/"/>
+  <link rel="canonical" id="pageCanonical" href="https://www.evemassages.com/Blog/all-posts/"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
@@ -67,12 +67,11 @@
     .empty-state { text-align: center; padding: 5rem 2rem; display: none; }
     .empty-icon { font-size: 3rem; margin-bottom: 1rem; display: block; }
     .empty-title { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 300; margin-bottom: 0.5rem; }
-    .empty-sub { font-size: 0.88rem; color: var(--ink-muted); font-weight: 300; }
+    .empty-sub { font-size: 0.88rem; color: var(--ink-muted); font-weight: 300; margin-bottom: 1.5rem; }
+    .empty-back { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.85rem; color: var(--green); font-weight: 500; text-decoration: none; }
 
     /* POST CARDS */
     .posts-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-
-    /* FEATURED POST — first post is larger */
     .post-card { background: var(--surface); border: 1px solid var(--border); border-radius: 1.2rem; overflow: hidden; transition: box-shadow 0.2s, transform 0.2s; display: flex; flex-direction: column; }
     .post-card:hover { box-shadow: 0 8px 32px rgba(26,37,32,0.1); transform: translateY(-3px); }
     .post-card.featured { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; }
@@ -94,6 +93,31 @@
     .page-btn { width: 2.2rem; height: 2.2rem; border-radius: 0.5rem; border: 1px solid var(--border); background: white; font-family: 'DM Sans', sans-serif; font-size: 0.82rem; color: var(--ink-soft); cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: center; }
     .page-btn:hover { border-color: var(--green); color: var(--green); }
     .page-btn.active { background: var(--green); border-color: var(--green); color: white; pointer-events: none; }
+
+    /* SINGLE POST / ARTICLE VIEW */
+    .article-wrap { max-width: 760px; margin: 0 auto; padding: 3rem 2rem 6rem; }
+    .article-back { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.8rem; color: var(--ink-soft); text-decoration: none; margin-bottom: 2rem; transition: color 0.2s; }
+    .article-back:hover { color: var(--green); }
+    .article-meta { display: flex; align-items: center; gap: 0.7rem; flex-wrap: wrap; margin-bottom: 1rem; }
+    .article-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 300; line-height: 1.2; margin-bottom: 1rem; }
+    .article-excerpt { font-size: 1rem; color: var(--ink-soft); font-weight: 300; line-height: 1.7; margin-bottom: 1.5rem; }
+    .article-author-row { display: flex; align-items: center; gap: 0.6rem; padding: 1rem 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin-bottom: 2rem; font-size: 0.82rem; color: var(--ink-muted); }
+    .article-author-row strong { color: var(--ink); font-weight: 500; }
+    .article-cover { width: 100%; border-radius: 1rem; overflow: hidden; margin-bottom: 2rem; background: var(--green-light); }
+    .article-cover img { width: 100%; display: block; }
+    .article-body { font-size: 1.02rem; line-height: 1.85; color: var(--ink); font-weight: 300; }
+    .article-body h2 { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 1.6rem; margin: 2rem 0 0.8rem; color: var(--ink); }
+    .article-body h3 { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 1.3rem; margin: 1.6rem 0 0.6rem; color: var(--ink); }
+    .article-body p { margin-bottom: 1.2rem; }
+    .article-body ul, .article-body ol { margin: 0 0 1.2rem 1.4rem; }
+    .article-body li { margin-bottom: 0.4rem; }
+    .article-body a { color: var(--green); }
+    .article-body blockquote { border-left: 3px solid var(--green-mid); padding-left: 1rem; margin: 1.5rem 0; color: var(--ink-soft); font-style: italic; }
+    .article-body img { max-width: 100%; border-radius: 0.6rem; margin: 1.2rem 0; }
+    .article-body code { background: var(--green-light); padding: 0.1rem 0.4rem; border-radius: 0.3rem; font-size: 0.9em; }
+    .article-cta { margin-top: 3rem; padding: 2rem; background: var(--green-light); border-radius: 1rem; text-align: center; }
+    .article-cta p { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 300; margin-bottom: 1rem; color: var(--ink); }
+    .article-cta a { display: inline-flex; padding: 0.7rem 1.6rem; background: var(--green); color: white; border-radius: 100px; text-decoration: none; font-size: 0.85rem; font-weight: 500; }
 
     /* FOOTER */
     footer { background: var(--ink); padding: 2.5rem 4rem; }
@@ -132,6 +156,7 @@
       .posts-grid { grid-template-columns: 1fr; }
       .post-card.featured { grid-template-columns: 1fr; }
       .post-card.featured .post-cover { height: 200px; }
+      .article-wrap { padding: 6rem 1.5rem 4rem; }
       footer { padding: 2rem 1.5rem; }
     }
   </style>
@@ -150,49 +175,58 @@
   </ul>
 </nav>
 
-<div class="page-header">
-  <div class="header-inner">
-    <span class="header-tag">Health · Wellness · Akwa Ibom</span>
-    <h1 class="header-title">Insights for a <em>healthier life</em></h1>
-    <p class="header-sub">Evidence-based health information, Akwa Ibom healthcare guides, and wellness advice — no selling, just knowledge.</p>
-  </div>
-</div>
-
-<div class="filter-bar">
-  <div class="filter-bar-inner">
-    <div class="filter-pills">
-      <button class="filter-pill active" onclick="filterPosts('all', this)">All</button>
-      <button class="filter-pill" onclick="filterPosts('Wellness', this)">Wellness</button>
-      <button class="filter-pill" onclick="filterPosts('Health Education', this)">Health Education</button>
-      <button class="filter-pill" onclick="filterPosts('Massage Therapy', this)">Massage Therapy</button>
-      <button class="filter-pill" onclick="filterPosts('Akwa Ibom Health', this)">Akwa Ibom Health</button>
-      <button class="filter-pill" onclick="filterPosts('Lifestyle', this)">Lifestyle</button>
+<!-- LISTING MODE -->
+<div id="listingView">
+  <div class="page-header">
+    <div class="header-inner">
+      <span class="header-tag">Health · Wellness · Akwa Ibom</span>
+      <h1 class="header-title">Insights for a <em>healthier life</em></h1>
+      <p class="header-sub">Evidence-based health information, Akwa Ibom healthcare guides, and wellness advice — no selling, just knowledge.</p>
     </div>
-    <input type="text" class="search-input" placeholder="Search posts…" oninput="searchPosts(this.value)"/>
+  </div>
+
+  <div class="filter-bar">
+    <div class="filter-bar-inner">
+      <div class="filter-pills">
+        <button class="filter-pill active" onclick="filterPosts('all', this)">All</button>
+        <button class="filter-pill" onclick="filterPosts('Wellness', this)">Wellness</button>
+        <button class="filter-pill" onclick="filterPosts('Health Education', this)">Health Education</button>
+        <button class="filter-pill" onclick="filterPosts('Massage Therapy', this)">Massage Therapy</button>
+        <button class="filter-pill" onclick="filterPosts('Akwa Ibom Health', this)">Akwa Ibom Health</button>
+        <button class="filter-pill" onclick="filterPosts('Lifestyle', this)">Lifestyle</button>
+      </div>
+      <input type="text" class="search-input" placeholder="Search posts…" oninput="searchPosts(this.value)"/>
+    </div>
+  </div>
+
+  <div class="blog-section">
+    <div class="loading-state" id="loadingState">
+      <div class="loading-spinner"></div>
+      <p class="loading-text">Loading posts…</p>
+    </div>
+    <div class="empty-state" id="emptyState">
+      <span class="empty-icon">📝</span>
+      <h2 class="empty-title">No posts found</h2>
+      <p class="empty-sub">Try a different category or search term.</p>
+    </div>
+    <div class="posts-grid" id="postsGrid" style="display:none;"></div>
+    <div class="pagination" id="pagination"></div>
   </div>
 </div>
 
-<div class="blog-section">
-
-  <!-- LOADING -->
-  <div class="loading-state" id="loadingState">
+<!-- SINGLE POST MODE -->
+<div id="articleView" class="article-wrap" style="display:none;">
+  <div class="loading-state" id="articleLoading">
     <div class="loading-spinner"></div>
-    <p class="loading-text">Loading posts…</p>
+    <p class="loading-text">Loading article…</p>
   </div>
-
-  <!-- EMPTY -->
-  <div class="empty-state" id="emptyState">
+  <div class="empty-state" id="articleEmpty">
     <span class="empty-icon">📝</span>
-    <h2 class="empty-title">No posts found</h2>
-    <p class="empty-sub">Try a different category or search term.</p>
+    <h2 class="empty-title">Post not found</h2>
+    <p class="empty-sub">This article may have been moved, unpublished, or the link is incorrect.</p>
+    <a href="/Blog/all-posts/" class="empty-back">← Back to all posts</a>
   </div>
-
-  <!-- POSTS GRID -->
-  <div class="posts-grid" id="postsGrid" style="display:none;"></div>
-
-  <!-- PAGINATION -->
-  <div class="pagination" id="pagination"></div>
-
+  <article id="articleContent" style="display:none;"></article>
 </div>
 
 <footer>
@@ -226,19 +260,6 @@
 
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <script>
-// Check if we're viewing a single post
-const urlParams = new URLSearchParams(window.location.search);
-const singlePost = urlParams.get('post');
-
-if (singlePost) {
-  // Hide the listing, load and show just this post
-  document.getElementById('postsGrid').style.display = 'none';
-  loadSinglePost(singlePost);
-} else {
-  // Normal listing mode
-  fetchPosts();
-}
-  
   // ── CONFIG ──────────────────────────────────────────────
   const GITHUB_USER = 'princefubbi';
   const GITHUB_REPO = 'evemassageservices';
@@ -251,31 +272,37 @@ if (singlePost) {
   let activeCategory = 'all';
   let activeSearch = '';
 
-  // ── FETCH POSTS FROM GITHUB ──
+  const urlParams = new URLSearchParams(window.location.search);
+  const singleSlug = urlParams.get('post');
+
+  if (singleSlug) {
+    document.getElementById('listingView').style.display = 'none';
+    document.getElementById('articleView').style.display = 'block';
+    loadSinglePost(singleSlug);
+  } else {
+    fetchPosts();
+  }
+
+  // ══════════════════════ LISTING MODE ══════════════════════
+
   async function fetchPosts() {
     try {
       const url = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/content/posts`;
       const res = await fetch(url);
 
-      if (!res.ok) {
-        // No posts folder yet — show empty state
-        showEmpty();
-        return;
-      }
+      if (!res.ok) { showEmpty(); return; }
 
       const files = await res.json();
       const mdFiles = files.filter(f => f.name.endsWith('.md'));
 
       if (mdFiles.length === 0) { showEmpty(); return; }
 
-      // Fetch each post file
       const posts = await Promise.all(mdFiles.map(async (file) => {
         const r = await fetch(file.download_url);
         const text = await r.text();
         return parsePost(text, file.name);
       }));
 
-      // Filter only published posts, sort newest first
       allPosts = posts
         .filter(p => p.status === 'published')
         .sort((a, b) => new Date(b.published_at) - new Date(a.published_at));
@@ -289,7 +316,6 @@ if (singlePost) {
     }
   }
 
-  // ── PARSE MARKDOWN FRONTMATTER ──
   function parsePost(text, filename) {
     const fmMatch = text.match(/^---\n([\s\S]*?)\n---/);
     const post = { slug: filename.replace('.md', '') };
@@ -297,21 +323,22 @@ if (singlePost) {
     if (fmMatch) {
       const lines = fmMatch[1].split('\n');
       lines.forEach(line => {
-        const [key, ...rest] = line.split(':');
-        if (key && rest.length) {
-          let val = rest.join(':').trim().replace(/^["']|["']$/g, '');
-          post[key.trim()] = val;
+        const idx = line.indexOf(':');
+        if (idx > -1) {
+          const key = line.slice(0, idx).trim();
+          let val = line.slice(idx + 1).trim().replace(/^["']|["']$/g, '');
+          if (key) post[key] = val;
         }
       });
-      // Parse body — content after frontmatter
-      post.body = text.replace(/^---\n[\s\S]*?\n---\n/, '');
+      post.body = text.replace(/^---\n[\s\S]*?\n---\n?/, '');
     } else {
       post.body = text;
     }
+    // Prefer explicit slug from frontmatter if present
+    if (post.slug === undefined || post.slug === '') post.slug = filename.replace('.md', '');
     return post;
   }
 
-  // ── RENDER POSTS ──
   function renderPosts() {
     const grid = document.getElementById('postsGrid');
     const loading = document.getElementById('loadingState');
@@ -330,7 +357,6 @@ if (singlePost) {
     empty.style.display = 'none';
     grid.style.display = 'grid';
 
-    // Paginate
     const start = (currentPage - 1) * POSTS_PER_PAGE;
     const pagePosts = filteredPosts.slice(start, start + POSTS_PER_PAGE);
 
@@ -345,23 +371,22 @@ if (singlePost) {
         <article class="post-card ${isFirst ? 'featured' : ''}">
           <div class="post-cover">
             ${post.cover_image
-              ? `<img src="${post.cover_image}" alt="${post.title}" loading="lazy"/>`
+              ? `<img src="${post.cover_image}" alt="${escapeHtml(post.title)}" loading="lazy"/>`
               : `<span>${emoji}</span>`}
           </div>
           <div class="post-body">
             <div class="post-meta">
-              ${post.category ? `<span class="post-category">${post.category}</span>` : ''}
+              ${post.category ? `<span class="post-category">${escapeHtml(post.category)}</span>` : ''}
               ${date ? `<span class="post-date">${date}</span>` : ''}
             </div>
-            <h2 class="post-title">${post.title || 'Untitled'}</h2>
-            <p class="post-excerpt">${post.excerpt || ''}</p>
+            <h2 class="post-title">${escapeHtml(post.title || 'Untitled')}</h2>
+            <p class="post-excerpt">${escapeHtml(post.excerpt || '')}</p>
             <a href="/Blog/${post.slug}/" class="post-read-more">Read article →</a>
           </div>
         </article>
       `;
     }).join('');
 
-    // Pagination buttons
     const totalPages = Math.ceil(filteredPosts.length / POSTS_PER_PAGE);
     if (totalPages > 1) {
       pagination.innerHTML = Array.from({ length: totalPages }, (_, i) => `
@@ -373,7 +398,6 @@ if (singlePost) {
     }
   }
 
-  // ── FILTER BY CATEGORY ──
   function filterPosts(category, el) {
     document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
     el.classList.add('active');
@@ -382,7 +406,6 @@ if (singlePost) {
     applyFilters();
   }
 
-  // ── SEARCH ──
   function searchPosts(query) {
     activeSearch = query.toLowerCase();
     currentPage = 1;
@@ -411,12 +434,120 @@ if (singlePost) {
     document.getElementById('emptyState').style.display = 'block';
   }
 
+  // ══════════════════════ SINGLE POST MODE ══════════════════════
+
+  async function loadSinglePost(slug) {
+    const loading = document.getElementById('articleLoading');
+    const empty = document.getElementById('articleEmpty');
+    const content = document.getElementById('articleContent');
+
+    try {
+      // Fetch the specific markdown file directly by expected filename
+      const fileUrl = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/content/posts/${encodeURIComponent(slug)}.md`;
+      let fileMeta = await fetch(fileUrl);
+      let text = null;
+
+      if (fileMeta.ok) {
+        const meta = await fileMeta.json();
+        const r = await fetch(meta.download_url);
+        text = await r.text();
+      } else {
+        // Fallback: filename might not equal slug — scan the folder and match on frontmatter slug
+        const listUrl = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/content/posts`;
+        const listRes = await fetch(listUrl);
+        if (listRes.ok) {
+          const files = (await listRes.json()).filter(f => f.name.endsWith('.md'));
+          for (const file of files) {
+            const r = await fetch(file.download_url);
+            const t = await r.text();
+            const parsed = parsePost(t, file.name);
+            if (parsed.slug === slug) { text = t; break; }
+          }
+        }
+      }
+
+      if (!text) { showArticleEmpty(); return; }
+
+      const post = parsePost(text, `${slug}.md`);
+
+      if (post.status && post.status !== 'published') { showArticleEmpty(); return; }
+
+      renderArticle(post);
+
+    } catch (err) {
+      console.error('Error loading post:', err);
+      showArticleEmpty();
+    }
+  }
+
+  function renderArticle(post) {
+    const loading = document.getElementById('articleLoading');
+    const empty = document.getElementById('articleEmpty');
+    const content = document.getElementById('articleContent');
+
+    loading.style.display = 'none';
+    empty.style.display = 'none';
+    content.style.display = 'block';
+
+    const date = post.published_at
+      ? new Date(post.published_at).toLocaleDateString('en-NG', { day: 'numeric', month: 'long', year: 'numeric' })
+      : '';
+    const emoji = getCategoryEmoji(post.category);
+    const bodyHtml = (typeof marked !== 'undefined')
+      ? marked.parse(post.body || '')
+      : `<p>${escapeHtml(post.body || '')}</p>`;
+
+    content.innerHTML = `
+      <a href="/Blog/all-posts/" class="article-back">← Back to all posts</a>
+      <div class="article-meta">
+        ${post.category ? `<span class="post-category">${escapeHtml(post.category)}</span>` : ''}
+        ${date ? `<span class="post-date">${date}</span>` : ''}
+      </div>
+      <h1 class="article-title">${escapeHtml(post.title || 'Untitled')}</h1>
+      ${post.excerpt ? `<p class="article-excerpt">${escapeHtml(post.excerpt)}</p>` : ''}
+      <div class="article-author-row">
+        <span>By <strong>${escapeHtml(post.author || 'Eve Massage Services')}</strong></span>
+      </div>
+      ${post.cover_image
+        ? `<div class="article-cover"><img src="${post.cover_image}" alt="${escapeHtml(post.title)}"/></div>`
+        : `<div class="article-cover" style="height:220px;display:flex;align-items:center;justify-content:center;font-size:4rem;">${emoji}</div>`}
+      <div class="article-body">${bodyHtml}</div>
+      <div class="article-cta">
+        <p>Ready to feel the benefits for yourself?</p>
+        <a href="/booking/index.html">Book a Session →</a>
+      </div>
+    `;
+
+    // Update SEO tags for this article
+    const title = `${post.title || 'Article'} — Eve Massage Services Blog`;
+    document.title = title;
+    document.getElementById('pageTitle').textContent = title;
+    if (post.excerpt) document.getElementById('pageDescription').setAttribute('content', post.excerpt);
+    document.getElementById('pageCanonical').setAttribute('href', `https://www.evemassages.com/Blog/${post.slug}/`);
+  }
+
+  function showArticleEmpty() {
+    document.getElementById('articleLoading').style.display = 'none';
+    document.getElementById('articleEmpty').style.display = 'block';
+  }
+
+  // ══════════════════════ SHARED HELPERS ══════════════════════
+
   function getCategoryEmoji(cat) {
     const map = {
       'Wellness': '🌿', 'Health Education': '🧠',
       'Massage Therapy': '💆', 'Akwa Ibom Health': '🏥', 'Lifestyle': '☀️'
     };
     return map[cat] || '📝';
+  }
+
+  function escapeHtml(str) {
+    if (!str) return '';
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
   }
 
   function toggleMobileMenu() {
@@ -429,9 +560,6 @@ if (singlePost) {
       document.getElementById('mobileMenuDrawer').classList.remove('open');
     }
   });
-
-  // Kick off
-  fetchPosts();
 </script>
 </body>
 </html>
