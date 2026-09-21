@@ -1,20 +1,28 @@
 [build]
   publish = "."
 
+# ── ADMIN ──
 [[redirects]]
   from = "/admin"
   to = "/admin/index.html"
   status = 200
 
-# Required for Decap CMS Git Gateway
+# ── BLOG ──
+# This must come FIRST — protects all-posts from being caught by the slug rule below
+[[redirects]]
+  from = "/Blog/all-posts/"
+  to = "/Blog/all-posts/index.html"
+  status = 200
+
+# This must come SECOND — catches all other /Blog/slug/ URLs and serves the post template
+[[redirects]]
+  from = "/Blog/:slug/"
+  to = "/Blog/all-posts/index.html?post=:slug"
+  status = 200
+
+# ── HEADERS ──
 [[headers]]
   for = "/admin/*"
   [headers.values]
     X-Frame-Options = "SAMEORIGIN"
     X-XSS-Protection = "1; mode=block"
-
-# Blog post redirect — routes /Blog/any-slug/ to the post template
-[[redirects]]
-  from = "/Blog/:slug/"
-  to = "/Blog/all-posts/index.html"
-  status = 200
