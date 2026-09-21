@@ -16,5 +16,5 @@
 # Blog post redirect — routes /Blog/any-slug/ to the post template
 [[redirects]]
   from = "/Blog/:slug/"
-  to = "/Blog/all-post/index.html"
+  to = "/Blog/all-posts/index.html"
   status = 200
