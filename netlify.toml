@@ -12,3 +12,9 @@
   [headers.values]
     X-Frame-Options = "SAMEORIGIN"
     X-XSS-Protection = "1; mode=block"
+
+# Blog post redirect — routes /Blog/any-slug/ to the post template
+[[redirects]]
+  from = "/Blog/:slug/"
+  to = "/Blog/all-post/index.html"
+  status = 200
