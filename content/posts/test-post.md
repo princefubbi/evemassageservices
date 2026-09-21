@@ -2,7 +2,7 @@
 title: Test Post
 slug: test-post
 excerpt: This is a test post to confirm the CMS is working
-cover_image: /uploads/images/ems-logo.jpeg
+cover_image: https://www.istockphoto.com/stock-photos
 category: Wellness
 tags:
   - Massage
