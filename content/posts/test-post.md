@@ -1,8 +1,8 @@
 ---
-title: Test Post 2
+title: Test Post
 slug: test-post
 excerpt: This is a test post to confirm the CMS is working
-cover_image: https://www.dreamstime.com/stock-photography-happy-man-image236732
+cover_image: /uploads/images/ems-logo.jpeg
 category: Wellness
 tags:
   - Massage
