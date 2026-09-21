@@ -1,6 +1,6 @@
 backend:
-  name: github
-  repo: princefubbi/evemassageservices  # e.g. johndoe/evemassages
+  name: git-gateway
+  # repo: princefubbi/evemassageservices  # e.g. johndoe/evemassages
   branch: main
 
 media_folder: "uploads/images"
