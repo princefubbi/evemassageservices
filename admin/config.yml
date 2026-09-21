@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: YOUR-GITHUB-USERNAME/YOUR-REPO-NAME  # e.g. johndoe/evemassages
+  repo: evemassageservices  # e.g. johndoe/evemassages
   branch: main
 
 media_folder: "uploads/images"
