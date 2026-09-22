@@ -164,7 +164,7 @@
 <body>
 
 <nav>
-  <a class="nav-logo" href="https://www.evemassages.com">Sere<span>nova</span></a>
+  <a class="nav-logo" href="https://www.evemassages.com"><span>EMS</span></a>
   <ul class="nav-links">
     <li><a href="https://www.evemassages.com">Home</a></li>
     <li><a href="/services/index.html">Services</a></li>
@@ -231,7 +231,7 @@
 
 <footer>
   <div class="footer-bottom">
-    <a href="https://www.evemassages.com" class="footer-brand">Sere<span>nova</span> · Eve Massage Services</a>
+    <a href="https://www.evemassages.com" class="footer-brand"><span>EMS</span> · Eve Massage Services</a>
     <div class="footer-links">
       <a href="/Blog/index.html" class="footer-link">Blog</a>
       <a href="/akwa-ibom-health/" class="footer-link">Health Directory</a>
@@ -242,7 +242,7 @@
 </footer>
 
 <div class="mobile-nav">
-  <a class="mobile-nav-logo" href="https://www.evemassages.com">Sere<span>nova</span></a>
+  <a class="mobile-nav-logo" href="https://www.evemassages.com"><span>EMS</span></a>
   <div class="mobile-nav-divider"></div>
   <button class="mobile-menu-btn" id="mobileMenuBtn" onclick="toggleMobileMenu()">
     <div class="mobile-menu-icon"><span></span><span></span><span></span></div>
@@ -381,7 +381,7 @@
             </div>
             <h2 class="post-title">${escapeHtml(post.title || 'Untitled')}</h2>
             <p class="post-excerpt">${escapeHtml(post.excerpt || '')}</p>
-            <a href="/Blog/${post.slug}/" class="post-read-more">Read article →</a>
+            <a href="/Blog/post.html?slug=${post.slug}" class="post-read-more">Read article →</a>
           </div>
         </article>
       `;
