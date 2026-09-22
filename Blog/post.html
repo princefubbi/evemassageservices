@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title id="pageTitle">Loading… — Eve Massage Services</title>
+  <meta name="description" id="pageDesc" content=""/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --white: #f8faf9; --surface: #ffffff;
+      --green: #3a8c6e; --green-light: #e5f3ed;
+      --green-mid: #a8d5c2; --green-dark: #2a6a52;
+      --ink: #1a2520; --ink-soft: #4a5e57;
+      --ink-muted: #8a9e97; --border: #d5e5de;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--ink); }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.2rem 4rem; background: rgba(248,250,249,0.96); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+    .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 300; color: var(--ink); text-decoration: none; }
+    .nav-logo span { color: var(--green); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { font-size: 0.8rem; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; color: var(--ink-soft); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--green); }
+    .nav-cta { background: var(--green); color: white !important; padding: 0.55rem 1.3rem; border-radius: 100px; }
+
+    /* STATES */
+    .loading-state { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 80vh; gap: 1rem; padding-top: 5rem; }
+    .loading-spinner { width: 2rem; height: 2rem; border: 2px solid var(--border); border-top-color: var(--green); border-radius: 50%; animation: spin 0.8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .loading-text { font-size: 0.88rem; color: var(--ink-muted); font-weight: 300; }
+    .not-found { display: none; flex-direction: column; align-items: center; justify-content: center; min-height: 80vh; text-align: center; padding: 2rem; gap: 1rem; padding-top: 5rem; }
+    .not-found-icon { font-size: 4rem; }
+    .not-found-title { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; }
+    .not-found-sub { font-size: 0.9rem; color: var(--ink-muted); font-weight: 300; max-width: 40ch; line-height: 1.6; }
+    .not-found-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.8rem 2rem; background: var(--green); color: white; border-radius: 100px; text-decoration: none; font-size: 0.88rem; font-weight: 500; }
+
+    /* POST */
+    .post-wrap { display: none; padding-top: 5rem; }
+    .post-cover { width: 100%; max-height: 480px; object-fit: cover; display: block; }
+    .post-cover-placeholder { width: 100%; height: 300px; background: var(--green-light); display: flex; align-items: center; justify-content: center; font-size: 5rem; }
+
+    /* HEADER */
+    .post-header { max-width: 760px; margin: 0 auto; padding: 3rem 2rem 2rem; }
+    .post-breadcrumb { display: flex; align-items: center; gap: 0.5rem; font-size: 0.78rem; color: var(--ink-muted); margin-bottom: 1.5rem; flex-wrap: wrap; }
+    .post-breadcrumb a { color: var(--green); text-decoration: none; }
+    .post-meta-row { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 1rem; }
+    .post-category { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--green); background: var(--green-light); padding: 0.2rem 0.7rem; border-radius: 100px; border: 1px solid var(--green-mid); }
+    .post-date, .post-read-time { font-size: 0.78rem; color: var(--ink-muted); font-weight: 300; }
+    .post-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 300; color: var(--ink); line-height: 1.15; margin-bottom: 1rem; }
+    .post-excerpt { font-size: 1.05rem; color: var(--ink-soft); font-weight: 300; line-height: 1.7; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
+    .post-author-row { display: flex; align-items: center; gap: 0.8rem; padding: 1.2rem 0; }
+    .post-author-avatar { width: 2.5rem; height: 2.5rem; border-radius: 50%; background: var(--green-light); color: var(--green); display: flex; align-items: center; justify-content: center; font-size: 0.82rem; font-weight: 500; flex-shrink: 0; }
+    .post-author-name { font-size: 0.88rem; font-weight: 500; color: var(--ink); }
+    .post-author-role { font-size: 0.75rem; color: var(--ink-muted); font-weight: 300; }
+
+    /* BODY */
+    .post-body { max-width: 760px; margin: 0 auto; padding: 2rem; }
+    .post-body h2 { font-family: 'Cormorant Garamond', serif; font-size: 1.9rem; font-weight: 300; color: var(--ink); margin: 2rem 0 0.8rem; line-height: 1.2; }
+    .post-body h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 300; color: var(--ink); margin: 1.5rem 0 0.6rem; }
+    .post-body p { font-size: 1rem; color: var(--ink-soft); font-weight: 300; line-height: 1.85; margin-bottom: 1.2rem; }
+    .post-body strong { font-weight: 500; color: var(--ink); }
+    .post-body em { font-style: italic; color: var(--green-dark); }
+    .post-body a { color: var(--green); text-decoration: underline; text-underline-offset: 3px; }
+    .post-body ul, .post-body ol { padding-left: 1.5rem; margin-bottom: 1.2rem; }
+    .post-body li { font-size: 1rem; color: var(--ink-soft); font-weight: 300; line-height: 1.7; margin-bottom: 0.4rem; }
+    .post-body blockquote { border-left: 3px solid var(--green); padding: 0.8rem 1.2rem; margin: 1.5rem 0; background: var(--green-light); border-radius: 0 0.5rem 0.5rem 0; }
+    .post-body blockquote p { margin-bottom: 0; font-style: italic; color: var(--green-dark); }
+    .post-body img { width: 100%; border-radius: 0.75rem; margin: 1.5rem 0; }
+    .post-body hr { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
+
+    /* SHARE */
+    .post-footer { max-width: 760px; margin: 0 auto; padding: 0 2rem 3rem; }
+    .share-row { display: flex; align-items: center; gap: 0.8rem; margin-top: 1.5rem; flex-wrap: wrap; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+    .share-label { font-size: 0.78rem; color: var(--ink-muted); font-weight: 300; }
+    .share-btn { display: flex; align-items: center; gap: 0.4rem; padding: 0.5rem 1.1rem; border-radius: 100px; border: 1px solid var(--border); font-family: 'DM Sans', sans-serif; font-size: 0.78rem; color: var(--ink-soft); background: white; cursor: pointer; transition: all 0.2s; text-decoration: none; }
+    .share-btn:hover { border-color: var(--green); color: var(--green); }
+
+    /* CTA */
+    .cta-strip { background: var(--ink); padding: 3rem 2rem; text-align: center; }
+    .cta-title { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; color: white; margin-bottom: 0.5rem; }
+    .cta-title em { font-style: italic; color: var(--green-mid); }
+    .cta-sub { font-size: 0.88rem; color: rgba(255,255,255,0.45); font-weight: 300; margin-bottom: 1.5rem; line-height: 1.6; }
+    .cta-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .cta-btn { padding: 0.85rem 2rem; border-radius: 100px; font-family: 'DM Sans', sans-serif; font-size: 0.88rem; font-weight: 500; text-decoration: none; }
+    .cta-btn.primary { background: var(--green); color: white; }
+    .cta-btn.ghost { background: rgba(255,255,255,0.08); color: white; border: 1px solid rgba(255,255,255,0.2); }
+
+    /* FOOTER */
+    footer { background: var(--ink); padding: 2.5rem 4rem; border-top: 1px solid rgba(255,255,255,0.06); }
+    .footer-bottom { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-brand { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 300; color: white; text-decoration: none; }
+    .footer-brand span { color: var(--green-mid); }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-link { font-size: 0.78rem; color: rgba(255,255,255,0.35); text-decoration: none; transition: color 0.2s; }
+    .footer-link:hover { color: var(--green-mid); }
+
+    /* MOBILE NAV */
+    .mobile-nav { display: none; position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%); z-index: 200; background: rgba(26,37,32,0.95); backdrop-filter: blur(16px); border-radius: 100px; padding: 0.75rem 1.5rem; align-items: center; gap: 1.5rem; box-shadow: 0 8px 32px rgba(0,0,0,0.25); white-space: nowrap; }
+    .mobile-nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 300; color: white; text-decoration: none; }
+    .mobile-nav-logo span { color: var(--green-mid); }
+    .mobile-nav-divider { width: 1px; height: 1.2rem; background: rgba(255,255,255,0.15); }
+    .mobile-menu-btn { display: flex; align-items: center; gap: 0.5rem; background: none; border: none; color: rgba(255,255,255,0.8); font-family: 'DM Sans', sans-serif; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; padding: 0; }
+    .mobile-menu-icon { display: flex; flex-direction: column; gap: 3px; }
+    .mobile-menu-icon span { display: block; width: 16px; height: 1.5px; background: rgba(255,255,255,0.8); border-radius: 2px; transition: all 0.25s; }
+    .mobile-menu-btn.open .mobile-menu-icon span:nth-child(1) { transform: translateY(4.5px) rotate(45deg); }
+    .mobile-menu-btn.open .mobile-menu-icon span:nth-child(2) { opacity: 0; }
+    .mobile-menu-btn.open .mobile-menu-icon span:nth-child(3) { transform: translateY(-4.5px) rotate(-45deg); }
+    .mobile-menu-drawer { position: fixed; bottom: 5rem; left: 50%; transform: translateX(-50%); z-index: 199; background: rgba(26,37,32,0.97); backdrop-filter: blur(20px); border-radius: 1.2rem; padding: 1.2rem; min-width: 240px; display: none; flex-direction: column; gap: 0.3rem; box-shadow: 0 8px 40px rgba(0,0,0,0.3); }
+    .mobile-menu-drawer.open { display: flex; }
+    .drawer-link { display: flex; align-items: center; gap: 0.8rem; padding: 0.75rem 1rem; border-radius: 0.75rem; text-decoration: none; font-size: 0.9rem; color: rgba(255,255,255,0.75); font-weight: 300; transition: background 0.15s; }
+    .drawer-link:hover { background: rgba(58,140,110,0.2); color: white; }
+    .drawer-link-icon { font-size: 1rem; width: 1.5rem; text-align: center; }
+    .drawer-divider { height: 1px; background: rgba(255,255,255,0.08); margin: 0.3rem 0; }
+    .drawer-book-btn { display: flex; align-items: center; justify-content: center; padding: 0.85rem; border-radius: 100px; background: var(--green); color: white; text-decoration: none; font-size: 0.88rem; font-weight: 500; margin-top: 0.3rem; }
+
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      .mobile-nav { display: flex; }
+      .post-header, .post-body, .post-footer { padding-left: 1.5rem; padding-right: 1.5rem; }
+      footer { padding: 2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="https://www.evemassages.com">Sere<span>nova</span></a>
+  <ul class="nav-links">
+    <li><a href="https://www.evemassages.com">Home</a></li>
+    <li><a href="/services/index.html">Services</a></li>
+    <li><a href="/Blog/index.html">Blog</a></li>
+    <li><a href="/akwa-ibom-health/">Health Directory</a></li>
+    <li><a href="/Contact/index.html">Contact</a></li>
+    <li><a href="/booking/index.html" class="nav-cta">Book Now</a></li>
+  </ul>
+</nav>
+
+<!-- LOADING -->
+<div class="loading-state" id="loadingState">
+  <div class="loading-spinner"></div>
+  <p class="loading-text">Loading article…</p>
+</div>
+
+<!-- NOT FOUND -->
+<div class="not-found" id="notFound">
+  <span class="not-found-icon">📝</span>
+  <h1 class="not-found-title">Article not found</h1>
+  <p class="not-found-sub">This post may have been moved or is no longer published.</p>
+  <a href="/Blog/all-posts/index.html" class="not-found-btn">← Back to all posts</a>
+</div>
+
+<!-- POST -->
+<div class="post-wrap" id="postWrap">
+  <div id="coverWrap"></div>
+  <div class="post-header">
+    <div class="post-breadcrumb">
+      <a href="https://www.evemassages.com">Home</a> ›
+      <a href="/Blog/index.html">Blog</a> ›
+      <a href="/Blog/all-posts/index.html">All Posts</a> ›
+      <span id="breadcrumbTitle"></span>
+    </div>
+    <div class="post-meta-row">
+      <span class="post-category" id="postCategory"></span>
+      <span class="post-date" id="postDate"></span>
+      <span class="post-read-time" id="postReadTime"></span>
+    </div>
+    <h1 class="post-title" id="postTitle"></h1>
+    <p class="post-excerpt" id="postExcerpt"></p>
+    <div class="post-author-row">
+      <div class="post-author-avatar" id="authorAvatar"></div>
+      <div>
+        <div class="post-author-name" id="authorName"></div>
+        <div class="post-author-role">Eve Massage Services</div>
+      </div>
+    </div>
+  </div>
+  <div class="post-body" id="postBody"></div>
+  <div class="post-footer">
+    <div class="share-row">
+      <span class="share-label">Share:</span>
+      <a class="share-btn" id="shareWa" href="#" target="_blank" rel="noopener">💬 WhatsApp</a>
+      <button class="share-btn" onclick="copyLink()">🔗 Copy link</button>
+    </div>
+  </div>
+  <div class="cta-strip">
+    <h2 class="cta-title">Ready to feel <em>the difference?</em></h2>
+    <p class="cta-sub">Professional therapeutic massage in Akwa Ibom. Book a session today.</p>
+    <div class="cta-actions">
+      <a href="/booking/index.html" class="cta-btn primary">Book a session →</a>
+      <a href="/services/index.html" class="cta-btn ghost">View all services</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-bottom">
+    <a href="https://www.evemassages.com" class="footer-brand">Sere<span>nova</span> · Eve Massage Services</a>
+    <div class="footer-links">
+      <a href="/Blog/index.html" class="footer-link">Blog</a>
+      <a href="/akwa-ibom-health/" class="footer-link">Health Directory</a>
+      <a href="/Contact/index.html" class="footer-link">Contact</a>
+      <a href="/privacy/index.html" class="footer-link">Privacy</a>
+    </div>
+  </div>
+</footer>
+
+<div class="mobile-nav">
+  <a class="mobile-nav-logo" href="https://www.evemassages.com">Sere<span>nova</span></a>
+  <div class="mobile-nav-divider"></div>
+  <button class="mobile-menu-btn" id="mobileMenuBtn" onclick="toggleMobileMenu()">
+    <div class="mobile-menu-icon"><span></span><span></span><span></span></div>
+    Menu
+  </button>
+</div>
+<div class="mobile-menu-drawer" id="mobileMenuDrawer">
+  <a class="drawer-link" href="https://www.evemassages.com"><span class="drawer-link-icon">🏠</span> Home</a>
+  <a class="drawer-link" href="/Blog/index.html"><span class="drawer-link-icon">📝</span> Blog</a>
+  <a class="drawer-link" href="/Blog/all-posts/index.html"><span class="drawer-link-icon">📋</span> All Posts</a>
+  <a class="drawer-link" href="/Contact/index.html"><span class="drawer-link-icon">📞</span> Contact</a>
+  <div class="drawer-divider"></div>
+  <a class="drawer-book-btn" href="/booking/index.html">Book a Session →</a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script>
+  const GITHUB_USER = 'princefubbi';
+  const GITHUB_REPO = 'evemassageservices';
+
+  // Read slug from ?slug= parameter
+  const slug = new URLSearchParams(window.location.search).get('slug');
+
+  if (!slug) {
+    showNotFound();
+  } else {
+    loadPost(slug);
+  }
+
+  async function loadPost(slug) {
+    try {
+      const url = `https://raw.githubusercontent.com/${GITHUB_USER}/${GITHUB_REPO}/main/content/posts/${slug}.md`;
+      const res = await fetch(url);
+      if (!res.ok) { showNotFound(); return; }
+      const text = await res.text();
+      const post = parsePost(text, slug);
+      if (post.status !== 'published') { showNotFound(); return; }
+      renderPost(post);
+    } catch (e) {
+      showNotFound();
+    }
+  }
+
+  function parsePost(text, slug) {
+    const post = { slug };
+    const fm = text.match(/^---\n([\s\S]*?)\n---/);
+    if (fm) {
+      fm[1].split('\n').forEach(line => {
+        const i = line.indexOf(':');
+        if (i > -1) {
+          const key = line.slice(0, i).trim();
+          const val = line.slice(i + 1).trim().replace(/^["']|["']$/g, '');
+          if (key) post[key] = val;
+        }
+      });
+      post.body = text.slice(fm[0].length).trim();
+    } else {
+      post.body = text;
+    }
+    return post;
+  }
+
+  function renderPost(post) {
+    const title = post.title || 'Untitled';
+    document.getElementById('pageTitle').textContent = `${title} — Eve Massage Services`;
+    document.getElementById('pageDesc').setAttribute('content', post.excerpt || '');
+    document.getElementById('breadcrumbTitle').textContent = title;
+    document.getElementById('postTitle').textContent = title;
+    document.getElementById('postExcerpt').textContent = post.excerpt || '';
+    document.getElementById('postCategory').textContent = post.category || '';
+
+    // Date
+    if (post.published_at) {
+      document.getElementById('postDate').textContent = new Date(post.published_at)
+        .toLocaleDateString('en-NG', { day: 'numeric', month: 'long', year: 'numeric' });
+    }
+
+    // Read time
+    const words = (post.body || '').split(/\s+/).length;
+    document.getElementById('postReadTime').textContent = `${Math.max(1, Math.ceil(words / 200))} min read`;
+
+    // Author
+    const author = post.author || 'Eve Massage Services';
+    document.getElementById('authorName').textContent = author;
+    document.getElementById('authorAvatar').textContent = author.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase();
+
+    // Cover
+    const coverWrap = document.getElementById('coverWrap');
+    if (post.cover_image) {
+      coverWrap.innerHTML = `<img class="post-cover" src="${post.cover_image}" alt="${title}"/>`;
+    } else {
+      const emojis = { 'Wellness':'🌿','Health Education':'🧠','Massage Therapy':'💆','Akwa Ibom Health':'🏥','Lifestyle':'☀️' };
+      coverWrap.innerHTML = `<div class="post-cover-placeholder">${emojis[post.category] || '📝'}</div>`;
+    }
+
+    // Body
+    document.getElementById('postBody').innerHTML = marked.parse(post.body || '');
+
+    // Share
+    const pageUrl = window.location.href;
+    document.getElementById('shareWa').href = `https://wa.me/?text=${encodeURIComponent(title + '\n\n' + pageUrl)}`;
+
+    // Show
+    document.getElementById('loadingState').style.display = 'none';
+    document.getElementById('postWrap').style.display = 'block';
+  }
+
+  function showNotFound() {
+    document.getElementById('loadingState').style.display = 'none';
+    document.getElementById('notFound').style.display = 'flex';
+  }
+
+  function copyLink() {
+    navigator.clipboard.writeText(window.location.href)
+      .then(() => alert('Link copied!'))
+      .catch(() => alert('Copy this: ' + window.location.href));
+  }
+
+  function toggleMobileMenu() {
+    document.getElementById('mobileMenuBtn').classList.toggle('open');
+    document.getElementById('mobileMenuDrawer').classList.toggle('open');
+  }
+  document.addEventListener('click', e => {
+    if (!e.target.closest('.mobile-nav') && !e.target.closest('.mobile-menu-drawer')) {
+      document.getElementById('mobileMenuBtn').classList.remove('open');
+      document.getElementById('mobileMenuDrawer').classList.remove('open');
+    }
+  });
+</script>
+</body>
+</html>
