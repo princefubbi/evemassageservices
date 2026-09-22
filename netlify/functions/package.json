@@ -1,8 +1,0 @@
-{
-  "name": "evemassages-functions",
-  "version": "1.0.0",
-  "description": "Netlify Functions for Eve Massage Services",
-  "dependencies": {
-    "@supabase/supabase-js": "^2.39.0"
-  }
-}
