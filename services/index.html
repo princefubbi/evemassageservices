@@ -1686,5 +1686,31 @@
         if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
       }
     </script>
+    
+// This is the script for the auto price update from the CMS
+    <script>
+(async function() {
+  try {
+    const res = await fetch('/.netlify/functions/get-content?type=services');
+    const { data } = await res.json();
+    if (!data || !data.length) return;
+
+    const map = {};
+    data.forEach(s => map[s.slug] = s);
+
+    // Update option text that has data-service attributes
+    document.querySelectorAll('option[data-service]').forEach(opt => {
+      const service = map[opt.dataset.service];
+      if (!service) return;
+      const price = '₦' + service.price_ngn.toLocaleString('en-NG');
+      opt.textContent = opt.textContent.replace(/₦[\d,]+/, price);
+      opt.value = opt.value.replace(/₦[\d,]+/, price);
+    });
+
+  } catch(e) {
+    console.warn('Could not load live pricing:', e);
+  }
+})();
+</script>
   </body>
 </html>
