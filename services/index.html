@@ -507,7 +507,7 @@
           >
             <div class="cmc-top">
               <span class="cmc-name">Deep Tissue Massage</span>
-              <span class="cmc-price" data-service="deep-tissue">₦30,000</span>
+              <span class="cmc-price" data-service="deep-tissue" data-field="price">₦30,000</span>
             </div>
             <div class="cmc-row">
               <span class="cmc-label">Duration</span>
@@ -543,7 +543,7 @@
           >
             <div class="cmc-top">
               <span class="cmc-name">Aromatherapy</span
-              ><span class="cmc-price" data-service="aromatherapy-massage">₦30,000</span>
+              ><span class="cmc-price" data-service="aromatherapy-massage" data-field="price">₦30,000</span>
             </div>
             <div class="cmc-row">
               <span class="cmc-label">Duration</span
@@ -579,7 +579,7 @@
           >
             <div class="cmc-top">
               <span class="cmc-name">Hot Stone Therapy</span
-              ><span class="cmc-price" data-service="hot-stone-therapy">₦30,000</span>
+              ><span class="cmc-price" data-service="hot-stone-therapy" data-field="price">₦30,000</span>
             </div>
             <div class="cmc-row">
               <span class="cmc-label">Duration</span
@@ -615,7 +615,7 @@
           >
             <div class="cmc-top">
               <span class="cmc-name">Lymphatic Drainage</span
-              ><span class="cmc-price" data-service="lymphatic-drainage">₦30,000</span>
+              ><span class="cmc-price" data-service="lymphatic-drainage" data-field="price">₦30,000</span>
             </div>
             <div class="cmc-row">
               <span class="cmc-label">Duration</span
@@ -651,7 +651,7 @@
           >
             <div class="cmc-top">
               <span class="cmc-name">Sports Recovery</span
-              ><span class="cmc-price" data-service="sports-recovery-massage">₦30,000</span>
+              ><span class="cmc-price" data-service="sports-recovery-massage" data-field="price">₦30,000</span>
             </div>
             <div class="cmc-row">
               <span class="cmc-label">Duration</span
@@ -687,7 +687,7 @@
           >
             <div class="cmc-top">
               <span class="cmc-name">Reflexology</span
-              ><span class="cmc-price" data-service="reflexology">₦30,000</span>
+              ><span class="cmc-price" data-service="reflexology" data-field="price">₦30,000</span>
             </div>
             <div class="cmc-row">
               <span class="cmc-label">Duration</span
@@ -723,7 +723,7 @@
           >
             <div class="cmc-top">
               <span class="cmc-name">Herbal Steam Bath</span
-              ><span class="cmc-price" data-service="herbal-steam-bath">₦10,000</span>
+              ><span class="cmc-price" data-service="herbal-steam-bath" data-field="price">₦10,000</span>
             </div>
             <div class="cmc-row">
               <span class="cmc-label">Duration</span
@@ -759,7 +759,7 @@
           >
             <div class="cmc-top">
               <span class="cmc-name">Pedicure & Manicure</span
-              ><span class="cmc-price" data-service="pedicure-manicure">₦7,000</span>
+              ><span class="cmc-price" data-service="pedicure-manicure" data-field="price">₦7,000</span>
             </div>
             <div class="cmc-row">
               <span class="cmc-label">Duration</span
@@ -1687,28 +1687,59 @@
       }
     </script>
     
-// This is the script for the auto price update from the CMS
+
     <script>
-(async function() {
+      // This is the script for the auto price update from the CMS
+(async function () {
   try {
     const res = await fetch('/.netlify/functions/get-content?type=services');
     const { data } = await res.json();
     if (!data || !data.length) return;
 
+    // Build lookup map — slug → service object
     const map = {};
     data.forEach(s => map[s.slug] = s);
 
-    // Update option text that has data-service attributes
-    document.querySelectorAll('option[data-service]').forEach(opt => {
-      const service = map[opt.dataset.service];
+    // Update every element that has both data-service and data-field
+    document.querySelectorAll('[data-service][data-field]').forEach(el => {
+      const service = map[el.dataset.service];
       if (!service) return;
+
+      const field = el.dataset.field;
       const price = '₦' + service.price_ngn.toLocaleString('en-NG');
-      opt.textContent = opt.textContent.replace(/₦[\d,]+/, price);
-      opt.value = opt.value.replace(/₦[\d,]+/, price);
+
+      if (field === 'price') {
+        // Works on any element type — span, p, div, option, td, anything
+        el.textContent = price;
+
+        // Also update option value if it contains a price
+        if (el.tagName === 'OPTION') {
+          el.value = el.value.replace(/₦[\d,]+/, price);
+        }
+
+        // Also update onclick if the element has one containing a price
+        if (el.hasAttribute('onclick')) {
+          el.setAttribute('onclick',
+            el.getAttribute('onclick').replace(/₦[\d,]+/, price)
+          );
+        }
+      }
+
+      if (field === 'duration') {
+        el.textContent = service.duration_minutes + ' min';
+      }
+
+      if (field === 'name') {
+        el.textContent = service.name;
+      }
+
+      if (field === 'description') {
+        el.textContent = service.description;
+      }
     });
 
-  } catch(e) {
-    console.warn('Could not load live pricing:', e);
+  } catch (e) {
+    console.warn('Pricing sync failed — showing fallback content:', e);
   }
 })();
 </script>
