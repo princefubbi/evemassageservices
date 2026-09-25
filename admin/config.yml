@@ -1,0 +1,66 @@
+backend:
+  name: git-gateway
+  # repo: princefubbi/evemassageservices  # e.g. johndoe/evemassages
+  branch: main
+
+media_folder: "uploads/images"
+public_folder: "/uploads/images"
+
+collections:
+
+  # ── BLOG POSTS ──
+  - name: "posts"
+    label: "Blog Posts"
+    folder: "content/posts"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Slug", name: "slug", widget: "string" }
+      - { label: "Excerpt", name: "excerpt", widget: "text" }
+      - { label: "Cover Image", name: "cover_image", widget: "image", required: false }
+      - { label: "Category", name: "category", widget: "select",
+          options: ["Wellness", "Health Education", "Massage Therapy", "Akwa Ibom Health", "Lifestyle"] }
+      - { label: "Tags", name: "tags", widget: "list", required: false }
+      - { label: "Author", name: "author", widget: "string", default: "Eve Massage Services" }
+      - { label: "Status", name: "status", widget: "select",
+          options: ["draft", "published"], default: "draft" }
+      - { label: "Published Date", name: "published_at", widget: "datetime", required: false }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  # ── DIRECTORY LISTINGS ──
+  - name: "listings"
+    label: "Health Directory"
+    folder: "content/listings"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Name", name: "name", widget: "string" }
+      - { label: "Slug", name: "slug", widget: "string" }
+      - { label: "Category", name: "category", widget: "select",
+          options: ["hospital", "clinic", "pharmacy"] }
+      - { label: "LGA", name: "lga", widget: "select",
+          options: ["Uyo", "Eket", "Ikot Ekpene", "Oron", "Itu", "Abak", "Etinan", "Ibeno", "Other"] }
+      - { label: "Address", name: "address", widget: "string" }
+      - { label: "Phone", name: "phone", widget: "string" }
+      - { label: "Features", name: "features", widget: "list", required: false }
+      - { label: "Verified", name: "verified", widget: "boolean", default: false }
+      - { label: "Status", name: "status", widget: "select",
+          options: ["draft", "published"], default: "published" }
+
+  # ── SERVICES ──
+  - name: "services"
+    label: "Services"
+    folder: "content/services"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Name", name: "name", widget: "string" }
+      - { label: "Slug", name: "slug", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Duration (minutes)", name: "duration_minutes", widget: "number" }
+      - { label: "Price (NGN)", name: "price_ngn", widget: "number" }
+      - { label: "Category", name: "category", widget: "string" }
+      - { label: "Featured", name: "featured", widget: "boolean", default: false }
+      - { label: "Status", name: "status", widget: "select",
+          options: ["draft", "published"], default: "published" }

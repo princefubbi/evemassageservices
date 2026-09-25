@@ -1,407 +1,565 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>All Posts — Wellness Blog · Eve Massage Services</title>
-<meta name="description" content="Browse all wellness, skincare, fitness, nutrition and herbal health articles from our community of expert contributors.">
-<link rel="canonical" href="https://www.evemassages.com/blog/all-posts/">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="style.css">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title id="pageTitle">All Posts — Eve Massage Services | Health & Wellness in Akwa Ibom</title>
+  <meta name="description" id="pageDescription" content="All health and wellness articles, Akwa Ibom healthcare guides, and therapeutic advice from Eve Massage Services."/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="canonical" id="pageCanonical" href="https://www.evemassages.com/Blog/all-posts/"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --white: #f8faf9;
+      --surface: #ffffff;
+      --green: #3a8c6e;
+      --green-light: #e5f3ed;
+      --green-mid: #a8d5c2;
+      --green-dark: #2a6a52;
+      --ink: #1a2520;
+      --ink-soft: #4a5e57;
+      --ink-muted: #8a9e97;
+      --border: #d5e5de;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--ink); }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.2rem 4rem; background: rgba(248,250,249,0.96); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+    .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 300; color: var(--ink); text-decoration: none; }
+    .nav-logo span { color: var(--green); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { font-size: 0.8rem; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; color: var(--ink-soft); transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--green); }
+    .nav-cta { background: var(--green); color: white !important; padding: 0.55rem 1.3rem; border-radius: 100px; }
+
+    /* PAGE HEADER */
+    .page-header { padding: 8rem 4rem 4rem; background: var(--ink); position: relative; overflow: hidden; }
+    .page-header::before { content: ''; position: absolute; width: 400px; height: 400px; border-radius: 50%; background: radial-gradient(circle, rgba(58,140,110,0.1) 0%, transparent 70%); top: 50%; left: 5%; transform: translateY(-50%); }
+    .header-inner { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
+    .header-tag { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--green-mid); font-weight: 500; margin-bottom: 0.8rem; display: block; }
+    .header-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 300; color: white; line-height: 1.1; margin-bottom: 0.8rem; }
+    .header-title em { font-style: italic; color: var(--green-mid); }
+    .header-sub { font-size: 0.95rem; color: rgba(255,255,255,0.45); font-weight: 300; max-width: 50ch; line-height: 1.7; }
+
+    /* FILTER BAR */
+    .filter-bar { background: var(--surface); border-bottom: 1px solid var(--border); padding: 1rem 4rem; position: sticky; top: 65px; z-index: 50; }
+    .filter-bar-inner { max-width: 1100px; margin: 0 auto; display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center; justify-content: space-between; }
+    .filter-pills { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+    .filter-pill { padding: 0.35rem 1rem; border-radius: 100px; border: 1px solid var(--border); font-size: 0.78rem; font-weight: 400; color: var(--ink-soft); background: white; cursor: pointer; transition: all 0.2s; }
+    .filter-pill:hover, .filter-pill.active { background: var(--green); color: white; border-color: var(--green); }
+    .search-input { padding: 0.5rem 1rem; border: 1px solid var(--border); border-radius: 100px; font-family: 'DM Sans', sans-serif; font-size: 0.82rem; color: var(--ink); outline: none; width: 220px; transition: border-color 0.2s; }
+    .search-input:focus { border-color: var(--green); }
+
+    /* BLOG GRID */
+    .blog-section { max-width: 1100px; margin: 0 auto; padding: 4rem 2rem 6rem; }
+
+    /* LOADING STATE */
+    .loading-state { text-align: center; padding: 5rem 2rem; }
+    .loading-spinner { width: 2rem; height: 2rem; border: 2px solid var(--border); border-top-color: var(--green); border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 1rem; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .loading-text { font-size: 0.88rem; color: var(--ink-muted); font-weight: 300; }
+
+    /* EMPTY STATE */
+    .empty-state { text-align: center; padding: 5rem 2rem; display: none; }
+    .empty-icon { font-size: 3rem; margin-bottom: 1rem; display: block; }
+    .empty-title { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 300; margin-bottom: 0.5rem; }
+    .empty-sub { font-size: 0.88rem; color: var(--ink-muted); font-weight: 300; margin-bottom: 1.5rem; }
+    .empty-back { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.85rem; color: var(--green); font-weight: 500; text-decoration: none; }
+
+    /* POST CARDS */
+    .posts-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .post-card { background: var(--surface); border: 1px solid var(--border); border-radius: 1.2rem; overflow: hidden; transition: box-shadow 0.2s, transform 0.2s; display: flex; flex-direction: column; }
+    .post-card:hover { box-shadow: 0 8px 32px rgba(26,37,32,0.1); transform: translateY(-3px); }
+    .post-card.featured { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; }
+    .post-cover { width: 100%; height: 200px; background: var(--green-light); display: flex; align-items: center; justify-content: center; font-size: 3rem; flex-shrink: 0; overflow: hidden; }
+    .post-cover img { width: 100%; height: 100%; object-fit: cover; }
+    .post-card.featured .post-cover { height: 100%; min-height: 280px; }
+    .post-body { padding: 1.5rem; display: flex; flex-direction: column; gap: 0.6rem; flex: 1; }
+    .post-meta { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; }
+    .post-category { font-size: 0.65rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--green); background: var(--green-light); padding: 0.2rem 0.6rem; border-radius: 100px; border: 1px solid var(--green-mid); }
+    .post-date { font-size: 0.72rem; color: var(--ink-muted); font-weight: 300; }
+    .post-title { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 300; color: var(--ink); line-height: 1.3; }
+    .post-card.featured .post-title { font-size: 1.8rem; }
+    .post-excerpt { font-size: 0.83rem; color: var(--ink-soft); font-weight: 300; line-height: 1.6; }
+    .post-read-more { font-size: 0.8rem; color: var(--green); font-weight: 500; text-decoration: none; margin-top: auto; display: inline-flex; align-items: center; gap: 0.3rem; transition: gap 0.2s; }
+    .post-read-more:hover { gap: 0.5rem; }
+
+    /* PAGINATION */
+    .pagination { display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-top: 3rem; }
+    .page-btn { width: 2.2rem; height: 2.2rem; border-radius: 0.5rem; border: 1px solid var(--border); background: white; font-family: 'DM Sans', sans-serif; font-size: 0.82rem; color: var(--ink-soft); cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: center; }
+    .page-btn:hover { border-color: var(--green); color: var(--green); }
+    .page-btn.active { background: var(--green); border-color: var(--green); color: white; pointer-events: none; }
+
+    /* SINGLE POST / ARTICLE VIEW */
+    .article-wrap { max-width: 760px; margin: 0 auto; padding: 3rem 2rem 6rem; }
+    .article-back { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.8rem; color: var(--ink-soft); text-decoration: none; margin-bottom: 2rem; transition: color 0.2s; }
+    .article-back:hover { color: var(--green); }
+    .article-meta { display: flex; align-items: center; gap: 0.7rem; flex-wrap: wrap; margin-bottom: 1rem; }
+    .article-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 300; line-height: 1.2; margin-bottom: 1rem; }
+    .article-excerpt { font-size: 1rem; color: var(--ink-soft); font-weight: 300; line-height: 1.7; margin-bottom: 1.5rem; }
+    .article-author-row { display: flex; align-items: center; gap: 0.6rem; padding: 1rem 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin-bottom: 2rem; font-size: 0.82rem; color: var(--ink-muted); }
+    .article-author-row strong { color: var(--ink); font-weight: 500; }
+    .article-cover { width: 100%; border-radius: 1rem; overflow: hidden; margin-bottom: 2rem; background: var(--green-light); }
+    .article-cover img { width: 100%; display: block; }
+    .article-body { font-size: 1.02rem; line-height: 1.85; color: var(--ink); font-weight: 300; }
+    .article-body h2 { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 1.6rem; margin: 2rem 0 0.8rem; color: var(--ink); }
+    .article-body h3 { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 1.3rem; margin: 1.6rem 0 0.6rem; color: var(--ink); }
+    .article-body p { margin-bottom: 1.2rem; }
+    .article-body ul, .article-body ol { margin: 0 0 1.2rem 1.4rem; }
+    .article-body li { margin-bottom: 0.4rem; }
+    .article-body a { color: var(--green); }
+    .article-body blockquote { border-left: 3px solid var(--green-mid); padding-left: 1rem; margin: 1.5rem 0; color: var(--ink-soft); font-style: italic; }
+    .article-body img { max-width: 100%; border-radius: 0.6rem; margin: 1.2rem 0; }
+    .article-body code { background: var(--green-light); padding: 0.1rem 0.4rem; border-radius: 0.3rem; font-size: 0.9em; }
+    .article-cta { margin-top: 3rem; padding: 2rem; background: var(--green-light); border-radius: 1rem; text-align: center; }
+    .article-cta p { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 300; margin-bottom: 1rem; color: var(--ink); }
+    .article-cta a { display: inline-flex; padding: 0.7rem 1.6rem; background: var(--green); color: white; border-radius: 100px; text-decoration: none; font-size: 0.85rem; font-weight: 500; }
+
+    /* FOOTER */
+    footer { background: var(--ink); padding: 2.5rem 4rem; }
+    .footer-bottom { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-brand { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 300; color: white; text-decoration: none; }
+    .footer-brand span { color: var(--green-mid); }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-link { font-size: 0.78rem; color: rgba(255,255,255,0.35); text-decoration: none; transition: color 0.2s; }
+    .footer-link:hover { color: var(--green-mid); }
+
+    /* MOBILE */
+    .mobile-nav { display: none; position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%); z-index: 200; background: rgba(26,37,32,0.95); backdrop-filter: blur(16px); border-radius: 100px; padding: 0.75rem 1.5rem; align-items: center; gap: 1.5rem; box-shadow: 0 8px 32px rgba(0,0,0,0.25); white-space: nowrap; }
+    .mobile-nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 300; color: white; text-decoration: none; }
+    .mobile-nav-logo span { color: var(--green-mid); }
+    .mobile-nav-divider { width: 1px; height: 1.2rem; background: rgba(255,255,255,0.15); }
+    .mobile-menu-btn { display: flex; align-items: center; gap: 0.5rem; background: none; border: none; color: rgba(255,255,255,0.8); font-family: 'DM Sans', sans-serif; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; padding: 0; }
+    .mobile-menu-icon { display: flex; flex-direction: column; gap: 3px; }
+    .mobile-menu-icon span { display: block; width: 16px; height: 1.5px; background: rgba(255,255,255,0.8); border-radius: 2px; transition: all 0.25s; }
+    .mobile-menu-btn.open .mobile-menu-icon span:nth-child(1) { transform: translateY(4.5px) rotate(45deg); }
+    .mobile-menu-btn.open .mobile-menu-icon span:nth-child(2) { opacity: 0; }
+    .mobile-menu-btn.open .mobile-menu-icon span:nth-child(3) { transform: translateY(-4.5px) rotate(-45deg); }
+    .mobile-menu-drawer { position: fixed; bottom: 5rem; left: 50%; transform: translateX(-50%); z-index: 199; background: rgba(26,37,32,0.97); backdrop-filter: blur(20px); border-radius: 1.2rem; padding: 1.2rem; min-width: 240px; display: none; flex-direction: column; gap: 0.3rem; box-shadow: 0 8px 40px rgba(0,0,0,0.3); }
+    .mobile-menu-drawer.open { display: flex; }
+    .drawer-link { display: flex; align-items: center; gap: 0.8rem; padding: 0.75rem 1rem; border-radius: 0.75rem; text-decoration: none; font-size: 0.9rem; color: rgba(255,255,255,0.75); font-weight: 300; transition: background 0.15s; }
+    .drawer-link:hover { background: rgba(58,140,110,0.2); color: white; }
+    .drawer-link-icon { font-size: 1rem; width: 1.5rem; text-align: center; }
+    .drawer-book-btn { display: flex; align-items: center; justify-content: center; padding: 0.85rem; border-radius: 100px; background: var(--green); color: white; text-decoration: none; font-size: 0.88rem; font-weight: 500; margin-top: 0.3rem; }
+
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      .mobile-nav { display: flex; }
+      .page-header { padding: 7rem 1.5rem 3rem; }
+      .filter-bar { padding: 1rem 1.5rem; top: 60px; }
+      .blog-section { padding: 2rem 1.5rem 4rem; }
+      .posts-grid { grid-template-columns: 1fr; }
+      .post-card.featured { grid-template-columns: 1fr; }
+      .post-card.featured .post-cover { height: 200px; }
+      .article-wrap { padding: 6rem 1.5rem 4rem; }
+      footer { padding: 2rem 1.5rem; }
+    }
+  </style>
 </head>
 <body>
 
-<div class="progress-bar" id="progressBar"></div>
-
-<!-- ── Nav ───────────────────────────────────────────── -->
-<nav class="nav">
-  <a class="nav-logo" href="/">Eve <span>Massage</span></a>
-  <div class="nav-links">
-    <a href="/">Home</a>
-    <a href="/services.html">Services</a>
-    <a href="/booking/index.html">Pricing</a>
-    <a href="/blog/" class="active">Blog</a>
-    <a href="/akwa-ibom-health/">Health Directory</a>
-    <a href="/contact/">Contact</a>
-  </div>
-  <button class="nav-cta" onclick="window.open('https://wa.me/2349055853040','_blank')">Book Now</button>
+<nav>
+  <a class="nav-logo" href="https://www.evemassages.com"><span>EMS</span></a>
+  <ul class="nav-links">
+    <li><a href="https://www.evemassages.com">Home</a></li>
+    <li><a href="/services/index.html">Services</a></li>
+    <li><a href="/Blog/index.html" class="active">Blog</a></li>
+    <li><a href="/akwa-ibom-health/">Health Directory</a></li>
+    <li><a href="/Contact/index.html">Contact</a></li>
+    <li><a href="/booking/index.html" class="nav-cta">Book Now</a></li>
+  </ul>
 </nav>
 
-<!-- ── Page header ────────────────────────────────────── -->
-<div class="page-header">
-  <div class="page-header-inner">
-    <div class="breadcrumb">
-      <a href="/">Home</a>
-      <span class="breadcrumb-sep">›</span>
-      <a href="/blog/">Blog</a>
-      <span class="breadcrumb-sep">›</span>
-      <span>All Posts</span>
+<!-- LISTING MODE -->
+<div id="listingView">
+  <div class="page-header">
+    <div class="header-inner">
+      <span class="header-tag">Health · Wellness · Akwa Ibom</span>
+      <h1 class="header-title">Insights for a <em>healthier life</em></h1>
+      <p class="header-sub">Evidence-based health information, Akwa Ibom healthcare guides, and wellness advice — no selling, just knowledge.</p>
     </div>
-    <div class="ph-row">
-      <h1 class="ph-title">All <em>Wellness</em> Posts</h1>
-      <span class="ph-count" id="postCount">Showing all 18 articles</span>
+  </div>
+
+  <div class="filter-bar">
+    <div class="filter-bar-inner">
+      <div class="filter-pills">
+        <button class="filter-pill active" onclick="filterPosts('all', this)">All</button>
+        <button class="filter-pill" onclick="filterPosts('Wellness', this)">Wellness</button>
+        <button class="filter-pill" onclick="filterPosts('Health Education', this)">Health Education</button>
+        <button class="filter-pill" onclick="filterPosts('Massage Therapy', this)">Massage Therapy</button>
+        <button class="filter-pill" onclick="filterPosts('Akwa Ibom Health', this)">Akwa Ibom Health</button>
+        <button class="filter-pill" onclick="filterPosts('Lifestyle', this)">Lifestyle</button>
+      </div>
+      <input type="text" class="search-input" placeholder="Search posts…" oninput="searchPosts(this.value)"/>
     </div>
-    <!-- Tab strip -->
-    <div style="display:flex;gap:0;margin-top:1.25rem;overflow-x:auto;scrollbar-width:none;">
-      <button class="tab-btn active" data-cat="all" onclick="filterPosts(this,'all')" style="padding:.65rem 1.1rem;font-size:13px;font-weight:500;border:none;background:none;border-bottom:2px solid var(--green);color:var(--green);cursor:pointer;white-space:nowrap;font-family:var(--font-b);transition:all .18s;">All posts</button>
-      <button class="tab-btn" data-cat="massage" onclick="filterPosts(this,'massage')" style="padding:.65rem 1.1rem;font-size:13px;font-weight:500;border:none;background:none;border-bottom:2px solid transparent;color:var(--muted);cursor:pointer;white-space:nowrap;font-family:var(--font-b);transition:all .18s;">Massage &amp; Spa</button>
-      <button class="tab-btn" data-cat="fitness" onclick="filterPosts(this,'fitness')" style="padding:.65rem 1.1rem;font-size:13px;font-weight:500;border:none;background:none;border-bottom:2px solid transparent;color:var(--muted);cursor:pointer;white-space:nowrap;font-family:var(--font-b);transition:all .18s;">Fitness</button>
-      <button class="tab-btn" data-cat="skincare" onclick="filterPosts(this,'skincare')" style="padding:.65rem 1.1rem;font-size:13px;font-weight:500;border:none;background:none;border-bottom:2px solid transparent;color:var(--muted);cursor:pointer;white-space:nowrap;font-family:var(--font-b);transition:all .18s;">Skincare</button>
-      <button class="tab-btn" data-cat="nutrition" onclick="filterPosts(this,'nutrition')" style="padding:.65rem 1.1rem;font-size:13px;font-weight:500;border:none;background:none;border-bottom:2px solid transparent;color:var(--muted);cursor:pointer;white-space:nowrap;font-family:var(--font-b);transition:all .18s;">Nutrition</button>
-      <button class="tab-btn" data-cat="herbs" onclick="filterPosts(this,'herbs')" style="padding:.65rem 1.1rem;font-size:13px;font-weight:500;border:none;background:none;border-bottom:2px solid transparent;color:var(--muted);cursor:pointer;white-space:nowrap;font-family:var(--font-b);transition:all .18s;">Herbs</button>
+  </div>
+
+  <div class="blog-section">
+    <div class="loading-state" id="loadingState">
+      <div class="loading-spinner"></div>
+      <p class="loading-text">Loading posts…</p>
     </div>
+    <div class="empty-state" id="emptyState">
+      <span class="empty-icon">📝</span>
+      <h2 class="empty-title">No posts found</h2>
+      <p class="empty-sub">Try a different category or search term.</p>
+    </div>
+    <div class="posts-grid" id="postsGrid" style="display:none;"></div>
+    <div class="pagination" id="pagination"></div>
   </div>
 </div>
 
-<!-- ── Filter / search bar ────────────────────────────── -->
-<div class="filter-bar">
-  <div class="filter-bar-inner">
-    <div class="search-wrap">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-      <input type="text" id="searchInput" placeholder="Search articles…" oninput="handleSearch(this.value)">
-    </div>
-    <div class="pills" id="tagPills">
-      <button class="pill active" data-cat="all" onclick="filterPosts(this,'all')">All</button>
-      <button class="pill" data-cat="massage" onclick="filterPosts(this,'massage')">Massage &amp; Spa</button>
-      <button class="pill" data-cat="fitness" onclick="filterPosts(this,'fitness')">Fitness</button>
-      <button class="pill" data-cat="skincare" onclick="filterPosts(this,'skincare')">Skincare</button>
-      <button class="pill" data-cat="nutrition" onclick="filterPosts(this,'nutrition')">Nutrition</button>
-      <button class="pill" data-cat="herbs" onclick="filterPosts(this,'herbs')">Herbs</button>
-    </div>
-    <div class="sort-wrap">
-      <select class="sort-select" onchange="handleSort(this.value)">
-        <option value="newest">Newest first</option>
-        <option value="oldest">Oldest first</option>
-        <option value="popular">Most popular</option>
-        <option value="read">Quickest read</option>
-      </select>
-    </div>
+<!-- SINGLE POST MODE -->
+<div id="articleView" class="article-wrap" style="display:none;">
+  <div class="loading-state" id="articleLoading">
+    <div class="loading-spinner"></div>
+    <p class="loading-text">Loading article…</p>
   </div>
+  <div class="empty-state" id="articleEmpty">
+    <span class="empty-icon">📝</span>
+    <h2 class="empty-title">Post not found</h2>
+    <p class="empty-sub">This article may have been moved, unpublished, or the link is incorrect.</p>
+    <a href="/Blog/all-posts/" class="empty-back">← Back to all posts</a>
+  </div>
+  <article id="articleContent" style="display:none;"></article>
 </div>
 
-<main class="page-wrap">
-  <div class="content-grid">
-
-    <!-- ── Posts column ──────────────────────────────── -->
-    <div>
-      <div class="posts-header">
-        <span class="posts-header-label" id="resultLabel">18 articles</span>
-        <div class="view-toggle">
-          <button class="view-btn active" id="gridBtn" onclick="setView('grid')" title="Grid view">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
-          </button>
-          <button class="view-btn" id="listBtn" onclick="setView('list')" title="List view">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
-          </button>
-        </div>
-      </div>
-
-      <div class="posts-grid" id="postsGrid"></div>
-
-      <div class="empty-state" id="emptyState">
-        <div class="empty-icon">🌿</div>
-        <h3>No articles found</h3>
-        <p>Try a different search term or category.</p>
-      </div>
-
-      <div class="load-more-wrap" id="loadMoreWrap">
-        <button class="load-more" onclick="loadMore()">Load more articles</button>
-      </div>
+<footer>
+  <div class="footer-bottom">
+    <a href="https://www.evemassages.com" class="footer-brand"><span>EMS</span> · Eve Massage Services</a>
+    <div class="footer-links">
+      <a href="/Blog/index.html" class="footer-link">Blog</a>
+      <a href="/akwa-ibom-health/" class="footer-link">Health Directory</a>
+      <a href="/Contact/index.html" class="footer-link">Contact</a>
+      <a href="/privacy/index.html" class="footer-link">Privacy</a>
     </div>
-
-    <!-- ── Sidebar ────────────────────────────────────── -->
-    <aside class="sidebar">
-
-      <!-- Trending -->
-      <div class="sidebar-card">
-        <div class="sidebar-title">Trending this week</div>
-        <div class="trending-item">
-          <div class="trending-num">01</div>
-          <div>
-            <div class="ti-title">Why a monthly deep-tissue massage is the best health investment you can make</div>
-            <div class="ti-meta">Massage &amp; Spa · 5 min read</div>
-          </div>
-        </div>
-        <div class="trending-item">
-          <div class="trending-num">02</div>
-          <div>
-            <div class="ti-title">Moringa: Nigeria's quiet superfood and how to use it daily</div>
-            <div class="ti-meta">Herbs · 4 min read</div>
-          </div>
-        </div>
-        <div class="trending-item">
-          <div class="trending-num">03</div>
-          <div>
-            <div class="ti-title">The 3-step evening routine that transformed my skin in 30 days</div>
-            <div class="ti-meta">Skincare · 3 min read</div>
-          </div>
-        </div>
-        <div class="trending-item">
-          <div class="trending-num">04</div>
-          <div>
-            <div class="ti-title">5 local health drinks that actually work — and one to avoid</div>
-            <div class="ti-meta">Nutrition · 6 min read</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Tags -->
-      <div class="sidebar-card">
-        <div class="sidebar-title">Browse by topic</div>
-        <div class="tags-cloud">
-          <button class="tag-chip" onclick="filterPosts(null,'massage')">Deep tissue</button>
-          <button class="tag-chip" onclick="filterPosts(null,'massage')">Aromatherapy</button>
-          <button class="tag-chip" onclick="filterPosts(null,'skincare')">Hyperpigmentation</button>
-          <button class="tag-chip" onclick="filterPosts(null,'nutrition')">Zobo</button>
-          <button class="tag-chip" onclick="filterPosts(null,'herbs')">Moringa</button>
-          <button class="tag-chip" onclick="filterPosts(null,'fitness')">Home workouts</button>
-          <button class="tag-chip" onclick="filterPosts(null,'skincare')">SPF</button>
-          <button class="tag-chip" onclick="filterPosts(null,'herbs')">Bitter leaf</button>
-          <button class="tag-chip" onclick="filterPosts(null,'nutrition')">Detox</button>
-          <button class="tag-chip" onclick="filterPosts(null,'fitness')">HIIT</button>
-          <button class="tag-chip" onclick="filterPosts(null,'massage')">Hot stone</button>
-          <button class="tag-chip" onclick="filterPosts(null,'herbs')">Sleep</button>
-        </div>
-      </div>
-
-      <!-- Contributors -->
-      <div class="sidebar-card">
-        <div class="sidebar-title">Our contributors</div>
-        <div class="contributor-row">
-          <div class="contrib-avatar" style="background:var(--green-l);color:var(--green);">EW</div>
-          <div>
-            <div class="contrib-name">Eve Wellness Team</div>
-            <div class="contrib-posts">14 posts · Massage &amp; Spa</div>
-          </div>
-          <span class="contrib-arrow">›</span>
-        </div>
-        <div class="contributor-row">
-          <div class="contrib-avatar" style="background:#f0e8f8;color:#7b4fa6;">AO</div>
-          <div>
-            <div class="contrib-name">Amina Okon</div>
-            <div class="contrib-posts">9 posts · Skincare</div>
-          </div>
-          <span class="contrib-arrow">›</span>
-        </div>
-        <div class="contributor-row">
-          <div class="contrib-avatar" style="background:var(--blue-l);color:var(--blue);">JO</div>
-          <div>
-            <div class="contrib-name">Joy Okafor</div>
-            <div class="contrib-posts">12 posts · Fitness</div>
-          </div>
-          <span class="contrib-arrow">›</span>
-        </div>
-        <div class="contributor-row">
-          <div class="contrib-avatar" style="background:#fef6e8;color:#c07d1a;">GR</div>
-          <div>
-            <div class="contrib-name">Green Roots Nigeria</div>
-            <div class="contrib-posts">7 posts · Nutrition</div>
-          </div>
-          <span class="contrib-arrow">›</span>
-        </div>
-        <div class="contributor-row">
-          <div class="contrib-avatar" style="background:#e8f5e4;color:#2d7a2d;">NH</div>
-          <div>
-            <div class="contrib-name">Nature's Healing Co.</div>
-            <div class="contrib-posts">6 posts · Herbs</div>
-          </div>
-          <span class="contrib-arrow">›</span>
-        </div>
-      </div>
-
-      <!-- Newsletter mini -->
-      <div class="nl-mini">
-        <h4>Get <em>wellness insights</em> weekly</h4>
-        <p>One well-researched article, every Tuesday. No spam.</p>
-        <input class="nl-input" type="email" placeholder="your@email.com">
-        <button class="nl-btn">Subscribe free</button>
-      </div>
-
-    </aside>
   </div>
-</main>
+</footer>
 
-<button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top">
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
-</button>
+<div class="mobile-nav">
+  <a class="mobile-nav-logo" href="https://www.evemassages.com"><span>EMS</span></a>
+  <div class="mobile-nav-divider"></div>
+  <button class="mobile-menu-btn" id="mobileMenuBtn" onclick="toggleMobileMenu()">
+    <div class="mobile-menu-icon"><span></span><span></span><span></span></div>
+    Menu
+  </button>
+</div>
+<div class="mobile-menu-drawer" id="mobileMenuDrawer">
+  <a class="drawer-link" href="https://www.evemassages.com"><span class="drawer-link-icon">🏠</span> Home</a>
+  <a class="drawer-link" href="/services/index.html"><span class="drawer-link-icon">🌿</span> Services</a>
+  <a class="drawer-link" href="/Blog/index.html"><span class="drawer-link-icon">📝</span> Blog</a>
+  <a class="drawer-link" href="/akwa-ibom-health/"><span class="drawer-link-icon">🏥</span> Health Directory</a>
+  <a class="drawer-link" href="/Contact/index.html"><span class="drawer-link-icon">📞</span> Contact</a>
+  <a class="drawer-book-btn" href="/booking/index.html">Book a Session →</a>
+</div>
 
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <script>
-/* ── Data ───────────────────────────────────────────── */
-const POSTS = [
-  { id:1,  cat:'massage',   emoji:'🌿', title:'Why a monthly deep-tissue massage is the best health investment you can make', excerpt:'Chronic tension silently drives up cortisol, disrupts sleep and weakens immunity. Here\'s the evidence-backed case.', author:'Eve Wellness Team', initials:'EW', avatarBg:'#eef6f2', avatarColor:'#3a8c6e', date:'Jun 14, 2026', read:'5 min', views:842, thumbBg:'linear-gradient(135deg,#d4ede4,#a8d5c3)' },
-  { id:2,  cat:'skincare',  emoji:'✨', title:'The 3-step evening routine that transformed my skin in 30 days', excerpt:'Simple, affordable, and built for Nigerian skin in our humid climate.', author:'Amina Okon', initials:'AO', avatarBg:'#f0e8f8', avatarColor:'#7b4fa6', date:'Jun 12, 2026', read:'3 min', views:671, thumbBg:'linear-gradient(135deg,#f0e8f8,#d8c2ed)' },
-  { id:3,  cat:'nutrition', emoji:'🥤', title:'5 local health drinks that actually work — and one to avoid', excerpt:'Zobo, ginger shots, tiger nut milk and more — the benefits the science actually backs.', author:'Green Roots Nigeria', initials:'GR', avatarBg:'#fef6e8', avatarColor:'#c07d1a', date:'Jun 10, 2026', read:'6 min', views:590, thumbBg:'linear-gradient(135deg,#fef6e8,#f5dfa8)' },
-  { id:4,  cat:'massage',   emoji:'🧘', title:'Hot stone vs Swedish massage: which is right for you?', excerpt:'Two of our most popular services compared — benefits, sensations and who should choose which.', author:'Eve Wellness Team', initials:'EW', avatarBg:'#eef6f2', avatarColor:'#3a8c6e', date:'Jun 8, 2026', read:'4 min', views:480, thumbBg:'linear-gradient(135deg,#d4ede4,#b8dccf)' },
-  { id:5,  cat:'herbs',     emoji:'🌱', title:'Moringa: Nigeria\'s quiet superfood and how to use it daily', excerpt:'From powder to leaves to tea — the different forms and what each one is best for.', author:'Nature\'s Healing Co.', initials:'NH', avatarBg:'#e8f5e4', avatarColor:'#2d7a2d', date:'Jun 9, 2026', read:'4 min', views:412, thumbBg:'linear-gradient(135deg,#e8f5e4,#b8ddb0)' },
-  { id:6,  cat:'fitness',   emoji:'🏃', title:'5 morning routines to boost your energy all day', excerpt:'No gym required — just 20 minutes and the right sequence to prime your body and mind.', author:'Joy Okafor', initials:'JO', avatarBg:'#eef3fa', avatarColor:'#2a6ea6', date:'Jun 10, 2026', read:'5 min', views:389, thumbBg:'linear-gradient(135deg,#e8eefa,#bccfed)' },
-  { id:7,  cat:'skincare',  emoji:'🧴', title:'SPF in Nigeria — why you still need sunscreen every single day', excerpt:'The UV index in Akwa Ibom is no joke. Here\'s what to use and exactly how.', author:'Amina Okon', initials:'AO', avatarBg:'#f0e8f8', avatarColor:'#7b4fa6', date:'Jun 5, 2026', read:'4 min', views:360, thumbBg:'linear-gradient(135deg,#f0e8f8,#dcc8ef)' },
-  { id:8,  cat:'massage',   emoji:'💆', title:'How often should you actually get a massage?', excerpt:'A practical guide based on your lifestyle, stress levels and health goals.', author:'Eve Wellness Team', initials:'EW', avatarBg:'#eef6f2', avatarColor:'#3a8c6e', date:'Jun 1, 2026', read:'3 min', views:344, thumbBg:'linear-gradient(135deg,#c8e8da,#a0d4be)' },
-  { id:9,  cat:'nutrition', emoji:'🌿', title:'The truth about detox drinks — what works and what\'s a scam', excerpt:'A no-hype guide to liver support, hydration and what your body actually needs to "detox."', author:'Green Roots Nigeria', initials:'GR', avatarBg:'#fef6e8', avatarColor:'#c07d1a', date:'Jun 2, 2026', read:'5 min', views:310, thumbBg:'linear-gradient(135deg,#fef6e8,#f0d898)' },
-  { id:10, cat:'fitness',   emoji:'💪', title:'Home workouts with zero equipment — a complete beginner guide', excerpt:'A 4-week plan built around bodyweight, space you already have, and consistency.', author:'Joy Okafor', initials:'JO', avatarBg:'#eef3fa', avatarColor:'#2a6ea6', date:'Jun 3, 2026', read:'7 min', views:298, thumbBg:'linear-gradient(135deg,#dce6f8,#b0c8ec)' },
-  { id:11, cat:'herbs',     emoji:'🍃', title:'7 herbs that help with sleep — no prescription needed', excerpt:'Valerian, ashwagandha and five locally available options that actually calm the nervous system.', author:'Nature\'s Healing Co.', initials:'NH', avatarBg:'#e8f5e4', avatarColor:'#2d7a2d', date:'Jun 2, 2026', read:'5 min', views:276, thumbBg:'linear-gradient(135deg,#d8f0d4,#acd8a4)' },
-  { id:12, cat:'massage',   emoji:'🌸', title:'Aromatherapy oils we use and why they actually work', excerpt:'The science behind lavender, eucalyptus and four other staples in our treatment room.', author:'Eve Wellness Team', initials:'EW', avatarBg:'#eef6f2', avatarColor:'#3a8c6e', date:'May 25, 2026', read:'4 min', views:254, thumbBg:'linear-gradient(135deg,#dceee6,#b4d8c4)' },
-  { id:13, cat:'skincare',  emoji:'💧', title:'Hyperpigmentation: the products that actually fade dark spots', excerpt:'Niacinamide, kojic acid, and what to avoid — a clear breakdown without the jargon.', author:'Amina Okon', initials:'AO', avatarBg:'#f0e8f8', avatarColor:'#7b4fa6', date:'May 29, 2026', read:'5 min', views:241, thumbBg:'linear-gradient(135deg,#ede4f8,#d0b8e8)' },
-  { id:14, cat:'herbs',     emoji:'🫚', title:'Bitter leaf, scent leaf, uziza — the wellness uses you didn\'t know', excerpt:'Common Nigerian kitchen leaves with documented medicinal properties.', author:'Nature\'s Healing Co.', initials:'NH', avatarBg:'#e8f5e4', avatarColor:'#2d7a2d', date:'May 26, 2026', read:'6 min', views:228, thumbBg:'linear-gradient(135deg,#cceccc,#9ccf9c)' },
-  { id:15, cat:'fitness',   emoji:'🔥', title:'HIIT vs steady cardio — which one actually burns more fat?', excerpt:'An honest breakdown of both approaches and how to pick for your body type and schedule.', author:'Joy Okafor', initials:'JO', avatarBg:'#eef3fa', avatarColor:'#2a6ea6', date:'May 20, 2026', read:'5 min', views:215, thumbBg:'linear-gradient(135deg,#d4e0f4,#a8bce0)' },
-  { id:16, cat:'nutrition', emoji:'🍋', title:'Morning drink habits of 5 Nigerian wellness coaches', excerpt:'We asked, they answered — and the results were surprisingly simple.', author:'Green Roots Nigeria', initials:'GR', avatarBg:'#fef6e8', avatarColor:'#c07d1a', date:'May 25, 2026', read:'4 min', views:198, thumbBg:'linear-gradient(135deg,#fff0cc,#f0d880)' },
-  { id:17, cat:'massage',   emoji:'🛁', title:'What to do before and after your massage for best results', excerpt:'Hydration, food, clothing and recovery habits that double the benefits.', author:'Eve Wellness Team', initials:'EW', avatarBg:'#eef6f2', avatarColor:'#3a8c6e', date:'May 18, 2026', read:'3 min', views:187, thumbBg:'linear-gradient(135deg,#c4e4d8,#9ccabb)' },
-  { id:18, cat:'fitness',   emoji:'🧘', title:'Why rest days are part of your training — not a break from it', excerpt:'The physiology of recovery and how to make your off days genuinely count.', author:'Joy Okafor', initials:'JO', avatarBg:'#eef3fa', avatarColor:'#2a6ea6', date:'May 28, 2026', read:'4 min', views:176, thumbBg:'linear-gradient(135deg,#d0daec,#a8b8d8)' },
-];
+  // ── CONFIG ──────────────────────────────────────────────
+  const GITHUB_USER = 'princefubbi';
+  const GITHUB_REPO = 'evemassageservices';
+  const POSTS_PER_PAGE = 9;
+  // ────────────────────────────────────────────────────────
 
-const CAT_COLORS = { massage:'#3a8c6e', fitness:'#2a6ea6', skincare:'#7b4fa6', nutrition:'#c07d1a', herbs:'#2d7a2d' };
-const PAGE_SIZE = 9;
+  let allPosts = [];
+  let filteredPosts = [];
+  let currentPage = 1;
+  let activeCategory = 'all';
+  let activeSearch = '';
 
-let activeCat = 'all';
-let searchQ   = '';
-let sortMode  = 'newest';
-let page      = 1;
-let savedIds  = new Set();
+  const urlParams = new URLSearchParams(window.location.search);
+  const singleSlug = urlParams.get('post');
 
-/* ── Filtering & sorting ────────────────────────────── */
-function getFiltered() {
-  let posts = [...POSTS];
-  if (activeCat !== 'all') posts = posts.filter(p => p.cat === activeCat);
-  if (searchQ) {
-    const q = searchQ.toLowerCase();
-    posts = posts.filter(p => p.title.toLowerCase().includes(q) || p.excerpt.toLowerCase().includes(q) || p.author.toLowerCase().includes(q));
-  }
-  if (sortMode === 'oldest')  posts.sort((a,b) => a.id - b.id);
-  else if (sortMode === 'popular') posts.sort((a,b) => b.views - a.views);
-  else if (sortMode === 'read')    posts.sort((a,b) => parseInt(a.read) - parseInt(b.read));
-  else posts.sort((a,b) => b.id - a.id);
-  return posts;
-}
-
-/* ── Render ─────────────────────────────────────────── */
-function renderCard(post, i) {
-  const catLabel = { massage:'Massage & Spa', fitness:'Fitness', skincare:'Skincare', nutrition:'Nutrition', herbs:'Herbs' }[post.cat];
-  const isSaved  = savedIds.has(post.id);
-  return `
-  <article class="post-card" style="animation-delay:${i*0.04}s" onclick="void(0)" data-cat="${post.cat}" data-id="${post.id}">
-    <div class="card-thumb" style="background:${post.thumbBg}">
-      ${post.emoji}
-      <span class="card-cat-badge cat-${post.cat}">${catLabel}</span>
-    </div>
-    <div class="card-body">
-      <div class="card-meta">
-        <span>${post.author}</span>
-        <span class="dot">·</span>
-        <span>${post.date}</span>
-        <span class="dot">·</span>
-        <span>${post.views} views</span>
-      </div>
-      <h2 class="card-title">${post.title}</h2>
-      <p class="card-excerpt">${post.excerpt}</p>
-      <div class="card-footer">
-        <div class="mini-avatar" style="background:${post.avatarBg};color:${post.avatarColor};">${post.initials}</div>
-        <span class="card-author-name">${post.author}</span>
-        <span class="card-read">${post.read} read</span>
-        <button class="card-bookmark ${isSaved?'saved':''}" onclick="toggleSave(event,${post.id})" title="${isSaved?'Unsave':'Save'}">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="${isSaved?'currentColor':'none'}" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
-        </button>
-      </div>
-    </div>
-  </article>`;
-}
-
-function renderGrid() {
-  const filtered = getFiltered();
-  const visible  = filtered.slice(0, page * PAGE_SIZE);
-  const grid     = document.getElementById('postsGrid');
-  const empty    = document.getElementById('emptyState');
-  const lmw      = document.getElementById('loadMoreWrap');
-  const label    = document.getElementById('resultLabel');
-  const count    = document.getElementById('postCount');
-
-  if (filtered.length === 0) {
-    grid.innerHTML = '';
-    empty.classList.add('show');
-    lmw.style.display = 'none';
-    label.textContent = '0 articles';
-    count.textContent = 'No articles match your search';
-    return;
-  }
-
-  empty.classList.remove('show');
-  grid.innerHTML = visible.map((p,i) => renderCard(p,i)).join('');
-  label.textContent = `${filtered.length} article${filtered.length !== 1 ? 's' : ''}`;
-  const catName = activeCat === 'all' ? 'all' : activeCat;
-  count.textContent = `Showing ${Math.min(visible.length, filtered.length)} of ${filtered.length} ${catName} articles`;
-  lmw.style.display = visible.length < filtered.length ? 'block' : 'none';
-}
-
-/* ── Controls ───────────────────────────────────────── */
-function filterPosts(btn, cat) {
-  activeCat = cat; page = 1;
-  // sync pills
-  document.querySelectorAll('.pill').forEach(p => {
-    p.classList.toggle('active', p.dataset.cat === cat);
-  });
-  // sync tabs
-  document.querySelectorAll('.tab-btn').forEach(t => {
-    const isActive = t.dataset.cat === cat;
-    t.style.borderBottomColor = isActive ? 'var(--green)' : 'transparent';
-    t.style.color = isActive ? 'var(--green)' : 'var(--muted)';
-    t.style.fontWeight = isActive ? '600' : '500';
-  });
-  renderGrid();
-}
-
-function handleSearch(val) {
-  searchQ = val; page = 1;
-  renderGrid();
-}
-
-function handleSort(val) {
-  sortMode = val; page = 1;
-  renderGrid();
-}
-
-function loadMore() {
-  page++;
-  renderGrid();
-  // smooth scroll to new cards
-  setTimeout(() => {
-    const cards = document.querySelectorAll('.post-card');
-    const idx = (page-1) * PAGE_SIZE;
-    if (cards[idx]) cards[idx].scrollIntoView({ behavior:'smooth', block:'start' });
-  }, 80);
-}
-
-function setView(mode) {
-  const grid = document.getElementById('postsGrid');
-  const gb = document.getElementById('gridBtn');
-  const lb = document.getElementById('listBtn');
-  if (mode === 'list') {
-    grid.classList.add('list-view');
-    lb.classList.add('active'); gb.classList.remove('active');
+  if (singleSlug) {
+    document.getElementById('listingView').style.display = 'none';
+    document.getElementById('articleView').style.display = 'block';
+    loadSinglePost(singleSlug);
   } else {
-    grid.classList.remove('list-view');
-    gb.classList.add('active'); lb.classList.remove('active');
+    fetchPosts();
   }
-}
 
-function toggleSave(e, id) {
-  e.stopPropagation();
-  if (savedIds.has(id)) savedIds.delete(id);
-  else savedIds.add(id);
-  renderGrid();
-}
+  // ══════════════════════ LISTING MODE ══════════════════════
 
-/* ── Progress bar ───────────────────────────────────── */
-window.addEventListener('scroll', () => {
-  const doc  = document.documentElement;
-  const pct  = (window.scrollY / (doc.scrollHeight - doc.clientHeight)) * 100;
-  document.getElementById('progressBar').style.width = pct + '%';
-  const bt = document.getElementById('backTop');
-  if (window.scrollY > 400) bt.classList.add('show');
-  else bt.classList.remove('show');
-});
+  async function fetchPosts() {
+    try {
+      const url = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/content/posts`;
+      const res = await fetch(url);
 
-/* ── Init ───────────────────────────────────────────── */
-renderGrid();
+      if (!res.ok) { showEmpty(); return; }
+
+      const files = await res.json();
+      const mdFiles = files.filter(f => f.name.endsWith('.md'));
+
+      if (mdFiles.length === 0) { showEmpty(); return; }
+
+      const posts = await Promise.all(mdFiles.map(async (file) => {
+        const r = await fetch(file.download_url);
+        const text = await r.text();
+        return parsePost(text, file.name);
+      }));
+
+      allPosts = posts
+        .filter(p => p.status === 'published')
+        .sort((a, b) => new Date(b.published_at) - new Date(a.published_at));
+
+      filteredPosts = [...allPosts];
+      renderPosts();
+
+    } catch (err) {
+      console.error('Error fetching posts:', err);
+      showEmpty();
+    }
+  }
+
+  function parsePost(text, filename) {
+    const fmMatch = text.match(/^---\n([\s\S]*?)\n---/);
+    const post = { slug: filename.replace('.md', '') };
+
+    if (fmMatch) {
+      const lines = fmMatch[1].split('\n');
+      lines.forEach(line => {
+        const idx = line.indexOf(':');
+        if (idx > -1) {
+          const key = line.slice(0, idx).trim();
+          let val = line.slice(idx + 1).trim().replace(/^["']|["']$/g, '');
+          if (key) post[key] = val;
+        }
+      });
+      post.body = text.replace(/^---\n[\s\S]*?\n---\n?/, '');
+    } else {
+      post.body = text;
+    }
+    // Prefer explicit slug from frontmatter if present
+    if (post.slug === undefined || post.slug === '') post.slug = filename.replace('.md', '');
+    return post;
+  }
+
+  function renderPosts() {
+    const grid = document.getElementById('postsGrid');
+    const loading = document.getElementById('loadingState');
+    const empty = document.getElementById('emptyState');
+    const pagination = document.getElementById('pagination');
+
+    loading.style.display = 'none';
+
+    if (filteredPosts.length === 0) {
+      grid.style.display = 'none';
+      empty.style.display = 'block';
+      pagination.innerHTML = '';
+      return;
+    }
+
+    empty.style.display = 'none';
+    grid.style.display = 'grid';
+
+    const start = (currentPage - 1) * POSTS_PER_PAGE;
+    const pagePosts = filteredPosts.slice(start, start + POSTS_PER_PAGE);
+
+    grid.innerHTML = pagePosts.map((post, i) => {
+      const isFirst = i === 0 && currentPage === 1 && activeCategory === 'all' && !activeSearch;
+      const date = post.published_at
+        ? new Date(post.published_at).toLocaleDateString('en-NG', { day: 'numeric', month: 'long', year: 'numeric' })
+        : '';
+      const emoji = getCategoryEmoji(post.category);
+
+      return `
+        <article class="post-card ${isFirst ? 'featured' : ''}">
+          <div class="post-cover">
+            ${post.cover_image
+              ? `<img src="${post.cover_image}" alt="${escapeHtml(post.title)}" loading="lazy"/>`
+              : `<span>${emoji}</span>`}
+          </div>
+          <div class="post-body">
+            <div class="post-meta">
+              ${post.category ? `<span class="post-category">${escapeHtml(post.category)}</span>` : ''}
+              ${date ? `<span class="post-date">${date}</span>` : ''}
+            </div>
+            <h2 class="post-title">${escapeHtml(post.title || 'Untitled')}</h2>
+            <p class="post-excerpt">${escapeHtml(post.excerpt || '')}</p>
+            <a href="/Blog/post.html?slug=${post.slug}" class="post-read-more">Read article →</a>
+          </div>
+        </article>
+      `;
+    }).join('');
+
+    const totalPages = Math.ceil(filteredPosts.length / POSTS_PER_PAGE);
+    if (totalPages > 1) {
+      pagination.innerHTML = Array.from({ length: totalPages }, (_, i) => `
+        <button class="page-btn ${i + 1 === currentPage ? 'active' : ''}"
+          onclick="goToPage(${i + 1})">${i + 1}</button>
+      `).join('');
+    } else {
+      pagination.innerHTML = '';
+    }
+  }
+
+  function filterPosts(category, el) {
+    document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+    el.classList.add('active');
+    activeCategory = category;
+    currentPage = 1;
+    applyFilters();
+  }
+
+  function searchPosts(query) {
+    activeSearch = query.toLowerCase();
+    currentPage = 1;
+    applyFilters();
+  }
+
+  function applyFilters() {
+    filteredPosts = allPosts.filter(post => {
+      const matchCat = activeCategory === 'all' || post.category === activeCategory;
+      const matchSearch = !activeSearch ||
+        (post.title || '').toLowerCase().includes(activeSearch) ||
+        (post.excerpt || '').toLowerCase().includes(activeSearch);
+      return matchCat && matchSearch;
+    });
+    renderPosts();
+  }
+
+  function goToPage(page) {
+    currentPage = page;
+    renderPosts();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function showEmpty() {
+    document.getElementById('loadingState').style.display = 'none';
+    document.getElementById('emptyState').style.display = 'block';
+  }
+
+  // ══════════════════════ SINGLE POST MODE ══════════════════════
+
+  async function loadSinglePost(slug) {
+    const loading = document.getElementById('articleLoading');
+    const empty = document.getElementById('articleEmpty');
+    const content = document.getElementById('articleContent');
+
+    try {
+      // Fetch the specific markdown file directly by expected filename
+      const fileUrl = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/content/posts/${encodeURIComponent(slug)}.md`;
+      let fileMeta = await fetch(fileUrl);
+      let text = null;
+
+      if (fileMeta.ok) {
+        const meta = await fileMeta.json();
+        const r = await fetch(meta.download_url);
+        text = await r.text();
+      } else {
+        // Fallback: filename might not equal slug — scan the folder and match on frontmatter slug
+        const listUrl = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/content/posts`;
+        const listRes = await fetch(listUrl);
+        if (listRes.ok) {
+          const files = (await listRes.json()).filter(f => f.name.endsWith('.md'));
+          for (const file of files) {
+            const r = await fetch(file.download_url);
+            const t = await r.text();
+            const parsed = parsePost(t, file.name);
+            if (parsed.slug === slug) { text = t; break; }
+          }
+        }
+      }
+
+      if (!text) { showArticleEmpty(); return; }
+
+      const post = parsePost(text, `${slug}.md`);
+
+      if (post.status && post.status !== 'published') { showArticleEmpty(); return; }
+
+      renderArticle(post);
+
+    } catch (err) {
+      console.error('Error loading post:', err);
+      showArticleEmpty();
+    }
+  }
+
+  function renderArticle(post) {
+    const loading = document.getElementById('articleLoading');
+    const empty = document.getElementById('articleEmpty');
+    const content = document.getElementById('articleContent');
+
+    loading.style.display = 'none';
+    empty.style.display = 'none';
+    content.style.display = 'block';
+
+    const date = post.published_at
+      ? new Date(post.published_at).toLocaleDateString('en-NG', { day: 'numeric', month: 'long', year: 'numeric' })
+      : '';
+    const emoji = getCategoryEmoji(post.category);
+    const bodyHtml = (typeof marked !== 'undefined')
+      ? marked.parse(post.body || '')
+      : `<p>${escapeHtml(post.body || '')}</p>`;
+
+    content.innerHTML = `
+      <a href="/Blog/all-posts/" class="article-back">← Back to all posts</a>
+      <div class="article-meta">
+        ${post.category ? `<span class="post-category">${escapeHtml(post.category)}</span>` : ''}
+        ${date ? `<span class="post-date">${date}</span>` : ''}
+      </div>
+      <h1 class="article-title">${escapeHtml(post.title || 'Untitled')}</h1>
+      ${post.excerpt ? `<p class="article-excerpt">${escapeHtml(post.excerpt)}</p>` : ''}
+      <div class="article-author-row">
+        <span>By <strong>${escapeHtml(post.author || 'Eve Massage Services')}</strong></span>
+      </div>
+      ${post.cover_image
+        ? `<div class="article-cover"><img src="${post.cover_image}" alt="${escapeHtml(post.title)}"/></div>`
+        : `<div class="article-cover" style="height:220px;display:flex;align-items:center;justify-content:center;font-size:4rem;">${emoji}</div>`}
+      <div class="article-body">${bodyHtml}</div>
+      <div class="article-cta">
+        <p>Ready to feel the benefits for yourself?</p>
+        <a href="/booking/index.html">Book a Session →</a>
+      </div>
+    `;
+
+    // Update SEO tags for this article
+    const title = `${post.title || 'Article'} — Eve Massage Services Blog`;
+    document.title = title;
+    document.getElementById('pageTitle').textContent = title;
+    if (post.excerpt) document.getElementById('pageDescription').setAttribute('content', post.excerpt);
+    document.getElementById('pageCanonical').setAttribute('href', `https://www.evemassages.com/Blog/${post.slug}/`);
+  }
+
+  function showArticleEmpty() {
+    document.getElementById('articleLoading').style.display = 'none';
+    document.getElementById('articleEmpty').style.display = 'block';
+  }
+
+  // ══════════════════════ SHARED HELPERS ══════════════════════
+
+  function getCategoryEmoji(cat) {
+    const map = {
+      'Wellness': '🌿', 'Health Education': '🧠',
+      'Massage Therapy': '💆', 'Akwa Ibom Health': '🏥', 'Lifestyle': '☀️'
+    };
+    return map[cat] || '📝';
+  }
+
+  function escapeHtml(str) {
+    if (!str) return '';
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  function toggleMobileMenu() {
+    document.getElementById('mobileMenuBtn').classList.toggle('open');
+    document.getElementById('mobileMenuDrawer').classList.toggle('open');
+  }
+  document.addEventListener('click', e => {
+    if (!e.target.closest('.mobile-nav') && !e.target.closest('.mobile-menu-drawer')) {
+      document.getElementById('mobileMenuBtn').classList.remove('open');
+      document.getElementById('mobileMenuDrawer').classList.remove('open');
+    }
+  });
 </script>
 </body>
 </html>
