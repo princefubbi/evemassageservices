@@ -11,14 +11,14 @@
 # ── BLOG ──
 # This must come FIRST — protects all-posts from being caught by the slug rule below
 [[redirects]]
-  from = "/Blog/all-posts/"
-  to = "/Blog/all-posts/index.html"
+  from = "/blog/all-posts/"
+  to = "/blog/all-posts/index.html"
   status = 200
 
-# This must come SECOND — catches all other /Blog/slug/ URLs and serves the post template
+# This must come SECOND — catches all other /blog/slug/ URLs and serves the post template
 [[redirects]]
-  from = "/Blog/:slug/"
-  to = "/Blog/all-posts/index.html?post=:slug"
+  from = "/blog/:slug/"
+  to = "/blog/all-posts/index.html?post=:slug"
   status = 200
 
 # ── HEADERS ──

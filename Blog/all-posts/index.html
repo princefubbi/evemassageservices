@@ -6,7 +6,7 @@
   <title id="pageTitle">All Posts — Eve Massage Services | Health & Wellness in Akwa Ibom</title>
   <meta name="description" id="pageDescription" content="All health and wellness articles, Akwa Ibom healthcare guides, and therapeutic advice from Eve Massage Services."/>
   <meta name="robots" content="index, follow"/>
-  <link rel="canonical" id="pageCanonical" href="https://www.evemassages.com/Blog/all-posts/"/>
+  <link rel="canonical" id="pageCanonical" href="https://www.evemassages.com/blog/all-posts/"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
@@ -168,9 +168,9 @@
   <ul class="nav-links">
     <li><a href="https://www.evemassages.com">Home</a></li>
     <li><a href="/services/index.html">Services</a></li>
-    <li><a href="/Blog/index.html" class="active">Blog</a></li>
+    <li><a href="/blog/index.html" class="active">Blog</a></li>
     <li><a href="/akwa-ibom-health/">Health Directory</a></li>
-    <li><a href="/Contact/index.html">Contact</a></li>
+    <li><a href="/contact/index.html">Contact</a></li>
     <li><a href="/booking/index.html" class="nav-cta">Book Now</a></li>
   </ul>
 </nav>
@@ -224,7 +224,7 @@
     <span class="empty-icon">📝</span>
     <h2 class="empty-title">Post not found</h2>
     <p class="empty-sub">This article may have been moved, unpublished, or the link is incorrect.</p>
-    <a href="/Blog/all-posts/" class="empty-back">← Back to all posts</a>
+    <a href="/blog/all-posts/" class="empty-back">← Back to all posts</a>
   </div>
   <article id="articleContent" style="display:none;"></article>
 </div>
@@ -233,9 +233,9 @@
   <div class="footer-bottom">
     <a href="https://www.evemassages.com" class="footer-brand"><span>EMS</span> · Eve Massage Services</a>
     <div class="footer-links">
-      <a href="/Blog/index.html" class="footer-link">Blog</a>
+      <a href="/blog/index.html" class="footer-link">Blog</a>
       <a href="/akwa-ibom-health/" class="footer-link">Health Directory</a>
-      <a href="/Contact/index.html" class="footer-link">Contact</a>
+      <a href="/contact/index.html" class="footer-link">Contact</a>
       <a href="/privacy/index.html" class="footer-link">Privacy</a>
     </div>
   </div>
@@ -252,9 +252,9 @@
 <div class="mobile-menu-drawer" id="mobileMenuDrawer">
   <a class="drawer-link" href="https://www.evemassages.com"><span class="drawer-link-icon">🏠</span> Home</a>
   <a class="drawer-link" href="/services/index.html"><span class="drawer-link-icon">🌿</span> Services</a>
-  <a class="drawer-link" href="/Blog/index.html"><span class="drawer-link-icon">📝</span> Blog</a>
+  <a class="drawer-link" href="/blog/index.html"><span class="drawer-link-icon">📝</span> Blog</a>
   <a class="drawer-link" href="/akwa-ibom-health/"><span class="drawer-link-icon">🏥</span> Health Directory</a>
-  <a class="drawer-link" href="/Contact/index.html"><span class="drawer-link-icon">📞</span> Contact</a>
+  <a class="drawer-link" href="/contact/index.html"><span class="drawer-link-icon">📞</span> Contact</a>
   <a class="drawer-book-btn" href="/booking/index.html">Book a Session →</a>
 </div>
 
@@ -381,7 +381,7 @@
             </div>
             <h2 class="post-title">${escapeHtml(post.title || 'Untitled')}</h2>
             <p class="post-excerpt">${escapeHtml(post.excerpt || '')}</p>
-            <a href="/Blog/post.html?slug=${post.slug}" class="post-read-more">Read article →</a>
+            <a href="/blog/post.html?slug=${post.slug}" class="post-read-more">Read article →</a>
           </div>
         </article>
       `;
@@ -498,7 +498,7 @@
       : `<p>${escapeHtml(post.body || '')}</p>`;
 
     content.innerHTML = `
-      <a href="/Blog/all-posts/" class="article-back">← Back to all posts</a>
+      <a href="/blog/all-posts/" class="article-back">← Back to all posts</a>
       <div class="article-meta">
         ${post.category ? `<span class="post-category">${escapeHtml(post.category)}</span>` : ''}
         ${date ? `<span class="post-date">${date}</span>` : ''}
@@ -523,7 +523,7 @@
     document.title = title;
     document.getElementById('pageTitle').textContent = title;
     if (post.excerpt) document.getElementById('pageDescription').setAttribute('content', post.excerpt);
-    document.getElementById('pageCanonical').setAttribute('href', `https://www.evemassages.com/Blog/${post.slug}/`);
+    document.getElementById('pageCanonical').setAttribute('href', `https://www.evemassages.com/blog/${post.slug}/`);
   }
 
   function showArticleEmpty() {
